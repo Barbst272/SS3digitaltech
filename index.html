@@ -484,6 +484,72 @@ pre.code{-webkit-overflow-scrolling:touch;}
   .xl-toolbar-row input{font-size:16px !important;}
   .ppt-editor input[type=text], .ppt-editor textarea{font-size:16px !important;}
 }
+
+/* ---------- Interactive Tools & Gamification Styles ---------- */
+.nav-subgroup-label{font-size:11px;color:var(--muted);padding:14px 10px 6px;text-transform:none;font-weight:600;}
+.tool-nav-btn{
+  width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:9px 12px;color:var(--text);font-size:12.5px;font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:8px;
+}
+.tool-nav-btn:hover{border-color:var(--teal);color:var(--teal);}
+.tool-nav-btn.active{border-color:var(--teal);background:rgba(69,208,196,.12);color:var(--teal);font-weight:600;}
+
+/* Topbar right items */
+.topbar-right{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.streak-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(242,184,75,.12);border:1px solid rgba(242,184,75,.35);color:var(--amber);padding:4px 9px;border-radius:20px;font-size:12px;font-family:var(--font-mono);font-weight:700;}
+.icon-btn{background:var(--surface-2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 10px;font-size:13px;display:inline-flex;align-items:center;gap:5px;cursor:pointer;}
+.icon-btn:hover{border-color:var(--teal);color:var(--teal);}
+
+/* Badges / Trophies */
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:12px;margin:14px 0;}
+.badge-card{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:center;transition:transform .2s ease, border-color .2s ease;}
+.badge-card.unlocked{border-color:var(--amber);background:linear-gradient(135deg,rgba(242,184,75,.08),transparent);}
+.badge-card.locked{opacity:.45;filter:grayscale(80%);}
+.badge-icon{font-size:28px;width:44px;height:44px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex:none;}
+.badge-info h4{font-size:13.5px;margin:0 0 3px 0;color:var(--text);}
+.badge-card.unlocked .badge-info h4{color:var(--amber);}
+.badge-info p{font-size:11.5px;color:var(--muted);margin:0;line-height:1.35;}
+.badge-tag{font-size:10px;font-family:var(--font-mono);color:var(--green);margin-top:4px;display:inline-block;}
+
+/* SQL Sandbox */
+.sql-workbench{display:grid;grid-template-columns:1fr;gap:16px;}
+.sql-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
+.sql-table-wrap{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:8px;margin-top:12px;}
+table.sql-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:12.5px;text-align:left;}
+table.sql-table th{background:var(--surface-2);color:var(--teal);padding:8px 12px;border:1px solid var(--line);position:sticky;top:0;font-weight:600;}
+table.sql-table td{padding:7px 12px;border:1px solid var(--line);color:var(--text);}
+table.sql-table tr:nth-child(even){background:rgba(255,255,255,.02);}
+table.sql-table tr:hover{background:rgba(69,208,196,.06);}
+.sql-chip{background:var(--bg);border:1px solid var(--line);color:var(--muted);font-family:var(--font-mono);font-size:11px;padding:4px 8px;border-radius:6px;cursor:pointer;}
+.sql-chip:hover{border-color:var(--teal);color:var(--teal);}
+.sql-challenge-card{background:rgba(69,208,196,.06);border:1px solid var(--teal-dim);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13.5px;}
+
+/* Subnet Calculator */
+.subnet-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;margin:16px 0;}
+.subnet-stat-card{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+.subnet-stat-label{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);margin-bottom:4px;letter-spacing:.5px;}
+.subnet-stat-val{font-family:var(--font-mono);font-size:15px;font-weight:700;color:var(--text);}
+.subnet-stat-val.highlight{color:var(--teal);}
+.subnet-stat-val.amber{color:var(--amber);}
+.bit-bar{display:flex;gap:3px;margin:12px 0;flex-wrap:wrap;}
+.bit-octet{display:flex;gap:2px;background:var(--bg);padding:4px;border-radius:6px;border:1px solid var(--line);}
+.bit-box{width:14px;height:18px;font-family:var(--font-mono);font-size:11px;display:flex;align-items:center;justify-content:center;border-radius:3px;}
+.bit-box.net{background:rgba(69,208,196,.25);color:var(--teal);font-weight:700;}
+.bit-box.host{background:rgba(241,121,91,.2);color:var(--coral);}
+
+/* Flowchart Builder */
+.fc-container{background:#070A12;border:1px solid var(--line);border-radius:12px;padding:24px 16px;min-height:380px;display:flex;flex-direction:column;align-items:center;gap:12px;overflow-x:auto;}
+.fc-node{padding:10px 18px;font-size:13px;font-family:var(--font-mono);text-align:center;position:relative;min-width:160px;transition:all .25s ease;border:2px solid var(--line);background:var(--surface);}
+.fc-node.start-end{border-radius:24px;border-color:var(--teal);color:var(--teal);}
+.fc-node.io{transform:skew(-12deg);border-radius:6px;border-color:var(--amber);color:var(--amber);}
+.fc-node.io span{transform:skew(12deg);display:inline-block;}
+.fc-node.process{border-radius:8px;border-color:#77E3A8;color:#77E3A8;}
+.fc-node.decision{clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);padding:18px 24px;min-height:70px;display:flex;align-items:center;justify-content:center;border-color:var(--coral);color:var(--coral);background:var(--surface-2);}
+.fc-node.active-exec{box-shadow:0 0 16px var(--teal);border-color:var(--teal) !important;background:rgba(69,208,196,.2) !important;color:#fff !important;}
+.fc-arrow{color:var(--muted);font-size:16px;font-weight:bold;}
+.fc-branch-row{display:flex;gap:32px;width:100%;justify-content:center;}
+.fc-branch{display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;}
+.fc-branch-tag{font-size:11px;font-family:var(--font-mono);padding:2px 8px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);}
 </style>
 </head>
 <body>
@@ -545,8 +611,17 @@ pre.code{-webkit-overflow-scrolling:touch;}
     </div>
     <div class="nav-group-label">Topics</div>
     <div id="topic-list"></div>
+
+    <div class="nav-subgroup-label">⚡ Interactive Simulators</div>
+    <button class="tool-nav-btn" id="sql-nav-btn" onclick="openSqlSandbox()">🗄️ SQL Database Sandbox</button>
+    <button class="tool-nav-btn" id="subnet-nav-btn" onclick="openSubnetCalc()">🌐 Subnet & IP Calculator</button>
+    <button class="tool-nav-btn" id="flowchart-nav-btn" onclick="openFlowchartBuilder()">🔄 Flowchart Algorithm Builder</button>
+
+    <div class="nav-subgroup-label">📚 Practice & Tools</div>
     <button id="pastq-nav-btn" onclick="openPastQuestions()">📝 WAEC & NECO Past Questions</button>
     <button id="office-nav-btn" onclick="openOfficeTools()">💼 Office Tools (Word, Excel, PPT)</button>
+    <button class="tool-nav-btn" id="badges-nav-btn" onclick="openBadgesModal()">🏆 Achievements & Trophies</button>
+
     <div id="progress-box">
       <div class="pt">Your progress</div>
       <div id="progress-bar-track"><div id="progress-bar-fill"></div></div>
@@ -559,7 +634,12 @@ pre.code{-webkit-overflow-scrolling:touch;}
       <div id="topbar-inner">
         <button id="menu-btn" onclick="toggleSidebar()" aria-label="Open topics menu">☰</button>
         <div id="topic-title">Topic <b id="topic-title-b">—</b></div>
-        <button id="lab-reports-btn" onclick="openLabModal()">🧾 My Lab Reports <span id="lab-reports-badge">0</span></button>
+        <div class="topbar-right">
+          <span class="streak-pill" id="topbar-streak" title="Daily study streak">🔥 <span id="streak-days">1</span>d</span>
+          <button class="icon-btn" id="trophy-btn" onclick="openBadgesModal()" title="View Achievements">🏆 <span id="badge-count-top">0/8</span></button>
+          <button class="icon-btn" id="sound-btn" onclick="toggleAudio()" title="Toggle sound effects">🔊</button>
+          <button id="lab-reports-btn" onclick="openLabModal()">🧾 My Lab Reports <span id="lab-reports-badge">0</span></button>
+        </div>
       </div>
       <div id="tabs"></div>
     </div>
@@ -575,6 +655,20 @@ pre.code{-webkit-overflow-scrolling:touch;}
     <div class="lab-btn-row">
       <button class="btn primary" id="lab-download-btn">⬇ Download all as a text file</button>
       <button class="btn" onclick="closeLabModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="badges-modal-scrim" onclick="if(event.target===this) closeBadgesModal()" style="position:fixed;inset:0;background:rgba(4,7,14,.75);z-index:60;display:none;align-items:flex-start;justify-content:center;padding:6vh 16px;overflow-y:auto;">
+  <div id="badges-modal" style="background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:680px;width:100%;padding:24px 22px 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <h2>🏆 Achievements & Trophies</h2>
+      <span class="streak-pill" id="modal-streak-pill">🔥 1 Day Streak</span>
+    </div>
+    <div class="sub" id="badges-modal-sub" style="color:var(--muted);font-size:13px;margin-bottom:16px;">Earn badges as you master Digital Technologies topics, quizzes, practicals, and simulators.</div>
+    <div class="badge-grid" id="badges-grid"></div>
+    <div class="lab-btn-row" style="margin-top:18px;">
+      <button class="btn primary" onclick="closeBadgesModal()">Keep learning →</button>
     </div>
   </div>
 </div>
@@ -1233,6 +1327,1043 @@ function topicComplete(topicId){
 }
 
 /* =========================================================
+   AUDIO CHIMES & SOUND SYNTHESIZER (100% Offline Web Audio API)
+   ========================================================= */
+let AUDIO_ENABLED = localStorage.getItem('ss3dt_audio') !== 'false';
+let audioCtx = null;
+function getAudioContext(){
+  if(!audioCtx){
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(AudioContext) audioCtx = new AudioContext();
+  }
+  if(audioCtx && audioCtx.state === 'suspended'){
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+function playSound(type){
+  if(!AUDIO_ENABLED) return;
+  try {
+    const ctx = getAudioContext();
+    if(!ctx) return;
+    const now = ctx.currentTime;
+    if(type === 'correct'){
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc1.type = 'sine';
+      osc2.type = 'triangle';
+      osc1.frequency.setValueAtTime(523.25, now);
+      osc1.frequency.setValueAtTime(659.25, now + 0.08);
+      osc1.frequency.setValueAtTime(783.99, now + 0.16);
+      osc2.frequency.setValueAtTime(1046.50, now + 0.16);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(ctx.destination);
+      osc1.start(now);
+      osc2.start(now + 0.16);
+      osc1.stop(now + 0.4);
+      osc2.stop(now + 0.4);
+    } else if(type === 'wrong'){
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, now);
+      osc.frequency.setValueAtTime(140, now + 0.1);
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.3);
+    } else if(type === 'badge'){
+      const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+      freqs.forEach((freq, idx)=>{
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+        gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now + idx * 0.07);
+        osc.stop(now + idx * 0.07 + 0.35);
+      });
+    } else if(type === 'click'){
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(700, now);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    }
+  } catch(e){}
+}
+function toggleAudio(){
+  AUDIO_ENABLED = !AUDIO_ENABLED;
+  localStorage.setItem('ss3dt_audio', AUDIO_ENABLED);
+  updateSoundButton();
+  if(AUDIO_ENABLED) playSound('click');
+}
+function updateSoundButton(){
+  const btn = document.getElementById('sound-btn');
+  if(btn){
+    btn.innerHTML = AUDIO_ENABLED ? '🔊' : '🔇';
+    btn.title = AUDIO_ENABLED ? 'Sound enabled (Click to mute)' : 'Sound muted (Click to enable)';
+  }
+}
+
+/* =========================================================
+   ACHIEVEMENTS & GAMIFICATION ENGINE
+   ========================================================= */
+const BADGES = [
+  {id:'first_launch', icon:'🚀', title:'First Launch', desc:'Logged in and started exploring SS3 Digital Technologies.'},
+  {id:'quiz_ace', icon:'💯', title:'Quiz Ace', desc:'Scored a perfect 100% on any practice topic quiz.'},
+  {id:'sql_explorer', icon:'🗄️', title:'SQL Explorer', desc:'Ran your first database query in the SQL Sandbox.'},
+  {id:'subnet_architect', icon:'🌐', title:'Subnet Architect', desc:'Calculated network IDs and host ranges in the Subnet Calculator.'},
+  {id:'algorithm_pioneer', icon:'🔄', title:'Algorithm Pioneer', desc:'Built and executed a logic flowchart in the Algorithm Builder.'},
+  {id:'lab_scientist', icon:'🧪', title:'Lab Scientist', desc:'Completed and saved your first computer practical lab report.'},
+  {id:'exam_master', icon:'📝', title:'Exam Master', desc:'Practiced real WAEC & NECO Past Questions.'},
+  {id:'valedictorian', icon:'👑', title:'SS3 Valedictorian', desc:'Reached 100% completion across all 8 first-term topics!'}
+];
+
+function loadBadges(){
+  try { return JSON.parse(localStorage.getItem('ss3dt_badges') || '{}'); } catch(e){ return {}; }
+}
+function saveBadges(data){
+  try { localStorage.setItem('ss3dt_badges', JSON.stringify(data)); } catch(e){}
+}
+function unlockBadge(id){
+  const badges = loadBadges();
+  if(!badges[id]){
+    badges[id] = { unlockedAt: new Date().toLocaleDateString() };
+    saveBadges(badges);
+    updateBadgeCounts();
+    const b = BADGES.find(x => x.id === id);
+    if(b){
+      playSound('badge');
+      showToast(`🏆 Achievement Unlocked: ${b.icon} ${b.title}!`);
+    }
+  }
+}
+function updateBadgeCounts(){
+  const badges = loadBadges();
+  const count = Object.keys(badges).length;
+  const countEl = document.getElementById('badge-count-top');
+  if(countEl) countEl.textContent = `${count}/${BADGES.length}`;
+}
+function openBadgesModal(){
+  renderBadgesModal();
+  const scrim = document.getElementById('badges-modal-scrim');
+  if(scrim) scrim.style.display = 'flex';
+}
+function closeBadgesModal(){
+  const scrim = document.getElementById('badges-modal-scrim');
+  if(scrim) scrim.style.display = 'none';
+}
+function renderBadgesModal(){
+  const badges = loadBadges();
+  const grid = document.getElementById('badges-grid');
+  if(!grid) return;
+  const streak = parseInt(localStorage.getItem('ss3dt_streak_count') || '1', 10);
+  const pill = document.getElementById('modal-streak-pill');
+  if(pill) pill.textContent = `🔥 ${streak} Day Streak`;
+  
+  grid.innerHTML = BADGES.map(b=>{
+    const isUnlocked = !!badges[b.id];
+    return `
+      <div class="badge-card ${isUnlocked ? 'unlocked' : 'locked'}">
+        <div class="badge-icon">${b.icon}</div>
+        <div class="badge-info">
+          <h4>${b.title}</h4>
+          <p>${b.desc}</p>
+          ${isUnlocked ? `<span class="badge-tag">✓ Unlocked ${badges[b.id].unlockedAt}</span>` : '<span class="badge-tag" style="color:var(--muted)">🔒 Locked</span>'}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+function checkDailyStreak(){
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const lastDate = localStorage.getItem('ss3dt_streak_last_date');
+    let streak = parseInt(localStorage.getItem('ss3dt_streak_count') || '1', 10);
+    if(lastDate === today){
+      // Already recorded today
+    } else if(lastDate){
+      const last = new Date(lastDate);
+      const curr = new Date(today);
+      const diffDays = Math.round((curr - last) / (1000 * 60 * 60 * 24));
+      if(diffDays === 1){
+        streak += 1;
+      } else if(diffDays > 1){
+        streak = 1;
+      }
+    } else {
+      streak = 1;
+    }
+    localStorage.setItem('ss3dt_streak_last_date', today);
+    localStorage.setItem('ss3dt_streak_count', streak);
+    const topStreak = document.getElementById('streak-days');
+    if(topStreak) topStreak.textContent = streak;
+  } catch(e){}
+}
+
+/* =========================================================
+   1. INTERACTIVE SQL DATABASE SANDBOX
+   ========================================================= */
+const DEFAULT_SQL_DB = {
+  Students: [
+    {id: 1, name: "Miracle Kpoizoun", gender: "F", age: 17, class: "SS3", score: 88, dept: "Science"},
+    {id: 2, name: "Praise James", gender: "M", age: 16, class: "SS3", score: 74, dept: "Commercial"},
+    {id: 3, name: "Kamsi Obeleagu", gender: "F", age: 17, class: "SS3", score: 92, dept: "Science"},
+    {id: 4, name: "Believe Humble", gender: "M", age: 18, class: "SS3", score: 65, dept: "Arts"},
+    {id: 5, name: "Favour Ogbonna", gender: "F", age: 16, class: "SS3", score: 81, dept: "Science"},
+    {id: 6, name: "Peter Orji", gender: "M", age: 17, class: "SS3", score: 58, dept: "Commercial"},
+    {id: 7, name: "Chioma Udoye", gender: "F", age: 17, class: "SS3", score: 95, dept: "Science"},
+    {id: 8, name: "Emmanuel Assa", gender: "M", age: 18, class: "SS3", score: 79, dept: "Arts"}
+  ],
+  Subjects: [
+    {code: "DT101", title: "Digital Technologies", teacher: "Mr. Adebayo", periods: 4},
+    {code: "MTH101", title: "General Mathematics", teacher: "Mrs. Okonkwo", periods: 5},
+    {code: "ENG101", title: "English Language", teacher: "Mr. Johnson", periods: 5},
+    {code: "PHY101", title: "Physics", teacher: "Dr. Eze", periods: 4},
+    {code: "CHE101", title: "Chemistry", teacher: "Mrs. Bala", periods: 4}
+  ],
+  Devices: [
+    {id: "PC-01", type: "Desktop", ip: "192.168.1.10", room: "Computer Lab", status: "Online"},
+    {id: "PC-02", type: "Desktop", ip: "192.168.1.11", room: "Computer Lab", status: "Online"},
+    {id: "RTR-01", type: "Router", ip: "192.168.1.1", room: "Server Room", status: "Online"},
+    {id: "PRN-01", type: "Printer", ip: "192.168.1.200", room: "Staff Room", status: "Offline"},
+    {id: "CAM-01", type: "IP Camera", ip: "192.168.1.55", room: "School Gate", status: "Online"}
+  ]
+};
+
+const SQL_CHALLENGES = [
+  {
+    title: "1. View All Students",
+    goal: "Write a query to display every column and record from the Students table.",
+    hint: "Use SELECT * FROM Students;",
+    solution: "SELECT * FROM Students;"
+  },
+  {
+    title: "2. Filter by Department",
+    goal: "Find all students who belong to the 'Science' department.",
+    hint: "Use WHERE dept = 'Science'",
+    solution: "SELECT * FROM Students WHERE dept = 'Science';"
+  },
+  {
+    title: "3. Top Scorers",
+    goal: "List the name and score of students with score greater than 80, sorted highest to lowest.",
+    hint: "SELECT name, score FROM Students WHERE score > 80 ORDER BY score DESC;",
+    solution: "SELECT name, score FROM Students WHERE score > 80 ORDER BY score DESC;"
+  },
+  {
+    title: "4. Count & Statistics",
+    goal: "Calculate the total number of students and the average score.",
+    hint: "SELECT COUNT(*), AVG(score) FROM Students;",
+    solution: "SELECT COUNT(*), AVG(score) FROM Students;"
+  },
+  {
+    title: "5. Find Offline Devices",
+    goal: "Inspect the Devices table to find all devices that are currently 'Offline'.",
+    hint: "SELECT * FROM Devices WHERE status = 'Offline';",
+    solution: "SELECT * FROM Devices WHERE status = 'Offline';"
+  },
+  {
+    title: "6. Insert a New Student",
+    goal: "Add a new student record into the Students table.",
+    hint: "INSERT INTO Students VALUES (9, 'Esther Manzilla', 'F', 17, 'SS3', 89, 'Science');",
+    solution: "INSERT INTO Students VALUES (9, 'Esther Manzilla', 'F', 17, 'SS3', 89, 'Science');"
+  }
+];
+
+let sqlDb = JSON.parse(localStorage.getItem('ss3dt_sql_db') || 'null') || JSON.parse(JSON.stringify(DEFAULT_SQL_DB));
+function saveSqlDb(){
+  try{ localStorage.setItem('ss3dt_sql_db', JSON.stringify(sqlDb)); }catch(e){}
+}
+function resetSqlDb(){
+  sqlDb = JSON.parse(JSON.stringify(DEFAULT_SQL_DB));
+  saveSqlDb();
+  showToast('🔄 Database reset to original sample tables.');
+  runSqlQuery('SELECT * FROM Students;');
+}
+
+function openSqlSandbox(){
+  state.mode = 'sql';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'SQL Database Sandbox';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderSqlApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('sql_explorer');
+}
+
+function renderSqlApp(){
+  const host = document.getElementById('content');
+  const ch = SQL_CHALLENGES[state.sqlChallengeIndex || 0];
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Interactive Sandbox</div>
+      <h1>🗄️ SQL Database Workbench</h1>
+      <p class="sub">Run real Structured Query Language (SQL) queries directly in your browser. Practice SELECT, WHERE, ORDER BY, aggregate functions, and table updates on live school databases.</p>
+    </div>
+
+    <div class="sql-challenge-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <b style="color:var(--teal)">🎯 Challenge ${ch.title}</b>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">${(state.sqlChallengeIndex||0)+1} of ${SQL_CHALLENGES.length}</span>
+      </div>
+      <p style="margin:4px 0 10px 0">${ch.goal}</p>
+      <div class="lab-btn-row">
+        <button class="btn small primary" onclick="setSqlQuery('${ch.solution.replace(/'/g, "\\'")}')">Load Starter Query</button>
+        <button class="btn small" onclick="toggleSqlHint()">💡 Hint</button>
+        <button class="btn small" onclick="nextSqlChallenge(-1)">← Previous</button>
+        <button class="btn small" onclick="nextSqlChallenge(1)">Next Challenge →</button>
+      </div>
+      <div id="sql-hint-box" style="display:none;margin-top:8px;font-size:12.5px;color:var(--amber);" class="mono">${ch.hint}</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <h3>SQL Query Terminal</h3>
+        <div style="margin-left:auto;display:flex;gap:6px;">
+          <button class="btn small" onclick="resetSqlDb()">🔄 Reset Database</button>
+        </div>
+      </div>
+      <div class="sql-toolbar">
+        <span class="mono" style="font-size:11.5px;color:var(--muted)">Quick tables:</span>
+        <button class="sql-chip" onclick="setSqlQuery('SELECT * FROM Students;')">Students (8)</button>
+        <button class="sql-chip" onclick="setSqlQuery('SELECT * FROM Subjects;')">Subjects (5)</button>
+        <button class="sql-chip" onclick="setSqlQuery('SELECT * FROM Devices;')">Devices (5)</button>
+        <button class="sql-chip" onclick="setSqlQuery('SELECT dept, COUNT(*), AVG(score) FROM Students GROUP BY dept;')">GROUP BY dept</button>
+      </div>
+      <textarea class="code-editor" id="sql-input" style="min-height:90px;font-size:14px;">SELECT * FROM Students WHERE score >= 80 ORDER BY score DESC;</textarea>
+      <div class="lab-btn-row" style="margin-top:10px;">
+        <button class="btn primary" id="sql-run-btn" onclick="executeSqlFromInput()">▶ Execute SQL Query</button>
+      </div>
+      <div id="sql-status" style="margin-top:10px;"></div>
+      <div class="sql-table-wrap" id="sql-output-wrap">
+        <div class="output-box muted2">Query results will appear here…</div>
+      </div>
+    </div>
+  `;
+  executeSqlFromInput();
+}
+
+function setSqlQuery(q){
+  const el = document.getElementById('sql-input');
+  if(el){ el.value = q; executeSqlFromInput(); }
+}
+function toggleSqlHint(){
+  const h = document.getElementById('sql-hint-box');
+  if(h) h.style.display = h.style.display === 'none' ? 'block' : 'none';
+}
+function nextSqlChallenge(dir){
+  state.sqlChallengeIndex = Math.max(0, Math.min(SQL_CHALLENGES.length - 1, (state.sqlChallengeIndex || 0) + dir));
+  renderSqlApp();
+}
+
+function executeSqlFromInput(){
+  const inp = document.getElementById('sql-input');
+  if(!inp) return;
+  const q = inp.value.trim();
+  runSqlQuery(q);
+}
+
+function runSqlQuery(query){
+  const statusEl = document.getElementById('sql-status');
+  const wrapEl = document.getElementById('sql-output-wrap');
+  if(!wrapEl) return;
+  
+  if(!query){
+    if(statusEl) statusEl.innerHTML = '<div class="status-banner warn">Please enter a SQL query.</div>';
+    return;
+  }
+  
+  try {
+    playSound('click');
+    const clean = query.replace(/;+$/, '').trim();
+    const upper = clean.toUpperCase();
+    
+    // INSERT
+    if(upper.startsWith('INSERT INTO')){
+      const match = clean.match(/INSERT\s+INTO\s+(\w+)\s+VALUES\s*\((.*)\)/i);
+      if(!match) throw new Error('Invalid INSERT syntax. Example: INSERT INTO Students VALUES (9, "Name", "M", 17, "SS3", 85, "Science");');
+      const table = match[1];
+      if(!sqlDb[table]) throw new Error(`Table "${table}" not found.`);
+      const rawVals = match[2].split(',').map(s => s.trim().replace(/^['"]|['"]$/g, ''));
+      const sample = sqlDb[table][0];
+      const keys = Object.keys(sample);
+      const newRow = {};
+      keys.forEach((k, idx)=>{
+        const val = rawVals[idx];
+        newRow[k] = isNaN(Number(val)) ? val : Number(val);
+      });
+      sqlDb[table].push(newRow);
+      saveSqlDb();
+      unlockBadge('sql_explorer');
+      playSound('correct');
+      if(statusEl) statusEl.innerHTML = `<div class="status-banner ok">✓ 1 row inserted into <b>${table}</b>. Total rows: ${sqlDb[table].length}</div>`;
+      renderSqlTableResult(sqlDb[table], wrapEl);
+      return;
+    }
+    
+    // UPDATE
+    if(upper.startsWith('UPDATE')){
+      const match = clean.match(/UPDATE\s+(\w+)\s+SET\s+(\w+)\s*=\s*['"]?([^'"]+)['"]?\s*(?:WHERE\s+(.*))?/i);
+      if(!match) throw new Error('Invalid UPDATE syntax. Example: UPDATE Students SET score = 90 WHERE id = 1;');
+      const table = match[1];
+      const col = match[2];
+      const val = isNaN(Number(match[3])) ? match[3] : Number(match[3]);
+      const whereClause = match[4];
+      if(!sqlDb[table]) throw new Error(`Table "${table}" not found.`);
+      let count = 0;
+      sqlDb[table].forEach(row=>{
+        if(!whereClause || evalSqlCondition(row, whereClause)){
+          row[col] = val;
+          count++;
+        }
+      });
+      saveSqlDb();
+      unlockBadge('sql_explorer');
+      playSound('correct');
+      if(statusEl) statusEl.innerHTML = `<div class="status-banner ok">✓ Updated ${count} row(s) in <b>${table}</b>.</div>`;
+      renderSqlTableResult(sqlDb[table], wrapEl);
+      return;
+    }
+    
+    // DELETE
+    if(upper.startsWith('DELETE FROM')){
+      const match = clean.match(/DELETE\s+FROM\s+(\w+)(?:\s+WHERE\s+(.*))?/i);
+      if(!match) throw new Error('Invalid DELETE syntax. Example: DELETE FROM Students WHERE id = 1;');
+      const table = match[1];
+      const whereClause = match[2];
+      if(!sqlDb[table]) throw new Error(`Table "${table}" not found.`);
+      const initial = sqlDb[table].length;
+      sqlDb[table] = sqlDb[table].filter(row => whereClause ? !evalSqlCondition(row, whereClause) : false);
+      const deleted = initial - sqlDb[table].length;
+      saveSqlDb();
+      playSound('correct');
+      if(statusEl) statusEl.innerHTML = `<div class="status-banner ok">✓ Deleted ${deleted} row(s) from <b>${table}</b>.</div>`;
+      renderSqlTableResult(sqlDb[table], wrapEl);
+      return;
+    }
+    
+    // SELECT
+    if(upper.startsWith('SELECT')){
+      const match = clean.match(/SELECT\s+(.*?)\s+FROM\s+(\w+)(?:\s+WHERE\s+(.*?))?(?:\s+GROUP\s+BY\s+(\w+))?(?:\s+ORDER\s+BY\s+(\w+)(?:\s+(ASC|DESC))?)?(?:\s+LIMIT\s+(\d+))?$/i);
+      if(!match) throw new Error('Could not parse SELECT query. Check syntax: SELECT ... FROM ... WHERE ...');
+      
+      const selectCols = match[1].trim();
+      const table = match[2].trim();
+      const whereClause = match[3] ? match[3].trim() : null;
+      const groupByCol = match[4] ? match[4].trim() : null;
+      const orderByCol = match[5] ? match[5].trim() : null;
+      const orderDir = (match[6] || 'ASC').toUpperCase();
+      const limitVal = match[7] ? parseInt(match[7], 10) : null;
+      
+      if(!sqlDb[table]) throw new Error(`Table "${table}" not found. Available tables: Students, Subjects, Devices.`);
+      
+      let rows = sqlDb[table].map(r => ({...r}));
+      
+      // WHERE filter
+      if(whereClause){
+        rows = rows.filter(r => evalSqlCondition(r, whereClause));
+      }
+      
+      // GROUP BY
+      if(groupByCol){
+        const groups = {};
+        rows.forEach(r => {
+          const k = r[groupByCol] || 'Other';
+          groups[k] = groups[k] || [];
+          groups[k].push(r);
+        });
+        rows = Object.keys(groups).map(k => {
+          const items = groups[k];
+          const aggRow = {};
+          aggRow[groupByCol] = k;
+          aggRow['count'] = items.length;
+          const numScores = items.map(x => x.score).filter(s => typeof s === 'number');
+          if(numScores.length){
+            aggRow['avg_score'] = Math.round(numScores.reduce((a,b)=>a+b, 0) / numScores.length);
+          }
+          return aggRow;
+        });
+      }
+      
+      // Aggregation without group by
+      if(!groupByCol && (selectCols.includes('COUNT(') || selectCols.includes('AVG(') || selectCols.includes('SUM(') || selectCols.includes('MAX(') || selectCols.includes('MIN('))){
+        const aggRow = {};
+        if(selectCols.includes('COUNT(*)')) aggRow['count'] = rows.length;
+        const scoreVals = rows.map(r => r.score).filter(s => typeof s === 'number');
+        if(selectCols.includes('AVG(score)')) aggRow['avg_score'] = scoreVals.length ? Math.round(scoreVals.reduce((a,b)=>a+b, 0)/scoreVals.length) : 0;
+        if(selectCols.includes('SUM(score)')) aggRow['sum_score'] = scoreVals.reduce((a,b)=>a+b, 0);
+        if(selectCols.includes('MAX(score)')) aggRow['max_score'] = scoreVals.length ? Math.max(...scoreVals) : 0;
+        if(selectCols.includes('MIN(score)')) aggRow['min_score'] = scoreVals.length ? Math.min(...scoreVals) : 0;
+        rows = [aggRow];
+      } else if(selectCols !== '*'){
+        const cols = selectCols.split(',').map(c => c.trim());
+        rows = rows.map(r => {
+          const subset = {};
+          cols.forEach(c => { if(c in r) subset[c] = r[c]; });
+          return Object.keys(subset).length ? subset : r;
+        });
+      }
+      
+      // ORDER BY
+      if(orderByCol){
+        rows.sort((a,b)=>{
+          const valA = a[orderByCol];
+          const valB = b[orderByCol];
+          if(valA < valB) return orderDir === 'DESC' ? 1 : -1;
+          if(valA > valB) return orderDir === 'DESC' ? -1 : 1;
+          return 0;
+        });
+      }
+      
+      // LIMIT
+      if(limitVal){
+        rows = rows.slice(0, limitVal);
+      }
+      
+      unlockBadge('sql_explorer');
+      playSound('correct');
+      if(statusEl) statusEl.innerHTML = `<div class="status-banner ok">✓ Query executed successfully: <b>${rows.length} row(s)</b> returned.</div>`;
+      renderSqlTableResult(rows, wrapEl);
+      return;
+    }
+    
+    throw new Error('Unrecognized SQL command. Supports SELECT, INSERT INTO, UPDATE, DELETE.');
+  } catch(err){
+    playSound('wrong');
+    if(statusEl) statusEl.innerHTML = `<div class="status-banner bad">⚠ SQL Syntax Error: ${escapeHtml(err.message)}</div>`;
+    wrapEl.innerHTML = `<div class="output-box err">Error: ${escapeHtml(err.message)}</div>`;
+  }
+}
+
+function evalSqlCondition(row, condStr){
+  try {
+    const andParts = condStr.split(/\s+AND\s+/i);
+    return andParts.every(part => {
+      const match = part.trim().match(/(\w+)\s*(=|!=|<=|>=|<|>|LIKE)\s*['"]?([^'"]+)['"]?/i);
+      if(!match) return true;
+      const col = match[1];
+      const op = match[2];
+      const target = isNaN(Number(match[3])) ? match[3].toLowerCase() : Number(match[3]);
+      const val = row[col];
+      if(val === undefined) return false;
+      const compareVal = typeof val === 'string' ? val.toLowerCase() : val;
+      
+      if(op === '=' || op === '==') return compareVal == target;
+      if(op === '!=') return compareVal != target;
+      if(op === '>') return Number(compareVal) > Number(target);
+      if(op === '<') return Number(compareVal) < Number(target);
+      if(op === '>=') return Number(compareVal) >= Number(target);
+      if(op === '<=') return Number(compareVal) <= Number(target);
+      if(op.toUpperCase() === 'LIKE'){
+        const pattern = String(target).replace(/%/g, '.*');
+        return new RegExp(pattern, 'i').test(String(compareVal));
+      }
+      return true;
+    });
+  } catch(e){ return true; }
+}
+
+function renderSqlTableResult(rows, host){
+  if(!rows || rows.length === 0){
+    host.innerHTML = '<div class="output-box muted2">(0 rows returned)</div>';
+    return;
+  }
+  const cols = Object.keys(rows[0]);
+  host.innerHTML = `
+    <table class="sql-table">
+      <thead>
+        <tr>${cols.map(c => `<th>${escapeHtml(c)}</th>`).join('')}</tr>
+      </thead>
+      <tbody>
+        ${rows.map(r => `<tr>${cols.map(c => `<td>${escapeHtml(r[c] !== undefined ? r[c] : 'NULL')}</td>`).join('')}</tr>`).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+/* =========================================================
+   2. INTERACTIVE SUBNET & IP CALCULATOR
+   ========================================================= */
+function openSubnetCalc(){
+  state.mode = 'subnet';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'Subnet & IP Calculator';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderSubnetApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('subnet_architect');
+}
+
+function renderSubnetApp(){
+  const host = document.getElementById('content');
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Network Diagnostic Tool</div>
+      <h1>🌐 IPv4 Subnet & Mask Calculator</h1>
+      <p class="sub">Calculate Network ID, Broadcast Address, Host Range, Subnet Mask binary bits, and IP classification in real-time. Essential for WAEC, NECO and real-world network engineering.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>Subnet Parameters</h3></div>
+      <div class="two-col" style="margin-top:12px;">
+        <div>
+          <label class="field-label">IP ADDRESS</label>
+          <input type="text" id="subnet-ip-input" value="192.168.1.50" placeholder="e.g. 192.168.1.1">
+        </div>
+        <div>
+          <label class="field-label">SUBNET MASK / CIDR PREFIX</label>
+          <select id="subnet-cidr-select">
+            ${Array.from({length: 24}, (_, i) => 8 + i).map(c => `
+              <option value="${c}" ${c===24?'selected':''}>/${c} — ${cidrToMask(c)} (${Math.pow(2, 32-c)-2 > 0 ? Math.pow(2, 32-c)-2 : 0} hosts)</option>
+            `).join('')}
+          </select>
+        </div>
+      </div>
+
+      <div class="sql-toolbar" style="margin-top:14px;">
+        <span class="mono" style="font-size:11.5px;color:var(--muted)">Presets:</span>
+        <button class="sql-chip" onclick="loadSubnetPreset('192.168.1.1', 24)">Home LAN (/24)</button>
+        <button class="sql-chip" onclick="loadSubnetPreset('172.16.0.1', 20)">School Network (/20)</button>
+        <button class="sql-chip" onclick="loadSubnetPreset('10.0.0.1', 8)">Enterprise (/8)</button>
+        <button class="sql-chip" onclick="loadSubnetPreset('192.168.10.1', 26)">Computer Lab (/26)</button>
+        <button class="sql-chip" onclick="loadSubnetPreset('10.200.1.1', 30)">Point-to-Point (/30)</button>
+      </div>
+
+      <div class="subnet-grid" id="subnet-results-grid"></div>
+
+      <div style="margin-top:16px;">
+        <label class="field-label">32-BIT SUBNET MASK VISUALIZER (Teal = Network Bits, Coral = Host Bits)</label>
+        <div class="bit-bar" id="subnet-bit-bar"></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:18px;">
+      <div class="panel-title"><h3>🧪 Practice Subnetting Scenario</h3></div>
+      <div class="panel-desc" id="subnet-practice-q">A computer lab has 50 workstations. What is the smallest CIDR prefix that can accommodate all 50 hosts?</div>
+      <div class="two-col" style="margin-top:10px;">
+        <div>
+          <select id="subnet-practice-answer">
+            <option value="24">/24 (254 usable hosts)</option>
+            <option value="25">/25 (126 usable hosts)</option>
+            <option value="26" selected>/26 (62 usable hosts)</option>
+            <option value="27">/27 (30 usable hosts)</option>
+            <option value="28">/28 (14 usable hosts)</option>
+          </select>
+        </div>
+        <div>
+          <button class="btn primary" onclick="checkSubnetPractice()">Check My Answer</button>
+        </div>
+      </div>
+      <div id="subnet-practice-feedback" style="margin-top:10px;"></div>
+    </div>
+  `;
+  wireSubnetApp();
+}
+
+function wireSubnetApp(){
+  const ipInp = document.getElementById('subnet-ip-input');
+  const cidrSel = document.getElementById('subnet-cidr-select');
+  if(ipInp && cidrSel){
+    ipInp.oninput = updateSubnetCalculations;
+    cidrSel.onchange = updateSubnetCalculations;
+    updateSubnetCalculations();
+  }
+}
+
+function loadSubnetPreset(ip, cidr){
+  const ipInp = document.getElementById('subnet-ip-input');
+  const cidrSel = document.getElementById('subnet-cidr-select');
+  if(ipInp) ipInp.value = ip;
+  if(cidrSel) cidrSel.value = cidr;
+  updateSubnetCalculations();
+}
+
+function cidrToMask(cidr){
+  const maskInt = cidr === 0 ? 0 : (~0 << (32 - cidr)) >>> 0;
+  return intToIp(maskInt);
+}
+
+function ipToInt(ip){
+  const p = ip.trim().split('.').map(Number);
+  if(p.length !== 4 || p.some(n => isNaN(n) || n < 0 || n > 255)) return null;
+  return (((p[0] << 24) >>> 0) | (p[1] << 16) | (p[2] << 8) | p[3]) >>> 0;
+}
+
+function intToIp(num){
+  return [
+    (num >>> 24) & 255,
+    (num >>> 16) & 255,
+    (num >>> 8) & 255,
+    num & 255
+  ].join('.');
+}
+
+function updateSubnetCalculations(){
+  const ipStr = document.getElementById('subnet-ip-input').value;
+  const cidr = parseInt(document.getElementById('subnet-cidr-select').value, 10);
+  const grid = document.getElementById('subnet-results-grid');
+  const bitBar = document.getElementById('subnet-bit-bar');
+  if(!grid) return;
+  
+  const ipInt = ipToInt(ipStr);
+  if(ipInt === null){
+    grid.innerHTML = '<div class="status-banner warn">Please enter a valid IPv4 address (e.g. 192.168.1.1).</div>';
+    return;
+  }
+  
+  const maskInt = cidr === 0 ? 0 : (~0 << (32 - cidr)) >>> 0;
+  const wildInt = (~maskInt) >>> 0;
+  const netInt = (ipInt & maskInt) >>> 0;
+  const bcastInt = (netInt | wildInt) >>> 0;
+  const totalHosts = Math.pow(2, 32 - cidr);
+  const usableHosts = cidr >= 31 ? 0 : totalHosts - 2;
+  const firstHostInt = cidr >= 31 ? netInt : (netInt + 1) >>> 0;
+  const lastHostInt = cidr >= 31 ? bcastInt : (bcastInt - 1) >>> 0;
+  
+  const firstOctet = (ipInt >>> 24) & 255;
+  let ipClass = 'Class A';
+  if(firstOctet >= 128 && firstOctet <= 191) ipClass = 'Class B';
+  else if(firstOctet >= 192 && firstOctet <= 223) ipClass = 'Class C';
+  else if(firstOctet >= 224 && firstOctet <= 239) ipClass = 'Class D (Multicast)';
+  else if(firstOctet >= 240) ipClass = 'Class E (Experimental)';
+  
+  const isPrivate = (firstOctet === 10) ||
+    (firstOctet === 172 && ((ipInt >>> 16) & 255) >= 16 && ((ipInt >>> 16) & 255) <= 31) ||
+    (firstOctet === 192 && ((ipInt >>> 16) & 255) === 168);
+    
+  grid.innerHTML = `
+    <div class="subnet-stat-card">
+      <div class="subnet-stat-label">NETWORK ID / ADDRESS</div>
+      <div class="subnet-stat-val highlight">${intToIp(netInt)} /${cidr}</div>
+    </div>
+    <div class="subnet-stat-card">
+      <div class="subnet-stat-label">BROADCAST ADDRESS</div>
+      <div class="subnet-stat-val amber">${intToIp(bcastInt)}</div>
+    </div>
+    <div class="subnet-stat-card">
+      <div class="subnet-stat-label">USABLE HOST RANGE</div>
+      <div class="subnet-stat-val" style="font-size:13px;">${intToIp(firstHostInt)} — ${intToIp(lastHostInt)}</div>
+    </div>
+    <div class="subnet-stat-card">
+      <div class="subnet-stat-label">TOTAL USABLE HOSTS</div>
+      <div class="subnet-stat-val highlight">${usableHosts.toLocaleString()}</div>
+    </div>
+    <div class="subnet-stat-card">
+      <div class="subnet-stat-label">SUBNET MASK (DECIMAL)</div>
+      <div class="subnet-stat-val">${intToIp(maskInt)}</div>
+    </div>
+    <div class="subnet-stat-card">
+      <div class="subnet-stat-label">IP TYPE & CLASS</div>
+      <div class="subnet-stat-val">${ipClass} · <span style="color:${isPrivate?'var(--green)':'var(--amber)'}">${isPrivate?'Private (RFC 1918)':'Public IP'}</span></div>
+    </div>
+  `;
+  
+  // Render Bit Bar
+  let bitsHtml = '';
+  for(let oct = 0; oct < 4; oct++){
+    let octetBits = '';
+    for(let b = 0; b < 8; b++){
+      const bitIndex = oct * 8 + b;
+      const isNet = bitIndex < cidr;
+      octetBits += `<div class="bit-box ${isNet ? 'net' : 'host'}">${isNet ? '1' : '0'}</div>`;
+    }
+    bitsHtml += `<div class="bit-octet">${octetBits}</div>`;
+  }
+  if(bitBar) bitBar.innerHTML = bitsHtml;
+}
+
+function checkSubnetPractice(){
+  const val = document.getElementById('subnet-practice-answer').value;
+  const fb = document.getElementById('subnet-practice-feedback');
+  if(val === '26'){
+    playSound('correct');
+    unlockBadge('subnet_architect');
+    fb.innerHTML = '<div class="status-banner ok">🎉 <b>Correct!</b> /26 provides 2^(32-26) - 2 = 62 usable addresses, which is the smallest subnet that safely covers 50 hosts (since /27 only gives 30 hosts).</div>';
+  } else {
+    playSound('wrong');
+    fb.innerHTML = '<div class="status-banner bad">❌ <b>Not quite!</b> Remember to calculate 2^(32-prefix) - 2. /27 only holds 30 hosts (too small), while /26 holds 62 hosts (the smallest suitable block).</div>';
+  }
+}
+
+/* =========================================================
+   3. VISUAL FLOWCHART & ALGORITHM BUILDER
+   ========================================================= */
+const FC_ALGORITHMS = {
+  passfail: {
+    title: "1. Exam Pass/Fail Decision",
+    desc: "Evaluates whether a student passes based on their score.",
+    nodes: [
+      {id: 0, text: "START", type: "start-end", next: 1},
+      {id: 1, text: "INPUT score", type: "io", next: 2},
+      {id: 2, text: "Is score >= 50?", type: "decision", yes: 3, no: 4},
+      {id: 3, text: 'OUTPUT "Pass"', type: "io", next: 5},
+      {id: 4, text: 'OUTPUT "Fail"', type: "io", next: 5},
+      {id: 5, text: "END", type: "start-end", next: null}
+    ],
+    defaultVars: {score: 72},
+    run: (v, step) => {
+      if(step === 1) return {log: `Input score = ${v.score}`};
+      if(step === 2) return {log: `Condition check: ${v.score} >= 50 is ${v.score>=50?'TRUE':'FALSE'}`, nextId: v.score>=50?3:4};
+      if(step === 3) return {log: 'Result: "Pass" ✅', nextId: 5};
+      if(step === 4) return {log: 'Result: "Fail" ❌', nextId: 5};
+      if(step === 5) return {log: "Algorithm execution complete."};
+      return {};
+    }
+  },
+  max2: {
+    title: "2. Maximum of Two Numbers",
+    desc: "Finds the largest between two input values A and B.",
+    nodes: [
+      {id: 0, text: "START", type: "start-end", next: 1},
+      {id: 1, text: "INPUT A, B", type: "io", next: 2},
+      {id: 2, text: "Is A > B?", type: "decision", yes: 3, no: 4},
+      {id: 3, text: "OUTPUT A is larger", type: "io", next: 5},
+      {id: 4, text: "OUTPUT B is larger", type: "io", next: 5},
+      {id: 5, text: "END", type: "start-end", next: null}
+    ],
+    defaultVars: {A: 45, B: 30},
+    run: (v, step) => {
+      if(step === 1) return {log: `Input A = ${v.A}, B = ${v.B}`};
+      if(step === 2) return {log: `Check ${v.A} > ${v.B}: ${v.A>v.B?'TRUE':'FALSE'}`, nextId: v.A>v.B?3:4};
+      if(step === 3) return {log: `Output: ${v.A} is larger`, nextId: 5};
+      if(step === 4) return {log: `Output: ${v.B} is larger`, nextId: 5};
+      if(step === 5) return {log: "Algorithm finished."};
+      return {};
+    }
+  },
+  area: {
+    title: "3. Area of a Rectangle",
+    desc: "Calculates rectangle area using Length × Width.",
+    nodes: [
+      {id: 0, text: "START", type: "start-end", next: 1},
+      {id: 1, text: "INPUT length, width", type: "io", next: 2},
+      {id: 2, text: "area = length * width", type: "process", next: 3},
+      {id: 3, text: "OUTPUT area", type: "io", next: 4},
+      {id: 4, text: "END", type: "start-end", next: null}
+    ],
+    defaultVars: {length: 12, width: 8},
+    run: (v, step) => {
+      if(step === 1) return {log: `Input length = ${v.length}, width = ${v.width}`};
+      if(step === 2) { v.area = v.length * v.width; return {log: `Calculate area = ${v.length} * ${v.width} = ${v.area}`}; }
+      if(step === 3) return {log: `Output Area = ${v.area} sq units`};
+      if(step === 4) return {log: "Algorithm finished."};
+      return {};
+    }
+  }
+};
+
+let currentFcAlgoKey = 'passfail';
+let fcCurrentNodeId = 0;
+let fcVars = {};
+let fcLogs = [];
+
+function openFlowchartBuilder(){
+  state.mode = 'flowchart';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'Flowchart Algorithm Builder';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderFlowchartApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('algorithm_pioneer');
+}
+
+function renderFlowchartApp(){
+  const host = document.getElementById('content');
+  const algo = FC_ALGORITHMS[currentFcAlgoKey];
+  fcVars = JSON.parse(JSON.stringify(algo.defaultVars));
+  fcCurrentNodeId = 0;
+  fcLogs = ['▶ Initialized algorithm. Click "Step Next" or "Run Full Algorithm".'];
+  
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Visual Logic Simulator</div>
+      <h1>🔄 Flowchart Algorithm Builder</h1>
+      <p class="sub">Step through algorithms node-by-node. Trace decisions, loops, inputs, and variable memory states live on screen.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <h3>Algorithm Selection</h3>
+      </div>
+      <div class="sql-toolbar" style="margin-top:8px;">
+        <button class="sql-chip ${currentFcAlgoKey==='passfail'?'active-toggle':''}" onclick="selectFcAlgorithm('passfail')">Pass / Fail Grader</button>
+        <button class="sql-chip ${currentFcAlgoKey==='max2'?'active-toggle':''}" onclick="selectFcAlgorithm('max2')">Maximum of Two</button>
+        <button class="sql-chip ${currentFcAlgoKey==='area'?'active-toggle':''}" onclick="selectFcAlgorithm('area')">Rectangle Area</button>
+      </div>
+
+      <div class="two-col" style="margin-top:14px;">
+        <div>
+          <label class="field-label">INPUT VARIABLES (edit to test different paths)</label>
+          <div id="fc-var-inputs" style="display:flex;gap:8px;"></div>
+        </div>
+        <div>
+          <label class="field-label">CONTROLS</label>
+          <div class="lab-btn-row" style="margin-top:0;">
+            <button class="btn primary" onclick="stepFcAlgorithm()">▶ Step Next</button>
+            <button class="btn" onclick="runFullFcAlgorithm()">⚡ Run Full</button>
+            <button class="btn small" onclick="resetFcAlgorithm()">🔄 Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <label class="field-label">FLOWCHART EXECUTION TRACE</label>
+        <div class="fc-container" id="fc-canvas"></div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label class="field-label">MEMORY & OUTPUT CONSOLE</label>
+        <div class="output-box" id="fc-console-log"></div>
+      </div>
+    </div>
+  `;
+  renderFcVariablesInputs();
+  renderFcCanvas();
+  updateFcConsole();
+}
+
+function selectFcAlgorithm(key){
+  currentFcAlgoKey = key;
+  renderFlowchartApp();
+}
+
+function renderFcVariablesInputs(){
+  const host = document.getElementById('fc-var-inputs');
+  if(!host) return;
+  const keys = Object.keys(fcVars);
+  host.innerHTML = keys.map(k => `
+    <div style="flex:1;">
+      <label class="mono" style="font-size:11px;color:var(--muted)">${k}:</label>
+      <input type="number" value="${fcVars[k]}" oninput="fcVars['${k}']=Number(this.value); resetFcAlgorithm();">
+    </div>
+  `).join('');
+}
+
+function renderFcCanvas(){
+  const canvas = document.getElementById('fc-canvas');
+  if(!canvas) return;
+  const algo = FC_ALGORITHMS[currentFcAlgoKey];
+  
+  if(currentFcAlgoKey === 'passfail' || currentFcAlgoKey === 'max2'){
+    canvas.innerHTML = `
+      <div class="fc-node start-end ${fcCurrentNodeId===0?'active-exec':''}"><span>START</span></div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-node io ${fcCurrentNodeId===1?'active-exec':''}"><span>${algo.nodes[1].text}</span></div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-node decision ${fcCurrentNodeId===2?'active-exec':''}"><span>${algo.nodes[2].text}</span></div>
+      <div class="fc-branch-row">
+        <div class="fc-branch">
+          <span class="fc-branch-tag" style="color:var(--green)">YES (True) ↓</span>
+          <div class="fc-node io ${fcCurrentNodeId===3?'active-exec':''}"><span>${algo.nodes[3].text}</span></div>
+          <div class="fc-arrow">↓</div>
+        </div>
+        <div class="fc-branch">
+          <span class="fc-branch-tag" style="color:var(--red)">NO (False) ↓</span>
+          <div class="fc-node io ${fcCurrentNodeId===4?'active-exec':''}"><span>${algo.nodes[4].text}</span></div>
+          <div class="fc-arrow">↓</div>
+        </div>
+      </div>
+      <div class="fc-node start-end ${fcCurrentNodeId===5?'active-exec':''}"><span>END</span></div>
+    `;
+  } else {
+    canvas.innerHTML = algo.nodes.map((n, idx) => `
+      <div class="fc-node ${n.type} ${fcCurrentNodeId===n.id?'active-exec':''}"><span>${n.text}</span></div>
+      ${idx < algo.nodes.length - 1 ? '<div class="fc-arrow">↓</div>' : ''}
+    `).join('');
+  }
+}
+
+function stepFcAlgorithm(){
+  const algo = FC_ALGORITHMS[currentFcAlgoKey];
+  const node = algo.nodes.find(n => n.id === fcCurrentNodeId);
+  if(!node || node.next === null && fcCurrentNodeId === algo.nodes[algo.nodes.length-1].id){
+    showToast('Algorithm already reached END. Click Reset to run again.');
+    return;
+  }
+  
+  playSound('click');
+  const res = algo.run(fcVars, fcCurrentNodeId);
+  if(res.log) fcLogs.push(res.log);
+  
+  if(node.type === 'decision'){
+    fcCurrentNodeId = res.nextId;
+  } else if(res.nextId !== undefined){
+    fcCurrentNodeId = res.nextId;
+  } else {
+    fcCurrentNodeId = node.next !== undefined ? node.next : fcCurrentNodeId + 1;
+  }
+  
+  if(fcCurrentNodeId === algo.nodes[algo.nodes.length-1].id){
+    playSound('correct');
+    unlockBadge('algorithm_pioneer');
+  }
+  
+  renderFcCanvas();
+  updateFcConsole();
+}
+
+function runFullFcAlgorithm(){
+  const algo = FC_ALGORITHMS[currentFcAlgoKey];
+  fcCurrentNodeId = 0;
+  fcLogs = ['▶ Starting automatic execution...'];
+  let safety = 0;
+  while(fcCurrentNodeId !== null && safety < 10){
+    safety++;
+    const node = algo.nodes.find(n => n.id === fcCurrentNodeId);
+    if(!node) break;
+    const res = algo.run(fcVars, fcCurrentNodeId);
+    if(res.log) fcLogs.push(`Step ${fcCurrentNodeId}: ${res.log}`);
+    if(node.type === 'decision'){
+      fcCurrentNodeId = res.nextId;
+    } else if(res.nextId !== undefined){
+      fcCurrentNodeId = res.nextId;
+    } else {
+      fcCurrentNodeId = node.next;
+    }
+  }
+  fcCurrentNodeId = algo.nodes[algo.nodes.length-1].id;
+  playSound('correct');
+  unlockBadge('algorithm_pioneer');
+  renderFcCanvas();
+  updateFcConsole();
+}
+
+function resetFcAlgorithm(){
+  const algo = FC_ALGORITHMS[currentFcAlgoKey];
+  fcCurrentNodeId = 0;
+  fcLogs = ['🔄 Reset algorithm. Ready to run.'];
+  renderFcCanvas();
+  updateFcConsole();
+}
+
+function updateFcConsole(){
+  const el = document.getElementById('fc-console-log');
+  if(el){
+    const varText = Object.entries(fcVars).map(([k,v])=>`${k}=${v}`).join(', ');
+    el.innerHTML = `<div><b style="color:var(--teal)">Variables:</b> ${varText}</div>` +
+      fcLogs.map(l => `<div style="color:#77E3A8">${escapeHtml(l)}</div>`).join('');
+  }
+}
+
+/* =========================================================
    RENDER: SHELL
    ========================================================= */
 function renderSidebar(){
@@ -1244,10 +2375,18 @@ function renderSidebar(){
       <span class="dot ${topicComplete(t.id)?'done':''}"></span>
     </button>
   `).join('');
+  const sqlBtn = document.getElementById('sql-nav-btn');
+  if(sqlBtn) sqlBtn.classList.toggle('active', state.mode==='sql');
+  const subnetBtn = document.getElementById('subnet-nav-btn');
+  if(subnetBtn) subnetBtn.classList.toggle('active', state.mode==='subnet');
+  const fcBtn = document.getElementById('flowchart-nav-btn');
+  if(fcBtn) fcBtn.classList.toggle('active', state.mode==='flowchart');
   const pqBtn = document.getElementById('pastq-nav-btn');
   if(pqBtn) pqBtn.classList.toggle('active', state.mode==='pastq');
   const ofBtn = document.getElementById('office-nav-btn');
   if(ofBtn) ofBtn.classList.toggle('active', state.mode==='office');
+  const badgesBtn = document.getElementById('badges-nav-btn');
+  if(badgesBtn) badgesBtn.classList.toggle('active', state.mode==='badges');
 }
 
 function renderProgressBox(){
@@ -1261,6 +2400,9 @@ function renderProgressBox(){
   const pct = Math.round((done/total)*100);
   document.getElementById('progress-bar-fill').style.width = pct+'%';
   document.getElementById('progress-pct').textContent = pct+'% complete';
+  if(pct === 100){
+    unlockBadge('valedictorian');
+  }
 }
 
 function renderTabs(){
@@ -1328,6 +2470,8 @@ function renderPastQItem(){
   const host = document.getElementById('pq-host');
   const idx = state.pqIndex;
   if(idx >= PASTQ.length){
+    unlockBadge('exam_master');
+    playSound('badge');
     host.innerHTML = `
       <div class="panel quiz-result">
         <div style="font-size:13px;color:var(--muted);margin-bottom:6px">PAST QUESTIONS COMPLETE</div>
@@ -1365,7 +2509,12 @@ function renderPastQItem(){
         const picked = Number(btn.dataset.i);
         const correct = picked === q.a;
         state.pqAnswered[idx] = {picked, correct};
-        if(correct) state.pqScore++;
+        if(correct){
+          state.pqScore++;
+          playSound('correct');
+        } else {
+          playSound('wrong');
+        }
         markPqOptionStyles(idx, picked);
         document.getElementById('pq-explain-host').innerHTML = `<div class="quiz-explain">${q.e}</div>`;
         const nextBtn = document.getElementById('pq-next');
@@ -2555,6 +3704,8 @@ function wireLabSheet(topic){
       savedAt: new Date().toLocaleString()
     };
     saveLabReports(data);
+    unlockBadge('lab_scientist');
+    playSound('correct');
     document.getElementById('lab-save-status-'+topic.id).innerHTML = `<div class="lab-saved-note">✓ Saved on ${data[topic.id].savedAt}</div>`;
     updateLabReportsBadge();
   };
@@ -3446,6 +4597,10 @@ function renderQuiz(topicId){
 
   if(idx >= qs.length){
     const score = state.quizScore[topicId];
+    if(score === qs.length){
+      unlockBadge('quiz_ace');
+      playSound('badge');
+    }
     host.innerHTML = `
       <div class="panel quiz-result">
         <div style="font-size:13px;color:var(--muted);margin-bottom:6px">QUIZ COMPLETE</div>
@@ -3485,7 +4640,12 @@ function renderQuiz(topicId){
       const picked = Number(btn.dataset.i);
       const correct = picked === q.a;
       state.quizAnswered[topicId][idx] = {picked, correct};
-      if(correct) state.quizScore[topicId]++;
+      if(correct) {
+        state.quizScore[topicId]++;
+        playSound('correct');
+      } else {
+        playSound('wrong');
+      }
       markOptionStyles(topicId, idx, picked);
       document.getElementById('quiz-explain-host').innerHTML = `<div class="quiz-explain">${q.e}</div>`;
       const nextBtn = document.getElementById('quiz-next');
@@ -3513,12 +4673,16 @@ function restartQuiz(topicId){
    ========================================================= */
 function init(){
   try{
+    checkDailyStreak();
+    updateSoundButton();
+    updateBadgeCounts();
     wireLanding();
     renderStudentBadge();
     if(!STUDENT_NAME){
       showLanding('new');
     } else {
       showLanding('dashboard');
+      unlockBadge('first_launch');
     }
     renderSidebar();
     renderProgressBox();
