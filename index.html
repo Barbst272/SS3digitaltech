@@ -991,10 +991,37 @@ const state = {
 let PROGRESS = loadProgress();
 
 /* ---------------- STUDENT NAME (landing screen) ---------------- */
-/* Temporary access allowlist: only these exact names may use the app right now. */
-const ALLOWED_NAMES = ['Miracle Kpoizoun', 'Praise James', 'Kamsi Obeleagu', 'Believe Humble'];
+const ALLOWED_NAMES = [
+  'Miracle Kpoizoun',
+  'Praise James',
+  'Kamsi Obeleagu',
+  'Believe Humble',
+  'Favour Ogbonna',
+  'Mimshack Ndubuisi',
+  'Samuel Nonyelu',
+  'Divine Ogbonna',
+  'Alpha Djire',
+  'Peter Orji',
+  'Jeremiah Jombo',
+  'Prince Okwor',
+  "Glory God'sPower",
+  "Glory God's Power",
+  'Glory GodsPower',
+  'Uche Odo',
+  'Glory Igwe',
+  "Grace God'sPower",
+  "Grace God's Power",
+  'Grace GodsPower',
+  'Miracle Ogbonnaya',
+  'Joy Lekwa',
+  'Chioma Udoye',
+  'Hillary Dosou',
+  'Miracle Samson',
+  'Esther Manzilla',
+  'Emmanuel Assa'
+];
 function normalizeName(s){
-  return String(s).trim().replace(/\s+/g, ' ').toLowerCase();
+  return String(s).trim().replace(/['’]/g, '').replace(/\s+/g, ' ').toLowerCase();
 }
 const ALLOWED_NAMES_NORMALIZED = ALLOWED_NAMES.map(normalizeName);
 function isAllowedName(name){
