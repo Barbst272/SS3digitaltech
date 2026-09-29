@@ -363,18 +363,25 @@ textarea.code-editor:focus{outline:none;border-color:var(--teal)}
 /* ---------- Word ---------- */
 .word-page-wrap{background:#0A0E17;padding:24px 12px;border-radius:0;overflow-x:auto;}
 .word-page{
-  background:#ffffff;color:#1a1a1a;max-width:720px;min-height:520px;margin:0 auto;padding:56px 64px;
+  background:#ffffff;color:#1a1a1a;max-width:760px;min-height:560px;margin:0 auto;padding:56px 64px;
   font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.7;box-shadow:0 6px 24px rgba(0,0,0,.4);
 }
 .word-page:focus{outline:2px solid var(--teal);outline-offset:2px;}
 .word-page, .word-page p, .word-page li, .word-page div, .word-page span, .word-page font{color:#1a1a1a;}
 .word-page p{margin:0 0 10px 0;}
-.word-stats{padding:8px 4px 0;font-size:11.5px;color:var(--muted);font-family:var(--font-mono);text-align:right;}
+.word-page hr{border:none;border-top:2px solid #ccc;margin:18px 0;}
+.word-page table{border-collapse:collapse;width:100%;margin:14px 0;background:#fff;}
+.word-page table td, .word-page table th{border:1px solid #777;padding:8px 12px;text-align:left;font-size:14px;}
+.word-page table th{background:#f0f2f5;font-weight:700;}
+.word-stats{padding:8px 4px 0;font-size:11.5px;color:var(--muted);font-family:var(--font-mono);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.word-find-bar{display:none;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-bottom:10px;align-items:center;gap:8px;flex-wrap:wrap;}
+.word-find-bar.show{display:flex;}
+.word-find-bar input{padding:5px 9px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--text);font-size:12.5px;}
 
 /* ---------- Excel ---------- */
-.xl-toolbar-row{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;padding:8px 10px;font-family:var(--font-mono);font-size:12.5px;}
+.xl-toolbar-row{display:flex;align-items:center;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;padding:8px 10px;font-family:var(--font-mono);font-size:12.5px;flex-wrap:wrap;}
 .xl-toolbar-row .xl-cellref{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:var(--teal);min-width:44px;text-align:center;}
-.xl-toolbar-row input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:var(--text);font-family:var(--font-mono);font-size:12.5px;}
+.xl-toolbar-row input.formula-input{flex:1;min-width:180px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:var(--text);font-family:var(--font-mono);font-size:12.5px;}
 .xl-wrap{overflow:auto;border:1px solid var(--line);border-top:none;max-height:60vh;-webkit-overflow-scrolling:touch;}
 table.xl-table{border-collapse:collapse;background:var(--surface);}
 table.xl-table th{position:sticky;top:0;background:var(--surface-2);color:var(--muted);font-family:var(--font-mono);font-size:11px;font-weight:600;padding:6px 4px;border:1px solid var(--line);min-width:26px;z-index:2;}
@@ -386,28 +393,48 @@ input.xl-cell:focus{outline:2px solid var(--teal);outline-offset:-2px;background
 input.xl-bold-cell{font-weight:700;color:var(--text);}
 #xl-bold-toggle{font-weight:700;}
 #xl-bold-toggle.active-toggle{background:var(--teal);color:#04201d;border-color:var(--teal);}
+.xl-chart-tabs{display:flex;gap:6px;margin-bottom:10px;}
+.xl-chart-tab{padding:5px 12px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:12px;}
+.xl-chart-tab.active{background:var(--teal);color:#04201d;border-color:var(--teal);font-weight:700;}
 
 /* ---------- PowerPoint ---------- */
-.ppt-layout{display:grid;grid-template-columns:150px 1fr;gap:14px;}
+.ppt-layout{display:grid;grid-template-columns:160px 1fr;gap:14px;}
 @media (max-width:700px){.ppt-layout{grid-template-columns:1fr}}
-.ppt-slide-list{display:flex;flex-direction:column;gap:8px;max-height:60vh;overflow-y:auto;}
+.ppt-slide-list{display:flex;flex-direction:column;gap:8px;max-height:65vh;overflow-y:auto;}
 .ppt-thumb{border:2px solid var(--line);border-radius:8px;padding:8px;font-size:10.5px;color:var(--text);cursor:pointer;aspect-ratio:4/3;display:flex;flex-direction:column;justify-content:center;overflow:hidden;}
 .ppt-thumb.active{border-color:var(--teal);}
 .ppt-thumb b{display:block;font-size:11px;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .ppt-editor{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--surface);}
 .ppt-editor input[type=text]{font-size:16px;font-weight:700;margin-bottom:10px;}
-.ppt-editor textarea{min-height:140px;font-family:var(--font-body);font-size:14px;}
+.ppt-editor textarea{min-height:110px;font-family:var(--font-body);font-size:14px;}
 .ppt-color-row{display:flex;gap:8px;margin-top:10px;}
 .ppt-color-swatch{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);cursor:pointer;}
 .ppt-color-swatch.active{border-color:#fff;box-shadow:0 0 0 2px var(--teal);}
+.ppt-layout-selector{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;}
+.ppt-layout-btn{padding:5px 10px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-size:11.5px;cursor:pointer;}
+.ppt-layout-btn.active{border-color:var(--teal);color:var(--teal);}
+.ppt-notes-box{margin-top:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:10px;}
+.ppt-notes-box textarea{min-height:60px;font-size:12.5px;}
+
 #ppt-present-overlay{position:fixed;inset:0;background:#000;z-index:150;display:none;align-items:center;justify-content:center;flex-direction:column;}
 #ppt-present-overlay.show{display:flex}
-.ppt-present-slide{width:min(90vw,900px);aspect-ratio:16/9;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;box-sizing:border-box;}
-.ppt-present-slide h2{font-size:clamp(20px,4vw,36px);margin-bottom:16px;}
-.ppt-present-slide p{font-size:clamp(13px,2vw,18px);white-space:pre-wrap;max-width:80%;}
-.ppt-present-controls{display:flex;gap:12px;margin-top:20px;align-items:center;color:#fff;font-family:var(--font-mono);font-size:12px;}
+.ppt-present-slide{width:min(90vw,920px);aspect-ratio:16/9;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;box-sizing:border-box;transition:transform .35s ease, opacity .35s ease;}
+.ppt-present-slide.fade-in{opacity:1;transform:scale(1);}
+.ppt-present-slide.zoom{animation:pptZoom .35s ease;}
+.ppt-present-slide.slide-left{animation:pptSlideLeft .35s ease;}
+.ppt-present-slide.flip{animation:pptFlip .45s ease;}
+@keyframes pptZoom{from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)}}
+@keyframes pptSlideLeft{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pptFlip{from{opacity:0;transform:rotateY(70deg)}to{opacity:1;transform:rotateY(0)}}
+
+.ppt-present-slide h2{font-size:clamp(22px,4.5vw,40px);margin-bottom:16px;}
+.ppt-present-slide p{font-size:clamp(13px,2vw,18px);white-space:pre-wrap;max-width:85%;line-height:1.6;}
+.ppt-present-slide .two-col-content{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;text-align:left;}
+.ppt-present-slide .stat-number{font-size:clamp(40px,8vw,76px);font-weight:800;color:var(--teal);line-height:1;}
+.ppt-present-slide .stat-label{font-size:clamp(16px,2.5vw,24px);color:#fff;margin-top:10px;}
+.ppt-present-controls{display:flex;gap:12px;margin-top:20px;align-items:center;color:#fff;font-family:var(--font-mono);font-size:12px;flex-wrap:wrap;justify-content:center;}
 .ppt-present-controls button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:8px 14px;}
-.ppt-autoplay-track{width:min(90vw,900px);height:4px;background:rgba(255,255,255,.15);border-radius:3px;margin-top:16px;overflow:hidden;}
+.ppt-autoplay-track{width:min(90vw,920px);height:4px;background:rgba(255,255,255,.15);border-radius:3px;margin-top:16px;overflow:hidden;}
 .ppt-autoplay-bar{height:100%;width:0%;background:var(--teal);border-radius:3px;transition:width .1s linear;}
 
 .pq-source-tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10.5px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--muted);margin-right:6px;margin-bottom:8px;}
@@ -3871,7 +3898,7 @@ function restartPastQ(){
 }
 
 /* =========================================================
-   OFFICE TOOLS: Word, Excel, PowerPoint
+   OFFICE TOOLS: Word, Excel, PowerPoint (Enhanced)
    ========================================================= */
 function openOfficeTools(){
   state.mode = 'office';
@@ -3900,11 +3927,11 @@ function selectOfficeApp(id){
 function renderOfficeContent(){
   const host = document.getElementById('content');
   const titles = {
-    word:{h:'📝 Word Processor', sub:'A real rich-text editor. Format your work, then download it as a file that opens directly in Microsoft Word.'},
-    excel:{h:'📊 Spreadsheet', sub:'A working spreadsheet with real formulas. Download your sheet as a file Excel can open.'},
-    ppt:{h:'📽️ Presentation', sub:'Build slides, pick a background, and present them full-screen — slides advance automatically every few seconds, with Pause, Next and Previous whenever you need manual control.'},
+    word:{h:'📝 Word Processor Studio', sub:'A rich-text editor with tables, academic templates, find & replace, text highlights, and Microsoft Word (.doc) export.'},
+    excel:{h:'📊 Excel Spreadsheet Studio', sub:'A working spreadsheet with 20+ formulas, multi-type chart generator (Bar, Line, Pie), column sorting, currency formats, and CSV export.'},
+    ppt:{h:'📽️ PowerPoint Presentation Studio', sub:'Design slide decks with custom layouts (Two-Column, Big Stat, Title), smooth transitions (Fade, Slide, Zoom, Flip), speaker notes, and auto-presenter.'},
   };
-  const t = titles[state.officeApp];
+  const t = titles[state.officeApp] || titles.word;
   try{
     let body = '';
     if(state.officeApp==='word') body = renderWordApp();
@@ -3912,7 +3939,7 @@ function renderOfficeContent(){
     else body = renderPptApp();
     host.innerHTML = `
       <div class="hero">
-        <div class="kicker">Practical office skills</div>
+        <div class="kicker">Practical Office & Productivity Suite</div>
         <h1>${t.h}</h1>
         <p class="sub">${t.sub}</p>
       </div>
@@ -3928,7 +3955,80 @@ function renderOfficeContent(){
   }
 }
 
-/* ---------------- WORD PROCESSOR ---------------- */
+/* ---------------- 1. WORD PROCESSOR ---------------- */
+const WORD_TEMPLATES = {
+  blank: '<p>Start typing your document here…</p>',
+  letter: `
+    <p style="text-align:right">14 Tech Boulevard,<br>Lagos State, Nigeria.<br>29th September, 2026.</p>
+    <p>The Principal,<br>Excel High School,<br>Lagos State.</p>
+    <p>Dear Sir/Madam,</p>
+    <p style="text-align:center"><b><u>APPLICATION FOR THE POSITION OF ICT PREFECT</u></b></p>
+    <p>I write to formally submit my application for the post of ICT Prefect for the upcoming 2026/2027 academic session. As an active SS3 Digital Technologies student with strong leadership and technical skills, I am eager to serve our school community.</p>
+    <p>During my time at the school, I have consistently assisted peers in the computer laboratory, maintained school IT assets, and demonstrated excellence in digital problem-solving.</p>
+    <p>I look forward to an opportunity to discuss how I can contribute to the advancement of technology in our school.</p>
+    <p>Yours faithfully,<br><br><b>${escapeHtml(STUDENT_NAME || 'Student Name')}</b><br>SS3 Science Student</p>
+  `,
+  lab_report: `
+    <h2 style="text-align:center">FEDERAL GOVERNMENT COLLEGE — DIGITAL TECH LAB REPORT</h2>
+    <hr>
+    <p><b>Student Name:</b> ${escapeHtml(STUDENT_NAME || 'Student Name')} &nbsp;|&nbsp; <b>Class:</b> SS3 &nbsp;|&nbsp; <b>Date:</b> ${new Date().toLocaleDateString()}</p>
+    <p><b>Experiment Title:</b> Investigating Network Topologies & IP Subnet Masking</p>
+    <h3>1. Objective</h3>
+    <p>To analyze the packet flow, latency, and fault tolerance of Star and Mesh network topologies in a local school lab.</p>
+    <h3>2. Apparatus / Tools Used</h3>
+    <ul>
+      <li>Cat6 Ethernet Cables and RJ-45 Connectors</li>
+      <li>24-Port Managed Gigabit Switch & Router</li>
+      <li>Digital Multimeter and Packet Tracer Simulator</li>
+    </ul>
+    <h3>3. Data & Observations</h3>
+    <table border="1" style="width:100%;border-collapse:collapse;">
+      <tr><th>Node ID</th><th>IP Address</th><th>Subnet Mask</th><th>Latency (ms)</th><th>Status</th></tr>
+      <tr><td>Host A</td><td>192.168.1.10</td><td>255.255.255.0</td><td>2 ms</td><td>Online</td></tr>
+      <tr><td>Host B</td><td>192.168.1.11</td><td>255.255.255.0</td><td>3 ms</td><td>Online</td></tr>
+      <tr><td>Server</td><td>192.168.1.1</td><td>255.255.255.0</td><td>1 ms</td><td>Active Gateway</td></tr>
+    </table>
+    <h3>4. Conclusion</h3>
+    <p>The Star topology demonstrated superior maintainability and rapid fault isolation, making it the optimal configuration for institutional networks.</p>
+  `,
+  cv: `
+    <h1 style="text-align:center;margin-bottom:4px;">${escapeHtml(STUDENT_NAME || 'Student Name')}</h1>
+    <p style="text-align:center;color:#555;font-size:13px;">Lagos, Nigeria • student@school.edu.ng • +234 800 000 0000</p>
+    <hr>
+    <h3>PROFILE SUMMARY</h3>
+    <p>Dedicated and goal-oriented SS3 scholar with a passion for software development, database design, and computer networking. Proven leadership in academic group projects.</p>
+    <h3>CORE COMPETENCIES</h3>
+    <ul>
+      <li><b>Programming & DB:</b> HTML5, CSS3, JavaScript, SQL Queries, Python basics</li>
+      <li><b>Networking:</b> IPv4 Subnetting, OSI Model, Router & Switch Configuration</li>
+      <li><b>Office Productivity:</b> Advanced MS Word, Excel Data Analysis, PowerPoint Pitching</li>
+    </ul>
+    <h3>EDUCATION</h3>
+    <p><b>Senior Secondary Certificate Examination (SSCE)</b> — Candidate<br>Excellence Academy, Lagos (2023 – 2026)</p>
+  `,
+  minutes: `
+    <h2 style="text-align:center">MINUTES OF THE DIGITAL TECH CLUB MEETING</h2>
+    <p><b>Date:</b> ${new Date().toLocaleDateString()} &nbsp;|&nbsp; <b>Time:</b> 3:00 PM &nbsp;|&nbsp; <b>Venue:</b> Main Computer Lab</p>
+    <p><b>Presiding Officer:</b> ${escapeHtml(STUDENT_NAME || 'Student Lead')}</p>
+    <hr>
+    <h3>1. Opening Remarks</h3>
+    <p>The meeting commenced at 3:05 PM with opening remarks by the President, highlighting preparations for the upcoming Inter-School STEM Competition.</p>
+    <h3>2. Key Discussion Points</h3>
+    <ul>
+      <li>Finalizing the database architecture for the School Library Management Project.</li>
+      <li>Assigning team leads for the IoT Smart Agriculture demonstration.</li>
+      <li>Procuring replacement network cables and soldering equipment.</li>
+    </ul>
+    <h3>3. Action Items</h3>
+    <table border="1" style="width:100%;border-collapse:collapse;">
+      <tr><th>Action Task</th><th>Responsible Person</th><th>Deadline</th></tr>
+      <tr><td>Submit SQL Schema</td><td>Database Team</td><td>Next Friday</td></tr>
+      <tr><td>Test IoT Sensors</td><td>Hardware Team</td><td>Wednesday</td></tr>
+    </table>
+    <p><b>Adjournment:</b> Meeting was adjourned at 4:30 PM.</p>
+  `
+};
+
 function renderWordApp(){
   const saved = loadWordDoc();
   return `
@@ -3947,6 +4047,7 @@ function renderWordApp(){
         <option value="Arial">Arial</option>
         <option value="'Times New Roman'">Times New Roman</option>
         <option value="'Courier New'">Courier New</option>
+        <option value="Verdana">Verdana</option>
       </select>
       <select id="word-fontsize" title="Font size">
         <option value="2">Small</option>
@@ -3958,7 +4059,14 @@ function renderWordApp(){
       <button data-cmd="bold" title="Bold"><b>B</b></button>
       <button data-cmd="italic" title="Italic"><i>I</i></button>
       <button data-cmd="underline" title="Underline"><u>U</u></button>
+      <button data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
       <span class="office-color-swatches" id="word-color-swatches"></span>
+      <span class="office-sep"></span>
+      <button id="word-hl-toggle" title="Highlight text" style="background:#ffff70;color:#000;font-weight:700;">🖍 Highlight</button>
+      <button id="word-insert-table" title="Insert Table">▦ Table</button>
+      <button id="word-insert-hr" title="Insert Horizontal Rule">— Rule</button>
+      <button id="word-insert-date" title="Insert Date">📅 Date</button>
+      <button id="word-find-btn" title="Find & Replace">🔍 Find</button>
       <span class="office-sep"></span>
       <button data-cmd="justifyLeft" title="Align left">⟸</button>
       <button data-cmd="justifyCenter" title="Center">↔</button>
@@ -3970,20 +4078,41 @@ function renderWordApp(){
       <button data-cmd="outdent" title="Decrease indent">⇤</button>
       <button data-cmd="indent" title="Increase indent">⇥</button>
       <span class="office-sep"></span>
+      <select id="word-template-select" title="Load a ready-made template">
+        <option value="">📂 Load Template…</option>
+        <option value="blank">Blank Document</option>
+        <option value="letter">Formal Application Letter</option>
+        <option value="lab_report">WAEC/SS3 Lab Report</option>
+        <option value="cv">Student Curriculum Vitae (CV)</option>
+        <option value="minutes">Club Meeting Minutes</option>
+      </select>
       <button id="word-clear" title="Clear formatting">Clear</button>
       <button id="word-print" title="Print">🖨 Print</button>
       <button id="word-new" title="New document">New</button>
-      <button id="word-download" class="btn primary small" style="margin-left:auto">⬇ Download as Word file</button>
+      <button id="word-download" class="btn primary small" style="margin-left:auto">⬇ Download as Word (.doc)</button>
     </div>
+
+    <!-- Find & Replace Bar -->
+    <div class="word-find-bar" id="word-find-bar">
+      <span style="font-weight:700;color:var(--teal)">Find & Replace:</span>
+      <input type="text" id="word-find-input" placeholder="Search for text…">
+      <input type="text" id="word-replace-input" placeholder="Replace with…">
+      <button class="btn small primary" id="word-find-next-btn">Find Next</button>
+      <button class="btn small" id="word-replace-one-btn">Replace</button>
+      <button class="btn small" id="word-replace-all-btn">Replace All</button>
+      <button class="btn small" id="word-find-close-btn" style="margin-left:auto">✕ Close</button>
+    </div>
+
     <div class="word-page-wrap">
       <div id="word-page" class="word-page" contenteditable="true" spellcheck="true">${saved || '<p>Start typing your document here…</p>'}</div>
     </div>
     <div class="word-stats" id="word-stats">
       <span id="word-save-indicator">0 words · 0 characters</span>
+      <span id="word-reading-stats">⏱ Read: 0m · Speak: 0m</span>
     </div>
   `;
 }
-const WORD_COLORS = ['#1a1a1a','#c0392b','#1f5c56','#1a5fb4','#b8860b'];
+const WORD_COLORS = ['#1a1a1a','#c0392b','#1f5c56','#1a5fb4','#b8860b','#6c2ba8'];
 function loadWordDoc(){
   try{ return localStorage.getItem('ss3dt_office_word') || ''; }catch(e){ return ''; }
 }
@@ -3995,18 +4124,25 @@ function updateWordStats(){
   if(!page) return;
   const text = page.innerText.trim();
   const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
-  const el = document.getElementById('word-save-indicator');
-  if(el) el.textContent = `${words} word${words===1?'':'s'} · ${text.length} characters · saved on this device`;
+  const chars = text.length;
+  const readMin = Math.ceil(words / 200);
+  const speakMin = Math.ceil(words / 130);
+  const el1 = document.getElementById('word-save-indicator');
+  const el2 = document.getElementById('word-reading-stats');
+  if(el1) el1.textContent = `${words} word${words===1?'':'s'} · ${chars} characters · saved locally`;
+  if(el2) el2.textContent = `⏱ Est. Reading: ~${readMin} min · Speaking: ~${speakMin} min`;
 }
 function wireWordApp(){
   const page = document.getElementById('word-page');
   if(!page) return;
 
   const swatchHost = document.getElementById('word-color-swatches');
-  swatchHost.innerHTML = WORD_COLORS.map(c=>`<button class="word-color-btn" data-color="${c}" style="background:${c}" title="Text colour"></button>`).join('');
-  swatchHost.querySelectorAll('.word-color-btn').forEach(btn=>{
-    btn.onclick = ()=>{ page.focus(); try{ document.execCommand('foreColor', false, btn.dataset.color); }catch(e){} persistWord(); };
-  });
+  if(swatchHost){
+    swatchHost.innerHTML = WORD_COLORS.map(c=>`<button class="word-color-btn" data-color="${c}" style="background:${c}" title="Text colour"></button>`).join('');
+    swatchHost.querySelectorAll('.word-color-btn').forEach(btn=>{
+      btn.onclick = ()=>{ page.focus(); try{ document.execCommand('foreColor', false, btn.dataset.color); }catch(e){} persistWord(); };
+    });
+  }
 
   document.querySelectorAll('.office-toolbar [data-cmd]').forEach(btn=>{
     btn.onclick = ()=>{
@@ -4028,6 +4164,108 @@ function wireWordApp(){
   };
   const fsSel = document.getElementById('word-fontsize');
   if(fsSel) fsSel.onchange = ()=>{ page.focus(); try{ document.execCommand('fontSize', false, fsSel.value); }catch(e){} persistWord(); };
+  
+  // Highlighter
+  document.getElementById('word-hl-toggle').onclick = ()=>{
+    page.focus();
+    try{ document.execCommand('hiliteColor', false, '#ffff70'); }catch(e){}
+    persistWord();
+  };
+
+  // Insert Table
+  document.getElementById('word-insert-table').onclick = ()=>{
+    const rows = prompt('Number of rows:', '3');
+    const cols = prompt('Number of columns:', '3');
+    const r = parseInt(rows, 10), c = parseInt(cols, 10);
+    if(r > 0 && c > 0 && r <= 20 && c <= 10){
+      let tblHtml = '<table border="1" style="border-collapse:collapse;width:100%;margin:12px 0;">';
+      for(let i=0; i<r; i++){
+        tblHtml += '<tr>';
+        for(let j=0; j<c; j++){
+          tblHtml += i===0 ? `<th>Header ${j+1}</th>` : `<td>Data ${i},${j+1}</td>`;
+        }
+        tblHtml += '</tr>';
+      }
+      tblHtml += '</table><p><br></p>';
+      page.focus();
+      try{ document.execCommand('insertHTML', false, tblHtml); }catch(e){ page.innerHTML += tblHtml; }
+      persistWord();
+      updateWordStats();
+    }
+  };
+
+  // Insert Rule & Date
+  document.getElementById('word-insert-hr').onclick = ()=>{
+    page.focus();
+    try{ document.execCommand('insertHorizontalRule', false, null); }catch(e){}
+    persistWord();
+  };
+  document.getElementById('word-insert-date').onclick = ()=>{
+    page.focus();
+    const dStr = new Date().toLocaleDateString(undefined, {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+    try{ document.execCommand('insertText', false, dStr); }catch(e){}
+    persistWord();
+  };
+
+  // Template Loader
+  document.getElementById('word-template-select').onchange = (e)=>{
+    const key = e.target.value;
+    if(!key) return;
+    if(confirm('Load this template? (Your current document will be replaced)')){
+      page.innerHTML = WORD_TEMPLATES[key] || '<p><br></p>';
+      updateWordStats();
+      persistWord();
+    }
+    e.target.value = '';
+  };
+
+  // Find & Replace
+  const findBar = document.getElementById('word-find-bar');
+  document.getElementById('word-find-btn').onclick = ()=>{
+    findBar.classList.toggle('show');
+    if(findBar.classList.contains('show')) document.getElementById('word-find-input').focus();
+  };
+  document.getElementById('word-find-close-btn').onclick = ()=> findBar.classList.remove('show');
+  document.getElementById('word-find-next-btn').onclick = ()=>{
+    const query = document.getElementById('word-find-input').value;
+    if(!query) return;
+    if(window.find){
+      const found = window.find(query, false, false, true);
+      if(!found) showToast('Reached end of document. Searching from top…');
+    } else {
+      showToast('Search query: ' + query);
+    }
+  };
+  document.getElementById('word-replace-one-btn').onclick = ()=>{
+    const findStr = document.getElementById('word-find-input').value;
+    const repStr = document.getElementById('word-replace-input').value;
+    if(!findStr) return;
+    const html = page.innerHTML;
+    if(html.includes(findStr)){
+      page.innerHTML = html.replace(findStr, repStr);
+      persistWord();
+      updateWordStats();
+      showToast('Replaced 1 occurrence.');
+    } else {
+      showToast('Text not found.');
+    }
+  };
+  document.getElementById('word-replace-all-btn').onclick = ()=>{
+    const findStr = document.getElementById('word-find-input').value;
+    const repStr = document.getElementById('word-replace-input').value;
+    if(!findStr) return;
+    const regex = new RegExp(escapeRegExp(findStr), 'g');
+    const count = (page.innerHTML.match(regex)||[]).length;
+    if(count > 0){
+      page.innerHTML = page.innerHTML.replace(regex, repStr);
+      persistWord();
+      updateWordStats();
+      showToast(`Replaced ${count} occurrence(s).`);
+    } else {
+      showToast('Text not found.');
+    }
+  };
+
   const clearBtn = document.getElementById('word-clear');
   if(clearBtn) clearBtn.onclick = ()=>{ page.focus(); try{ document.execCommand('removeFormat', false, null); }catch(e){} persistWord(); };
   const printBtn = document.getElementById('word-print');
@@ -4042,6 +4280,7 @@ function wireWordApp(){
   };
   const dlBtn = document.getElementById('word-download');
   if(dlBtn) dlBtn.onclick = downloadWordDoc;
+
   page.addEventListener('input', ()=>{ updateWordStats(); persistWord(); });
   page.addEventListener('focus', function clearPlaceholder(){
     if(page.dataset.pristine !== 'false' && page.innerText.trim() === 'Start typing your document here…'){
@@ -4051,8 +4290,12 @@ function wireWordApp(){
   });
   page.addEventListener('keydown', (e)=>{
     if(e.ctrlKey && e.key.toLowerCase()==='j'){ e.preventDefault(); try{ document.execCommand('justifyFull'); }catch(err){} }
+    if(e.ctrlKey && e.key.toLowerCase()==='f'){ e.preventDefault(); findBar.classList.add('show'); document.getElementById('word-find-input').focus(); }
   });
   updateWordStats();
+}
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
 }
 let WORD_SAVE_TIMER = null;
 function persistWord(){
@@ -4066,45 +4309,15 @@ function printWordDoc(){
   const page = document.getElementById('word-page');
   const w = window.open('', '_blank');
   if(!w){ showToast('⚠ Please allow pop-ups to print.'); return; }
-  w.document.write(`<html><head><title>Print</title><style>
-    body{font-family:Georgia,'Times New Roman',serif;font-size:14pt;color:#1a1a1a;padding:40px;max-width:720px;margin:0 auto;}
+  w.document.write(`<html><head><title>Print Document</title><style>
+    body{font-family:Georgia,'Times New Roman',serif;font-size:14pt;color:#1a1a1a;padding:40px;max-width:760px;margin:0 auto;}
+    table{border-collapse:collapse;width:100%;margin:14px 0;}
+    td,th{border:1px solid #777;padding:8px 12px;}
+    th{background:#f0f2f5;}
   </style></head><body>${page.innerHTML}</body></html>`);
   w.document.close();
   w.focus();
   setTimeout(()=> w.print(), 300);
-}
-/* ---------------- Shared: offer a generated file to the viewer ----------------
-   Uses the artifact "downloads" capability when this page is running as a
-   published Claude artifact; falls back to a direct browser download when
-   running as a plain local HTML file (where that capability doesn't exist). */
-async function offerDownload(filename, blob, savedMessage){
-  let downloads = null;
-  try{
-    if(window.claude && typeof window.claude.use === 'function'){
-      downloads = await window.claude.use('downloads');
-    }
-  }catch(e){ downloads = null; }
-  if(downloads){
-    try{
-      await downloads.save({filename, data: blob});
-      if(savedMessage) showToast(savedMessage);
-      return;
-    }catch(err){
-      if(err && err.code === 'declined') return; // viewer said no — do nothing further
-      console.error('downloads.save failed, falling back to a direct download', err);
-    }
-  }
-  try{
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = filename;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    if(savedMessage) showToast(savedMessage);
-  }catch(e){
-    console.error('Direct download fallback failed', e);
-    showToast('⚠ Could not start the download. Please try again.');
-  }
 }
 async function downloadWordDoc(){
   const page = document.getElementById('word-page');
@@ -4122,19 +4335,16 @@ async function downloadWordDoc(){
   }catch(e){ downloads = null; }
 
   if(downloads){
-    // .doc isn't in this runtime's save allowlist, but Word opens a saved
-    // .html file fine via File > Open, so offer the honest format here.
     try{
-      const blob = new Blob(['\ufeff', fullHtml], {type:'text/html'});
+      const blob = new Blob(['\\ufeff', fullHtml], {type:'text/html'});
       await downloads.save({filename: `${nameSlug}_document.html`, data: blob});
       showToast("📄 Downloaded as HTML — open it, then use Word's File > Open to edit it there.");
       return;
     }catch(err){
       if(err && err.code === 'declined') return;
-      console.error('downloads.save failed for Word doc, falling back', err);
     }
   }
-  const blob = new Blob(['\ufeff', fullHtml], {type:'application/msword'});
+  const blob = new Blob(['\\ufeff', fullHtml], {type:'application/msword'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = `${nameSlug}_document.doc`;
@@ -4143,11 +4353,49 @@ async function downloadWordDoc(){
   showToast('📄 Document downloaded — open it with Microsoft Word.');
 }
 
-/* ---------------- SPREADSHEET (EXCEL) ---------------- */
+/* ---------------- 2. SPREADSHEET (EXCEL) ---------------- */
 const XL_COLS = 10, XL_ROWS = 20;
 let XL_DATA = {};
 let XL_BOLD = new Set();
 let XL_SELECTED = 'A1';
+let XL_CURRENT_CHART_TYPE = 'bar';
+
+const XL_TEMPLATES = {
+  gradebook: {
+    data: {
+      'A1':'STUDENT NAME','B1':'TEST 1 (20)','C1':'TEST 2 (20)','D1':'EXAM (60)','E1':'TOTAL (100)','F1':'GRADE',
+      'A2':'Miracle Samson','B2':'18','C2':'17','D2':'52','E2':'=SUM(B2:D2)','F2':'=IF(E2>=75,"A1",IF(E2>=65,"B2",IF(E2>=50,"C4","F9")))',
+      'A3':'Esther Manzilla','B3':'19','C3':'18','D3':'55','E3':'=SUM(B3:D3)','F3':'=IF(E3>=75,"A1",IF(E3>=65,"B2",IF(E3>=50,"C4","F9")))',
+      'A4':'Emmanuel Asaa','B4':'16','C4':'15','D4':'48','E4':'=SUM(B4:D4)','F4':'=IF(E4>=75,"A1",IF(E4>=65,"B2",IF(E4>=50,"C4","F9")))',
+      'A5':'Adjovi Kimberly','B5':'20','C5':'19','D5':'58','E5':'=SUM(B5:D5)','F5':'=IF(E5>=75,"A1",IF(E5>=65,"B2",IF(E5>=50,"C4","F9")))',
+      'A6':'CLASS AVERAGE','B6':'=AVERAGE(B2:B5)','C6':'=AVERAGE(C2:C5)','D6':'=AVERAGE(D2:D5)','E6':'=AVERAGE(E2:E5)'
+    },
+    bold: ['A1','B1','C1','D1','E1','F1','A6','B6','C6','D6','E6']
+  },
+  budget: {
+    data: {
+      'A1':'EXPENSE ITEM','B1':'BUDGET (₦)','C1':'ACTUAL (₦)','D1':'VARIANCE (₦)',
+      'A2':'Textbooks & Notes','B2':'25000','C2':'22000','D2':'=B2-C2',
+      'A3':'Computer Lab Access','B3':'15000','C3':'15000','D3':'=B3-C3',
+      'A4':'Internet Data Plan','B4':'12000','C4':'14000','D4':'=B4-C4',
+      'A5':'Transportation','B5':'18000','C5':'16500','D5':'=B5-C5',
+      'A6':'TOTAL SUM','B6':'=SUM(B2:B5)','C6':'=SUM(C2:C5)','D6':'=SUM(D2:D5)'
+    },
+    bold: ['A1','B1','C1','D1','A6','B6','C6','D6']
+  },
+  inventory: {
+    data: {
+      'A1':'ITEM NAME','B1':'UNIT PRICE (₦)','C1':'QTY IN STOCK','D1':'TOTAL VALUE (₦)',
+      'A2':'CAT6 Cable (Box)','B2':'35000','C2':'4','D2':'=B2*C2',
+      'A3':'RJ-45 Connectors (Pack)','B3':'5000','C3':'12','D3':'=B3*C3',
+      'A4':'Crimping Tool','B4':'8500','C4':'6','D4':'=B4*C4',
+      'A5':'8-Port Switch','B5':'18000','C5':'3','D5':'=B5*C5',
+      'A6':'TOTAL ASSETS','D6':'=SUM(D2:D5)'
+    },
+    bold: ['A1','B1','C1','D1','A6','D6']
+  }
+};
+
 function xlCellId(col, row){ return String.fromCharCode(65+col) + (row+1); }
 function xlParseId(id){
   const m = id.match(/^([A-Za-z]+)(\d+)$/);
@@ -4183,32 +4431,63 @@ function renderExcelApp(){
     <div class="xl-toolbar-row">
       <span class="xl-cellref" id="xl-cellref">A1</span>
       <button id="xl-bold-toggle" title="Bold selected cell"><b>B</b></button>
-      <span style="color:var(--muted)">fx</span>
-      <input type="text" id="xl-formula-bar" placeholder="Type a value, or a formula like =SUM(A1:A5)">
-      <button class="btn small" id="xl-clear-sheet">Clear sheet</button>
-      <button class="btn primary small" id="xl-download">⬇ Download as CSV</button>
+      <span class="office-sep"></span>
+      <button class="btn small" id="xl-fmt-naira" title="Format as Nigerian Naira (₦)">₦ Naira</button>
+      <button class="btn small" id="xl-fmt-dollar" title="Format as Dollar ($)">$ USD</button>
+      <button class="btn small" id="xl-fmt-percent" title="Format as Percentage (%)">%</button>
+      <span class="office-sep"></span>
+      <button class="btn small" id="xl-sort-asc" title="Sort Column Ascending (A→Z / Low→High)">Sort A→Z</button>
+      <button class="btn small" id="xl-sort-desc" title="Sort Column Descending (Z→A / High→Low)">Sort Z→A</button>
+      <span class="office-sep"></span>
+      <select id="xl-template-select" title="Load a prebuilt spreadsheet">
+        <option value="">📂 Load Sample Sheet…</option>
+        <option value="gradebook">SS3 Student Gradebook & Averages</option>
+        <option value="budget">School & Project Expense Budget</option>
+        <option value="inventory">Computer Lab Asset Inventory</option>
+      </select>
+      <button class="btn small" id="xl-clear-sheet">Clear</button>
+      <button class="btn primary small" id="xl-download" style="margin-left:auto">⬇ Download CSV</button>
+    </div>
+    <div class="xl-toolbar-row" style="border-top:none;border-radius:0;">
+      <span style="color:var(--teal);font-weight:700;">fx</span>
+      <input type="text" class="formula-input" id="xl-formula-bar" placeholder="Type a value or formula (e.g. =SUM(B2:B10), =AVERAGE(C1:C5), =MEDIAN(D2:D8), =IF(E2>=50,\\"Pass\\",\\"Fail\\"))">
     </div>
     <div class="xl-wrap">
       <table class="xl-table">${header}${rowsHtml}</table>
     </div>
+
+    <!-- Interactive Formula Reference -->
     <div class="pq-note" style="margin-top:14px;">
-      Supported: plain numbers/text, cell references (e.g. <code>=A1+B2</code>), and ranges with
-      <code>SUM</code>, <code>AVERAGE</code>, <code>COUNT</code>, <code>COUNTA</code>, <code>COUNTIF</code>,
-      <code>MAX</code>, <code>MIN</code>, <code>IF</code>, <code>ROUND</code>, <code>ABS</code>,
-      <code>CONCATENATE</code> and <code>TODAY()</code> — e.g. <code>=AVERAGE(B2:B10)</code> or
-      <code>=COUNTIF(C2:C10,"&gt;50")</code>.
+      <b>Supported Excel Functions:</b><br>
+      • <b>Math & Stats:</b> <code>SUM(A1:A5)</code>, <code>AVERAGE(B1:B10)</code>, <code>MEDIAN(C1:C8)</code>, <code>COUNT(A1:A20)</code>, <code>COUNTA</code>, <code>COUNTIF(D1:D10,"&gt;50")</code>, <code>MAX</code>, <code>MIN</code>, <code>SQRT(A1)</code>, <code>POWER(A1,2)</code>, <code>ROUND(A1,2)</code>, <code>ABS(A1)</code><br>
+      • <b>Text & Logic:</b> <code>IF(condition, value_if_true, value_if_false)</code>, <code>CONCATENATE(A1, " ", B1)</code>, <code>UPPER(A1)</code>, <code>LOWER(A1)</code>, <code>LEN(A1)</code>, <code>TODAY()</code>
     </div>
+
+    <!-- Chart Generator Studio -->
     <div class="panel" style="margin-top:14px;">
-      <div class="panel-title"><h3>📈 Insert chart</h3></div>
-      <div class="panel-desc">Type a range of cells (e.g. <code>A1:A5</code>) and draw a real bar chart from their values.</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <input type="text" id="xl-chart-range" placeholder="e.g. A1:A5" style="max-width:200px;">
-        <button class="btn primary small" id="xl-chart-draw">Draw chart</button>
+      <div class="panel-title"><h3>📈 Multi-Chart Studio</h3></div>
+      <div class="panel-desc">Select a data range and generate live interactive visualizations for reports.</div>
+      <div class="xl-chart-tabs">
+        <button class="xl-chart-tab active" data-type="bar" onclick="selectChartType('bar')">📊 Bar Chart</button>
+        <button class="xl-chart-tab" data-type="line" onclick="selectChartType('line')">📈 Line Chart</button>
+        <button class="xl-chart-tab" data-type="pie" onclick="selectChartType('pie')">🥧 Pie Chart</button>
       </div>
-      <div id="xl-chart-host" style="margin-top:12px;"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <label class="field-label" style="margin:0">RANGE:</label>
+        <input type="text" id="xl-chart-range" placeholder="e.g. B2:B5 or B2:C5" style="max-width:180px;">
+        <button class="btn primary small" id="xl-chart-draw">Generate Chart</button>
+      </div>
+      <div id="xl-chart-host" style="margin-top:14px;"></div>
     </div>
   `;
 }
+
+function selectChartType(t){
+  XL_CURRENT_CHART_TYPE = t;
+  document.querySelectorAll('.xl-chart-tab').forEach(b => b.classList.toggle('active', b.dataset.type === t));
+  xlDrawChart();
+}
+
 function xlGetValue(id, visiting){
   visiting = visiting || new Set();
   if(visiting.has(id)) return '#CIRC';
@@ -4277,7 +4556,9 @@ function xlEvalFormula(expr, visiting){
   if(fnMatch){
     const fn = fnMatch[1].toUpperCase();
     const argsStr = fnMatch[2];
-    if(['SUM','AVERAGE','COUNT','COUNTA','MAX','MIN'].indexOf(fn) !== -1){
+    
+    // Aggregation Functions
+    if(['SUM','AVERAGE','COUNT','COUNTA','MAX','MIN','MEDIAN'].indexOf(fn) !== -1){
       const ids = xlExpandRange(argsStr, visiting);
       const vals = ids.map(id=>xlGetValue(id, visiting));
       const nums = vals.filter(v=>typeof v === 'number');
@@ -4287,7 +4568,67 @@ function xlEvalFormula(expr, visiting){
       if(fn==='COUNTA') return vals.filter(v=>v!==0 && v!=='' && v!==undefined).length;
       if(fn==='MAX') return nums.length ? Math.max.apply(null, nums) : 0;
       if(fn==='MIN') return nums.length ? Math.min.apply(null, nums) : 0;
+      if(fn==='MEDIAN'){
+        if(!nums.length) return 0;
+        const sorted = nums.slice().sort((a,b)=>a-b);
+        const mid = Math.floor(sorted.length/2);
+        return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid-1]+sorted[mid])/2;
+      }
     }
+    
+    // Math Functions
+    if(fn === 'SQRT'){
+      const num = xlEvalExpr(argsStr, visiting);
+      return typeof num === 'number' && num >= 0 ? Math.sqrt(num) : '#ERR';
+    }
+    if(fn === 'POWER'){
+      const parts = xlSplitArgs(argsStr);
+      const base = xlEvalExpr(parts[0], visiting);
+      const exp = xlEvalExpr(parts[1], visiting);
+      return (typeof base === 'number' && typeof exp === 'number') ? Math.pow(base, exp) : '#ERR';
+    }
+    if(fn === 'ROUND'){
+      const parts = xlSplitArgs(argsStr);
+      const num = xlEvalExpr(parts[0], visiting);
+      const digitsRaw = parts[1] !== undefined ? xlEvalExpr(parts[1], visiting) : 0;
+      const digits = typeof digitsRaw === 'number' ? digitsRaw : 0;
+      if(typeof num !== 'number') return '#ERR';
+      const factor = Math.pow(10, digits);
+      return Math.round(num*factor)/factor;
+    }
+    if(fn === 'ABS'){
+      const num = xlEvalExpr(argsStr, visiting);
+      return typeof num === 'number' ? Math.abs(num) : '#ERR';
+    }
+
+    // Text Functions
+    if(fn === 'UPPER'){
+      const parts = xlSplitArgs(argsStr);
+      const raw = xlGetValue(parts[0].trim().toUpperCase(), visiting);
+      return String(raw || parts[0]).toUpperCase().replace(/^["']|["']$/g, '');
+    }
+    if(fn === 'LOWER'){
+      const parts = xlSplitArgs(argsStr);
+      const raw = xlGetValue(parts[0].trim().toUpperCase(), visiting);
+      return String(raw || parts[0]).toLowerCase().replace(/^["']|["']$/g, '');
+    }
+    if(fn === 'LEN'){
+      const parts = xlSplitArgs(argsStr);
+      const raw = xlGetValue(parts[0].trim().toUpperCase(), visiting);
+      return String(raw !== undefined ? raw : parts[0]).length;
+    }
+    if(fn === 'CONCATENATE' || fn === 'CONCAT'){
+      const parts = xlSplitArgs(argsStr);
+      return parts.map(p=>{
+        p = p.trim();
+        const stripped = p.replace(/^["']|["']$/g, '');
+        if(stripped !== p) return stripped;
+        if(/^[A-Za-z]+\d+$/.test(p)) return String(xlGetValue(p.toUpperCase(), visiting));
+        return p;
+      }).join('');
+    }
+
+    // Logical & Filter
     if(fn === 'COUNTIF'){
       const parts = xlSplitArgs(argsStr);
       const ids = xlExpandRange(parts[0], visiting);
@@ -4321,29 +4662,6 @@ function xlEvalFormula(expr, visiting){
       if(!Number.isNaN(n) && trimmed !== '') return n;
       const evaluated = xlEvalExpr(branch, visiting);
       return evaluated !== '#ERR' ? evaluated : trimmed;
-    }
-    if(fn === 'ROUND'){
-      const parts = xlSplitArgs(argsStr);
-      const num = xlEvalExpr(parts[0], visiting);
-      const digitsRaw = parts[1] !== undefined ? xlEvalExpr(parts[1], visiting) : 0;
-      const digits = typeof digitsRaw === 'number' ? digitsRaw : 0;
-      if(typeof num !== 'number') return '#ERR';
-      const factor = Math.pow(10, digits);
-      return Math.round(num*factor)/factor;
-    }
-    if(fn === 'ABS'){
-      const num = xlEvalExpr(argsStr, visiting);
-      return typeof num === 'number' ? Math.abs(num) : '#ERR';
-    }
-    if(fn === 'CONCATENATE' || fn === 'CONCAT'){
-      const parts = xlSplitArgs(argsStr);
-      return parts.map(p=>{
-        p = p.trim();
-        const stripped = p.replace(/^["']|["']$/g, '');
-        if(stripped !== p) return stripped;
-        if(/^[A-Za-z]+\d+$/.test(p)) return String(xlGetValue(p.toUpperCase(), visiting));
-        return p;
-      }).join('');
     }
     if(fn === 'TODAY'){
       const d = new Date();
@@ -4388,6 +4706,7 @@ function persistExcel(){
   clearTimeout(XL_SAVE_TIMER);
   XL_SAVE_TIMER = setTimeout(saveExcelSheet, 400);
 }
+
 function wireExcelApp(){
   const anyCell = document.getElementById('xl-A1');
   if(!anyCell) return;
@@ -4432,6 +4751,61 @@ function wireExcelApp(){
     xlSelectCell(XL_SELECTED);
     persistExcel();
   };
+
+  // Format Buttons
+  document.getElementById('xl-fmt-naira').onclick = ()=>{
+    const cur = parseFloat(xlGetValue(XL_SELECTED));
+    if(!isNaN(cur)){
+      XL_DATA[XL_SELECTED] = '₦' + cur.toLocaleString();
+      xlRecalcAll();
+      persistExcel();
+      showToast('Formatted as ₦ Naira');
+    }
+  };
+  document.getElementById('xl-fmt-dollar').onclick = ()=>{
+    const cur = parseFloat(xlGetValue(XL_SELECTED));
+    if(!isNaN(cur)){
+      XL_DATA[XL_SELECTED] = '$' + cur.toLocaleString();
+      xlRecalcAll();
+      persistExcel();
+      showToast('Formatted as $ Dollar');
+    }
+  };
+  document.getElementById('xl-fmt-percent').onclick = ()=>{
+    const cur = parseFloat(xlGetValue(XL_SELECTED));
+    if(!isNaN(cur)){
+      XL_DATA[XL_SELECTED] = (cur * 100).toFixed(1) + '%';
+      xlRecalcAll();
+      persistExcel();
+      showToast('Formatted as %');
+    }
+  };
+
+  // Column Sort
+  document.getElementById('xl-sort-asc').onclick = ()=> xlSortColumn(true);
+  document.getElementById('xl-sort-desc').onclick = ()=> xlSortColumn(false);
+
+  // Template loader
+  document.getElementById('xl-template-select').onchange = (e)=>{
+    const key = e.target.value;
+    if(!key) return;
+    if(confirm('Load template sheet? Current sheet data will be replaced.')){
+      const t = XL_TEMPLATES[key];
+      if(t){
+        XL_DATA = JSON.parse(JSON.stringify(t.data));
+        XL_BOLD = new Set(t.bold);
+        xlRecalcAll();
+        persistExcel();
+        showToast('Template loaded successfully!');
+        if(document.getElementById('xl-chart-range')) {
+          document.getElementById('xl-chart-range').value = key==='gradebook'?'E2:E5':'B2:B5';
+          xlDrawChart();
+        }
+      }
+    }
+    e.target.value = '';
+  };
+
   document.getElementById('xl-clear-sheet').onclick = ()=>{
     if(confirm('Clear every cell in this sheet?')){
       XL_DATA = {};
@@ -4447,53 +4821,189 @@ function wireExcelApp(){
   xlSelectCell(XL_SELECTED);
   xlRecalcAll();
 }
+
+function xlSortColumn(asc){
+  const parsed = xlParseId(XL_SELECTED);
+  const col = parsed.col;
+  const colLetter = String.fromCharCode(65+col);
+  
+  // Collect rows data (from row 1 to XL_ROWS-1)
+  const rows = [];
+  for(let r=1; r<XL_ROWS; r++){
+    const id = xlCellId(col, r);
+    const val = XL_DATA[id] !== undefined ? XL_DATA[id] : '';
+    const rowObj = { r, val, allCells: {} };
+    for(let c=0; c<XL_COLS; c++){
+      const cId = xlCellId(c, r);
+      rowObj.allCells[c] = XL_DATA[cId];
+    }
+    rows.push(rowObj);
+  }
+
+  rows.sort((a,b)=>{
+    const nA = Number(a.val), nB = Number(b.val);
+    const isNum = !isNaN(nA) && !isNaN(nB) && a.val !== '' && b.val !== '';
+    if(isNum) return asc ? nA - nB : nB - nA;
+    return asc ? String(a.val).localeCompare(String(b.val)) : String(b.val).localeCompare(String(a.val));
+  });
+
+  rows.forEach((rowObj, idx)=>{
+    const newR = idx + 1;
+    for(let c=0; c<XL_COLS; c++){
+      const cId = xlCellId(c, newR);
+      if(rowObj.allCells[c] !== undefined && rowObj.allCells[c] !== '') {
+        XL_DATA[cId] = rowObj.allCells[c];
+      } else {
+        delete XL_DATA[cId];
+      }
+    }
+  });
+
+  xlRecalcAll();
+  persistExcel();
+  showToast(`Sorted column ${colLetter} ${asc ? 'Ascending (A→Z)' : 'Descending (Z→A)'}`);
+}
+
 function xlDrawChart(){
   const rangeRaw = document.getElementById('xl-chart-range').value.trim().toUpperCase();
   const host = document.getElementById('xl-chart-host');
-  if(!rangeRaw){ showToast('Type a range first, e.g. A1:A5'); return; }
-  let ids;
-  try{ ids = xlExpandRange(rangeRaw); }catch(e){ host.innerHTML = '<div class="status-banner bad">That range looks invalid — try something like A1:A5.</div>'; return; }
-  if(ids.length > 20){ host.innerHTML = '<div class="status-banner warn">Pick a smaller range (up to 20 cells) for a readable chart.</div>'; return; }
-  const vals = ids.map(id=>{ const v = xlGetValue(id); return typeof v === 'number' ? v : 0; });
-  const maxV = Math.max(1, ...vals.map(v=>Math.abs(v)));
-  const barW = 46, gap = 16, chartH = 200, baseY = 168;
-  const chartW = ids.length*(barW+gap)+gap;
-  let bars = '';
-  ids.forEach((id,i)=>{
-    const v = vals[i];
-    const barH = Math.round((Math.abs(v)/maxV)*138);
-    const x = gap + i*(barW+gap);
-    const y = baseY - barH;
-    bars += `<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(barH,1)}" fill="#45D0C4" rx="3"></rect>`;
-    bars += `<text x="${x+barW/2}" y="${baseY+16}" text-anchor="middle" font-size="11" fill="#8C98B8">${id}</text>`;
-    bars += `<text x="${x+barW/2}" y="${y-6}" text-anchor="middle" font-size="11" fill="#E7ECF6">${v}</text>`;
-  });
-  host.innerHTML = `<svg viewBox="0 0 ${chartW} ${chartH}" style="width:100%;max-width:${chartW}px;height:auto;background:#131A2A;border:1px solid #2A3550;border-radius:10px;"><line x1="${gap-6}" y1="${baseY}" x2="${chartW-gap+6}" y2="${baseY}" stroke="#2A3550"></line>${bars}</svg>`;
-}
-function downloadExcelCsv(){
-  let rowsOut = [];
-  for(let r=0;r<XL_ROWS;r++){
-    let cols = [];
-    for(let c=0;c<XL_COLS;c++){
-      const id = xlCellId(c,r);
-      let v = xlDisplayValue(id);
-      v = String(v).replace(/"/g,'""');
-      if(/[",\n]/.test(v)) v = `"${v}"`;
-      cols.push(v);
-    }
-    rowsOut.push(cols.join(','));
+  if(!host) return;
+  if(!rangeRaw){
+    host.innerHTML = '<div class="output-box muted2">Type a data range above (e.g. <code>B2:B5</code>) and click Generate Chart.</div>';
+    return;
   }
-  const csv = rowsOut.join('\r\n');
-  const blob = new Blob([csv], {type:'text/csv'});
-  const nameSlug = (STUDENT_NAME||'My').replace(/\s+/g,'_');
-  offerDownload(`${nameSlug}_sheet.csv`, blob, '📊 Sheet downloaded as CSV — open it with Microsoft Excel.');
+  let ids;
+  try{ ids = xlExpandRange(rangeRaw); }catch(e){ host.innerHTML = '<div class="status-banner bad">Invalid range format — try e.g. B2:B5</div>'; return; }
+  if(ids.length > 20){ host.innerHTML = '<div class="status-banner warn">Please select up to 20 cells for a clean chart.</div>'; return; }
+  
+  const vals = ids.map(id=>{ const v = xlGetValue(id); return typeof v === 'number' ? v : 0; });
+  const labels = ids.map(id=>{
+    const p = xlParseId(id);
+    const rowLabelId = xlCellId(0, p.row);
+    const rowLabel = XL_DATA[rowLabelId];
+    return (rowLabel && typeof rowLabel === 'string' && !rowLabel.startsWith('=')) ? rowLabel.slice(0,12) : id;
+  });
+
+  const chartColors = ['#45D0C4','#F2B84B','#F1795B','#77E3A8','#A78BFA','#38BDF8','#F472B6','#FBBF24'];
+
+  if(XL_CURRENT_CHART_TYPE === 'bar'){
+    const maxV = Math.max(1, ...vals.map(v=>Math.abs(v)));
+    const barW = 44, gap = 14, chartH = 220, baseY = 175;
+    const chartW = Math.max(340, ids.length*(barW+gap)+gap+40);
+    let bars = '';
+    ids.forEach((id,i)=>{
+      const v = vals[i];
+      const barH = Math.round((Math.abs(v)/maxV)*130);
+      const x = gap + 30 + i*(barW+gap);
+      const y = baseY - barH;
+      const col = chartColors[i % chartColors.length];
+      bars += `<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(barH,2)}" fill="${col}" rx="4"></rect>`;
+      bars += `<text x="${x+barW/2}" y="${baseY+16}" text-anchor="middle" font-size="10.5" fill="#8C98B8">${labels[i]}</text>`;
+      bars += `<text x="${x+barW/2}" y="${y-6}" text-anchor="middle" font-size="11" font-weight="700" fill="#E7ECF6">${v}</text>`;
+    });
+    host.innerHTML = `<svg viewBox="0 0 ${chartW} ${chartH}" style="width:100%;max-width:${chartW}px;height:auto;background:#131A2A;border:1px solid #2A3550;border-radius:10px;padding:8px 4px;"><line x1="20" y1="${baseY}" x2="${chartW-10}" y2="${baseY}" stroke="#2A3550" stroke-width="2"></line>${bars}</svg>`;
+  }
+  else if(XL_CURRENT_CHART_TYPE === 'line'){
+    const maxV = Math.max(1, ...vals.map(v=>Math.abs(v)));
+    const chartW = 400, chartH = 220, padding = 40;
+    const stepX = (chartW - padding*2) / Math.max(1, ids.length - 1);
+    const baseY = 175;
+
+    let points = [];
+    let dots = '';
+    ids.forEach((id, i)=>{
+      const v = vals[i];
+      const x = padding + i*stepX;
+      const y = baseY - ((v/maxV)*130);
+      points.push(`${x},${y}`);
+      dots += `<circle cx="${x}" cy="${y}" r="5" fill="#45D0C4" stroke="#0B0F1A" stroke-width="2"></circle>`;
+      dots += `<text x="${x}" y="${baseY+16}" text-anchor="middle" font-size="10" fill="#8C98B8">${labels[i]}</text>`;
+      dots += `<text x="${x}" y="${y-8}" text-anchor="middle" font-size="11" font-weight="700" fill="#77E3A8">${v}</text>`;
+    });
+
+    host.innerHTML = `
+      <svg viewBox="0 0 ${chartW} ${chartH}" style="width:100%;max-width:${chartW}px;height:auto;background:#131A2A;border:1px solid #2A3550;border-radius:10px;padding:8px;">
+        <line x1="${padding-10}" y1="${baseY}" x2="${chartW-padding+10}" y2="${baseY}" stroke="#2A3550" stroke-width="2"></line>
+        <polyline fill="none" stroke="#45D0C4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="${points.join(' ')}"></polyline>
+        ${dots}
+      </svg>
+    `;
+  }
+  else if(XL_CURRENT_CHART_TYPE === 'pie'){
+    const total = vals.reduce((a,b)=>a+Math.max(0,b), 0);
+    if(total <= 0){ host.innerHTML = '<div class="status-banner warn">Pie chart needs positive values to display slices.</div>'; return; }
+    
+    let accAngle = 0;
+    const cx = 110, cy = 110, r = 85;
+    let paths = '';
+    let legend = '';
+
+    vals.forEach((v, i)=>{
+      if(v <= 0) return;
+      const sliceAngle = (v / total) * 360;
+      const startAngle = accAngle;
+      const endAngle = accAngle + sliceAngle;
+      accAngle += sliceAngle;
+
+      const rad1 = (startAngle - 90) * Math.PI / 180;
+      const rad2 = (endAngle - 90) * Math.PI / 180;
+      const x1 = cx + r * Math.cos(rad1);
+      const y1 = cy + r * Math.sin(rad1);
+      const x2 = cx + r * Math.cos(rad2);
+      const y2 = cy + r * Math.sin(rad2);
+      const largeArc = sliceAngle > 180 ? 1 : 0;
+      const col = chartColors[i % chartColors.length];
+      const pct = Math.round((v/total)*100);
+
+      const d = sliceAngle >= 359.9 ? 
+        `M ${cx} ${cy-r} A ${r} ${r} 0 1 1 ${cx-0.01} ${cy-r} Z` :
+        `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+
+      paths += `<path d="${d}" fill="${col}" stroke="#131A2A" stroke-width="2"></path>`;
+      legend += `
+        <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;margin-bottom:4px;">
+          <span style="display:inline-block;width:12px;height:12px;background:${col};border-radius:3px;"></span>
+          <span style="color:#E7ECF6;font-weight:600;">${labels[i]}:</span>
+          <span style="color:var(--muted)">${v} (${pct}%)</span>
+        </div>
+      `;
+    });
+
+    host.innerHTML = `
+      <div style="display:flex;gap:20px;align-items:center;background:#131A2A;border:1px solid #2A3550;border-radius:10px;padding:14px;flex-wrap:wrap;">
+        <svg width="220" height="220" viewBox="0 0 220 220">${paths}</svg>
+        <div style="flex:1;min-width:140px;">${legend}</div>
+      </div>
+    `;
+  }
 }
 
-/* ---------------- PRESENTATION (POWERPOINT) ---------------- */
+/* ---------------- 3. PRESENTATION (POWERPOINT) ---------------- */
 const PPT_COLORS = ['#0B0F1A','#1F5C56','#173B5E','#5C3A17','#4A1F3D','#2E2E2E'];
-let PPT_SLIDES = [ {title:'My Presentation', body:'Click here to edit this slide.\nAdd more slides on the left.', bg: PPT_COLORS[0]} ];
+const PPT_TRANSITIONS = ['fade','zoom','slide-left','flip'];
+
+const PPT_TEMPLATE_DECKS = {
+  seminar: [
+    { title: 'Cybersecurity & Cloud Computing in Nigeria', body: 'Presented by: SS3 Digital Technologies Class\nKeynote Seminar 2026', bg: '#173B5E', layout: 'title', notes: 'Introduce the speaker and state the term project scope.' },
+    { title: 'The 3 Pillars of Information Security', body: '• Confidentiality: Encrypting data at rest and in transit.\n• Integrity: Hashing algorithms and verification.\n• Availability: RAID storage and Cloud redundancy.', bg: '#0B0F1A', layout: 'content', notes: 'Spend 2 minutes on CIA triad.' },
+    { title: 'Cloud Redundancy & Uptime', body: '99.99%', sub: 'High Availability Target in Modern Datacenters', bg: '#1F5C56', layout: 'stat', notes: 'Explain what 4 nines of uptime means.' },
+    { title: 'Summary & Call to Action', body: 'Digital security starts with password hygiene and zero-trust architecture.', bg: '#4A1F3D', layout: 'content', notes: 'Take questions from audience.' }
+  ],
+  pitch: [
+    { title: 'SmartAgro: IoT Crop Monitoring', body: 'Automated Solar Sensor System for West African Farmers\nTeam SS3 Tech Innovators', bg: '#1F5C56', layout: 'title', notes: 'Hook the judges with food security stats.' },
+    { title: 'The Problem vs Our Solution', left: '<b>The Problem:</b>\n• Soil moisture depletion\n• Unpredictable rainfall\n• Crop yield loss', right: '<b>Our IoT Solution:</b>\n• Real-time NPK & moisture sensors\n• Automated drip valves\n• SMS alerts to phone', bg: '#0B0F1A', layout: 'twocol', notes: 'Highlight cost effectiveness.' },
+    { title: 'Water Saved per Harvest', body: '40%', sub: 'Reduction in water consumption with smart valves', bg: '#5C3A17', layout: 'stat', notes: 'Show ROI metric.' },
+    { title: 'Next Steps & Rollout', body: '1. Pilot in 5 school farms.\n2. Solar-battery firmware integration.\n3. Open-source local dashboard.', bg: '#173B5E', layout: 'content', notes: 'Thank judges.' }
+  ]
+};
+
+let PPT_SLIDES = [
+  { title:'My Presentation', body:'Click here to edit this slide.\nAdd more slides on the left.', bg: PPT_COLORS[0], layout: 'content', notes: 'Speaker notes for slide 1.' }
+];
 let PPT_CURRENT = 0;
 let PPT_PRESENT_INDEX = 0;
+let PPT_CURRENT_TRANSITION = 'zoom';
+
 function loadPptDeck(){
   try{
     const raw = JSON.parse(localStorage.getItem('ss3dt_office_ppt') || 'null');
@@ -4513,6 +5023,7 @@ function persistPpt(){
 }
 function renderPptApp(){
   loadPptDeck();
+  const s = PPT_SLIDES[PPT_CURRENT] || PPT_SLIDES[0];
   return `
     <div class="ppt-layout">
       <div>
@@ -4524,18 +5035,65 @@ function renderPptApp(){
           <button class="btn small" id="ppt-move-down" style="flex:1;" title="Move slide down">↓ Down</button>
         </div>
         <button class="btn small" id="ppt-delete" style="width:100%;margin-top:6px;">🗑 Delete slide</button>
-        <button class="btn primary" id="ppt-present" style="width:100%;margin-top:12px;">▶ Present</button>
-        <button class="btn" id="ppt-download" style="width:100%;margin-top:8px;">⬇ Download presentation</button>
+
+        <label class="field-label" style="margin-top:10px">SAMPLE DECKS</label>
+        <select id="ppt-deck-template" style="width:100%;font-size:12px;">
+          <option value="">📂 Load Pitch Deck…</option>
+          <option value="seminar">Cybersecurity Seminar Deck</option>
+          <option value="pitch">SmartAgro IoT Pitch Deck</option>
+        </select>
+
+        <label class="field-label" style="margin-top:10px">TRANSITION</label>
+        <select id="ppt-transition-select" style="width:100%;font-size:12px;">
+          <option value="zoom" ${PPT_CURRENT_TRANSITION==='zoom'?'selected':''}>Zoom Transition</option>
+          <option value="slide-left" ${PPT_CURRENT_TRANSITION==='slide-left'?'selected':''}>Slide Left</option>
+          <option value="fade" ${PPT_CURRENT_TRANSITION==='fade'?'selected':''}>Fade In</option>
+          <option value="flip" ${PPT_CURRENT_TRANSITION==='flip'?'selected':''}>3D Flip</option>
+        </select>
+
+        <button class="btn primary" id="ppt-present" style="width:100%;margin-top:12px;">▶ Fullscreen Present</button>
+        <button class="btn" id="ppt-download" style="width:100%;margin-top:8px;">⬇ Download HTML Deck</button>
       </div>
+
       <div class="ppt-editor">
-        <label class="field-label">SLIDE TITLE</label>
+        <label class="field-label">SLIDE LAYOUT</label>
+        <div class="ppt-layout-selector" id="ppt-layout-selector">
+          <button class="ppt-layout-btn ${(s.layout||'content')==='title'?'active':''}" data-layout="title">Title Slide</button>
+          <button class="ppt-layout-btn ${(s.layout||'content')==='content'?'active':''}" data-layout="content">Title + Content</button>
+          <button class="ppt-layout-btn ${(s.layout||'content')==='twocol'?'active':''}" data-layout="twocol">Two Columns</button>
+          <button class="ppt-layout-btn ${(s.layout||'content')==='stat'?'active':''}" data-layout="stat">Big Stat / Metric</button>
+        </div>
+
+        <label class="field-label">SLIDE HEADING / TITLE</label>
         <input type="text" id="ppt-title-input">
-        <label class="field-label">SLIDE BODY</label>
-        <textarea id="ppt-body-input"></textarea>
+
+        <div id="ppt-body-fields">
+          <label class="field-label">SLIDE CONTENT / BULLETS</label>
+          <textarea id="ppt-body-input"></textarea>
+        </div>
+
+        <div id="ppt-twocol-fields" style="display:none;grid-template-columns:1fr 1fr;gap:10px;">
+          <div>
+            <label class="field-label">LEFT COLUMN</label>
+            <textarea id="ppt-left-input" style="min-height:90px;"></textarea>
+          </div>
+          <div>
+            <label class="field-label">RIGHT COLUMN</label>
+            <textarea id="ppt-right-input" style="min-height:90px;"></textarea>
+          </div>
+        </div>
+
         <label class="field-label" style="margin-top:10px">BACKGROUND COLOUR</label>
         <div class="ppt-color-row" id="ppt-color-row"></div>
+
+        <div class="ppt-notes-box">
+          <label class="field-label" style="color:var(--teal)">🎙️ PRESENTER SPEAKER NOTES</label>
+          <textarea id="ppt-notes-input" placeholder="Type talking points for this slide…"></textarea>
+        </div>
       </div>
     </div>
+
+    <!-- Presentation Overlay -->
     <div id="ppt-present-overlay">
       <div class="ppt-present-slide" id="ppt-present-slide"></div>
       <div class="ppt-autoplay-track"><div class="ppt-autoplay-bar" id="ppt-autoplay-bar"></div></div>
@@ -4555,7 +5113,7 @@ function pptRenderThumbs(){
   host.innerHTML = PPT_SLIDES.map((s,i)=>`
     <div class="ppt-thumb ${i===PPT_CURRENT?'active':''}" style="background:${s.bg};color:#fff;" data-i="${i}">
       <b>${i+1}. ${escapeHtml(s.title || 'Untitled')}</b>
-      <span style="opacity:.75">${escapeHtml((s.body||'').slice(0,40))}</span>
+      <span style="opacity:.75">${escapeHtml((s.body||s.left||'').slice(0,35))}</span>
     </div>
   `).join('');
   host.querySelectorAll('.ppt-thumb').forEach(el=>{
@@ -4579,8 +5137,23 @@ function pptRenderColorRow(){
 function pptSelectSlide(i){
   PPT_CURRENT = i;
   const s = PPT_SLIDES[i];
-  document.getElementById('ppt-title-input').value = s.title;
-  document.getElementById('ppt-body-input').value = s.body;
+  document.getElementById('ppt-title-input').value = s.title || '';
+  document.getElementById('ppt-body-input').value = s.body || '';
+  if(document.getElementById('ppt-left-input')) document.getElementById('ppt-left-input').value = s.left || '';
+  if(document.getElementById('ppt-right-input')) document.getElementById('ppt-right-input').value = s.right || '';
+  if(document.getElementById('ppt-notes-input')) document.getElementById('ppt-notes-input').value = s.notes || '';
+
+  // Toggle two-col editor
+  const isTwoCol = s.layout === 'twocol';
+  const bodyFields = document.getElementById('ppt-body-fields');
+  const twoColFields = document.getElementById('ppt-twocol-fields');
+  if(bodyFields) bodyFields.style.display = isTwoCol ? 'none' : 'block';
+  if(twoColFields) twoColFields.style.display = isTwoCol ? 'grid' : 'none';
+
+  document.querySelectorAll('.ppt-layout-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.layout === (s.layout || 'content'));
+  });
+
   pptRenderThumbs();
   pptRenderColorRow();
   persistPpt();
@@ -4590,8 +5163,7 @@ function wirePptApp(){
   if(!addBtn) return;
   pptRenderThumbs();
   pptRenderColorRow();
-  document.getElementById('ppt-title-input').value = PPT_SLIDES[PPT_CURRENT].title;
-  document.getElementById('ppt-body-input').value = PPT_SLIDES[PPT_CURRENT].body;
+  pptSelectSlide(PPT_CURRENT);
 
   document.getElementById('ppt-title-input').addEventListener('input', (e)=>{
     PPT_SLIDES[PPT_CURRENT].title = e.target.value;
@@ -4603,8 +5175,41 @@ function wirePptApp(){
     pptRenderThumbs();
     persistPpt();
   });
+  const leftInp = document.getElementById('ppt-left-input');
+  if(leftInp) leftInp.addEventListener('input', (e)=>{ PPT_SLIDES[PPT_CURRENT].left = e.target.value; persistPpt(); });
+  const rightInp = document.getElementById('ppt-right-input');
+  if(rightInp) rightInp.addEventListener('input', (e)=>{ PPT_SLIDES[PPT_CURRENT].right = e.target.value; persistPpt(); });
+  const notesInp = document.getElementById('ppt-notes-input');
+  if(notesInp) notesInp.addEventListener('input', (e)=>{ PPT_SLIDES[PPT_CURRENT].notes = e.target.value; persistPpt(); });
+
+  // Layout Selector
+  document.querySelectorAll('.ppt-layout-btn').forEach(btn=>{
+    btn.onclick = ()=>{
+      PPT_SLIDES[PPT_CURRENT].layout = btn.dataset.layout;
+      pptSelectSlide(PPT_CURRENT);
+    };
+  });
+
+  // Transition select
+  const transSel = document.getElementById('ppt-transition-select');
+  if(transSel) transSel.onchange = (e)=>{ PPT_CURRENT_TRANSITION = e.target.value; };
+
+  // Pitch deck loader
+  const deckSel = document.getElementById('ppt-deck-template');
+  if(deckSel) deckSel.onchange = (e)=>{
+    const k = e.target.value;
+    if(!k) return;
+    if(confirm('Load template deck? Current slides will be replaced.')){
+      PPT_SLIDES = JSON.parse(JSON.stringify(PPT_TEMPLATE_DECKS[k]));
+      PPT_CURRENT = 0;
+      pptSelectSlide(0);
+      showToast('Template pitch deck loaded!');
+    }
+    e.target.value = '';
+  };
+
   addBtn.onclick = ()=>{
-    PPT_SLIDES.push({title:`Slide ${PPT_SLIDES.length+1}`, body:'', bg: PPT_COLORS[PPT_SLIDES.length % PPT_COLORS.length]});
+    PPT_SLIDES.push({title:`Slide ${PPT_SLIDES.length+1}`, body:'', bg: PPT_COLORS[PPT_SLIDES.length % PPT_COLORS.length], layout:'content'});
     pptSelectSlide(PPT_SLIDES.length-1);
   };
   document.getElementById('ppt-duplicate').onclick = ()=>{
@@ -4640,9 +5245,10 @@ function wirePptApp(){
   document.getElementById('ppt-pause-toggle').onclick = pptTogglePause;
   document.getElementById('ppt-download').onclick = downloadPptDeck;
 }
+
 function downloadPptDeck(){
   const nameSlug = (STUDENT_NAME||'My').replace(/\s+/g,'_');
-  const slidesJson = JSON.stringify(PPT_SLIDES).replace(/</g,'\\u003c');
+  const slidesJson = JSON.stringify(PPT_SLIDES).replace(/</g,'\\\u003c');
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${escapeHtml(STUDENT_NAME||'My')} Presentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
@@ -4660,7 +5266,7 @@ function downloadPptDeck(){
       <span id="count"></span>
       <button onclick="go(1)">Next →</button>
     </div>
-    \x3cscript>
+    \\x3cscript>
       const SLIDES = ${slidesJson};
       let i = 0;
       function render(){
@@ -4669,7 +5275,7 @@ function downloadPptDeck(){
         el.style.background = s.bg;
         el.innerHTML = '<h2></h2><p></p>';
         el.querySelector('h2').textContent = s.title || '';
-        el.querySelector('p').textContent = s.body || '';
+        el.querySelector('p').textContent = s.body || s.left || '';
         document.getElementById('count').textContent = (i+1)+' / '+SLIDES.length;
       }
       function go(d){ i = Math.max(0, Math.min(SLIDES.length-1, i+d)); render(); }
@@ -4678,7 +5284,7 @@ function downloadPptDeck(){
         else if(e.key==='ArrowLeft') go(-1);
       });
       render();
-    \x3c/script>
+    \\x3c/script>
   </body></html>`;
   const blob = new Blob([html], {type:'text/html'});
   offerDownload(`${nameSlug}_presentation.html`, blob, '📽️ Presentation downloaded as a standalone HTML file — open it in any browser to present.');
@@ -4686,9 +5292,30 @@ function downloadPptDeck(){
 function pptRenderPresentSlide(){
   const s = PPT_SLIDES[PPT_PRESENT_INDEX];
   const el = document.getElementById('ppt-present-slide');
+  if(!el) return;
   el.style.background = s.bg;
   el.style.color = '#fff';
-  el.innerHTML = `<h2>${escapeHtml(s.title||'')}</h2><p>${escapeHtml(s.body||'')}</p>`;
+
+  // Apply transition animation
+  el.className = 'ppt-present-slide ' + (PPT_CURRENT_TRANSITION || 'zoom');
+
+  if(s.layout === 'stat'){
+    el.innerHTML = `
+      <div class="stat-number">${escapeHtml(s.body||'100%')}</div>
+      <div class="stat-label">${escapeHtml(s.title||'')}</div>
+      ${s.sub ? `<p style="margin-top:14px;opacity:0.8;">${escapeHtml(s.sub)}</p>` : ''}
+    `;
+  } else if(s.layout === 'twocol'){
+    el.innerHTML = `
+      <h2>${escapeHtml(s.title||'')}</h2>
+      <div class="two-col-content">
+        <div>${(s.left||'').replace(/\n/g,'<br>')}</div>
+        <div>${(s.right||'').replace(/\n/g,'<br>')}</div>
+      </div>
+    `;
+  } else {
+    el.innerHTML = `<h2>${escapeHtml(s.title||'')}</h2><p>${escapeHtml(s.body||'')}</p>`;
+  }
   document.getElementById('ppt-present-count').textContent = `${PPT_PRESENT_INDEX+1} / ${PPT_SLIDES.length}`;
   const bar = document.getElementById('ppt-autoplay-bar');
   if(bar) bar.style.width = '0%';
