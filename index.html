@@ -550,6 +550,90 @@ table.sql-table tr:hover{background:rgba(69,208,196,.06);}
 .fc-branch-row{display:flex;gap:32px;width:100%;justify-content:center;}
 .fc-branch{display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;}
 .fc-branch-tag{font-size:11px;font-family:var(--font-mono);padding:2px 8px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);}
+
+/* ---------- 1. Circuit & Logic Gates Lab ---------- */
+.circuit-canvas-wrap{background:#070A12;border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:280px;position:relative;overflow:hidden;}
+.circuit-wire{stroke-width:4;stroke-linecap:round;transition:stroke .2s ease, filter .2s ease;}
+.wire-high{stroke:var(--green);filter:drop-shadow(0 0 6px rgba(119,227,168,.8));}
+.wire-low{stroke:#2A3550;}
+.gate-body{fill:var(--surface);stroke:var(--teal);stroke-width:2.5;}
+.gate-text{fill:var(--text);font-family:var(--font-mono);font-size:14px;font-weight:700;text-anchor:middle;dominant-baseline:middle;}
+.circuit-bulb{transition:all .3s ease;}
+.circuit-bulb.on{fill:var(--amber);filter:drop-shadow(0 0 16px rgba(242,184,75,.9));}
+.circuit-bulb.off{fill:#1A233A;filter:none;}
+.toggle-switch-btn{background:var(--surface-2);border:2px solid var(--line);border-radius:10px;padding:12px 18px;font-family:var(--font-mono);font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;}
+.toggle-switch-btn.active{border-color:var(--green);background:rgba(119,227,168,.15);color:var(--green);}
+
+/* ---------- 2. 8-Bit Binary & Hex Studio ---------- */
+.register-grid{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0;}
+.bit-switch{width:62px;height:90px;background:var(--surface);border:2px solid var(--line);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 4px 8px;cursor:pointer;user-select:none;transition:all .2s ease;}
+.bit-switch:hover{border-color:var(--teal);}
+.bit-switch.on{border-color:var(--teal);background:rgba(69,208,196,.12);box-shadow:0 0 12px rgba(69,208,196,.25);}
+.bit-switch-val{font-family:var(--font-mono);font-size:24px;font-weight:800;color:var(--text);}
+.bit-switch.on .bit-switch-val{color:var(--teal);}
+.bit-switch-weight{font-family:var(--font-mono);font-size:11px;color:var(--muted);background:var(--surface-2);padding:2px 6px;border-radius:6px;}
+
+/* ---------- 3. Algorithm Race Visualizer ---------- */
+.sort-viz-container{background:#070A12;border:1px solid var(--line);border-radius:12px;height:260px;display:flex;align-items:flex-end;gap:6px;padding:16px;overflow-x:auto;}
+.sort-bar{flex:1;background:var(--teal-dim);border-radius:4px 4px 0 0;transition:height .15s ease, background-color .15s ease;position:relative;display:flex;justify-content:center;}
+.sort-bar.comparing{background:var(--amber) !important;box-shadow:0 0 10px rgba(242,184,75,.6);}
+.sort-bar.swapping{background:var(--coral) !important;box-shadow:0 0 10px rgba(241,121,91,.6);}
+.sort-bar.sorted{background:var(--green) !important;}
+.sort-bar-val{position:absolute;bottom:4px;font-family:var(--font-mono);font-size:10px;font-weight:700;color:#04201d;}
+
+/* ---------- 4. Cybersecurity & Cryptography Lab ---------- */
+.cipher-wheel-box{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--font-mono);font-size:13px;overflow-x:auto;padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:10px;}
+.pw-meter-bar{height:8px;border-radius:4px;background:var(--bg);overflow:hidden;margin-top:8px;}
+.pw-meter-fill{height:100%;transition:width .3s ease, background-color .3s ease;width:0%;}
+
+/* ---------- 5. IoT Smart Home & Sensor Lab ---------- */
+.iot-device-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:14px;margin:16px 0;}
+.iot-device-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s ease;}
+.iot-device-card.active{border-color:var(--teal);background:linear-gradient(135deg,rgba(69,208,196,.08),transparent);}
+.iot-fan-spin{display:inline-block;animation:spin 1s linear infinite;}
+@keyframes spin{ 100%{ transform:rotate(360deg); } }
+.iot-lamp-glow{filter:drop-shadow(0 0 16px var(--amber));}
+.iot-siren-pulse{animation:pulseSiren .6s ease infinite alternate;}
+@keyframes pulseSiren{ 0%{ transform:scale(1); opacity:0.7; } 100%{ transform:scale(1.15); opacity:1; filter:drop-shadow(0 0 14px var(--red)); } }
+
+/* ---------- 6. RAID Storage Simulator ---------- */
+.raid-rack{display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;margin:16px 0;}
+@media (max-width:700px){.raid-rack{grid-template-columns:1fr 1fr;}}
+.raid-disk{background:var(--surface-2);border:2px solid var(--line);border-radius:10px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .2s ease;}
+.raid-disk.failed{border-color:var(--red);background:rgba(242,120,120,.1);opacity:0.8;}
+.raid-block{width:100%;padding:5px 4px;font-family:var(--font-mono);font-size:11px;border-radius:4px;text-align:center;font-weight:700;margin-bottom:3px;}
+.raid-block.data{background:rgba(69,208,196,.2);color:var(--teal);border:1px solid var(--teal-dim);}
+.raid-block.mirror{background:rgba(242,184,75,.2);color:var(--amber);border:1px solid rgba(242,184,75,.4);}
+.raid-block.parity{background:rgba(119,227,168,.2);color:var(--green);border:1px solid rgba(119,227,168,.4);}
+.raid-block.corrupt{background:rgba(242,120,120,.2);color:var(--red);border:1px dashed var(--red);text-decoration:line-through;}
+
+/* ---------- 7. Timed CBT Exam Simulator ---------- */
+.cbt-palette{display:grid;grid-template-columns:repeat(auto-fill, minmax(36px, 1fr));gap:6px;margin:14px 0;}
+.cbt-pal-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-family:var(--font-mono);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.cbt-pal-btn.current{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal);}
+.cbt-pal-btn.answered{background:var(--teal);color:#04201d;border-color:var(--teal);}
+.cbt-pal-btn.flagged{border-color:var(--amber);color:var(--amber);position:relative;}
+.cbt-pal-btn.flagged::after{content:'•';position:absolute;top:-2px;right:4px;font-size:16px;color:var(--amber);}
+.cbt-timer{font-family:var(--font-mono);font-size:18px;font-weight:800;color:var(--teal);padding:6px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);display:inline-flex;align-items:center;gap:6px;}
+.cbt-timer.warning{color:var(--red);border-color:var(--red);animation:pulseTimer 1s infinite alternate;}
+@keyframes pulseTimer{ 0%{ opacity:0.8; } 100%{ opacity:1; transform:scale(1.03); } }
+
+/* ---------- 8. Printable Certificate of Excellence ---------- */
+#cert-modal-scrim{position:fixed;inset:0;background:rgba(4,7,14,.85);z-index:180;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+#cert-modal-scrim.show{display:flex;}
+.cert-card{background:#FCFBF7;color:#1E2022;border:10px double #B8860B;border-radius:12px;max-width:760px;width:100%;padding:40px 32px;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,.6);position:relative;background-image:radial-gradient(#EFE8D8 1px, transparent 1px);background-size:20px 20px;}
+.cert-card h2{font-family:Georgia, serif;font-size:28px;color:#8B6508;letter-spacing:1px;margin-bottom:8px;}
+.cert-card .cert-sub{font-size:13px;color:#606266;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;}
+.cert-card .cert-name{font-family:Georgia, serif;font-size:32px;font-weight:700;color:#1A202C;border-bottom:2px solid #B8860B;display:inline-block;padding:0 30px 6px;margin-bottom:18px;}
+.cert-card .cert-desc{font-size:14.5px;line-height:1.7;color:#333;max-width:580px;margin:0 auto 24px;}
+.cert-meta-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:28px;border-top:1px solid #D6CEBE;padding-top:16px;}
+.cert-seal{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg, #FFD700, #DAA520);border:3px dashed #8B6508;display:flex;align-items:center;justify-content:center;color:#4A3600;font-weight:900;font-size:11px;text-align:center;font-family:Georgia, serif;box-shadow:0 4px 12px rgba(0,0,0,.2);}
+@media print{
+  body *{visibility:hidden;}
+  #cert-modal-scrim, #cert-modal-scrim *{visibility:visible;}
+  #cert-modal-scrim{position:absolute;left:0;top:0;width:100%;background:#fff;padding:0;}
+  .cert-btn-bar{display:none !important;}
+}
 </style>
 </head>
 <body>
@@ -612,14 +696,22 @@ table.sql-table tr:hover{background:rgba(69,208,196,.06);}
     <div class="nav-group-label">Topics</div>
     <div id="topic-list"></div>
 
-    <div class="nav-subgroup-label">⚡ Interactive Simulators</div>
+    <div class="nav-subgroup-label">⚡ Interactive Simulators & Labs</div>
     <button class="tool-nav-btn" id="sql-nav-btn" onclick="openSqlSandbox()">🗄️ SQL Database Sandbox</button>
     <button class="tool-nav-btn" id="subnet-nav-btn" onclick="openSubnetCalc()">🌐 Subnet & IP Calculator</button>
     <button class="tool-nav-btn" id="flowchart-nav-btn" onclick="openFlowchartBuilder()">🔄 Flowchart Algorithm Builder</button>
+    <button class="tool-nav-btn" id="circuit-nav-btn" onclick="openCircuitLab()">⚡ Logic Gates & Circuit Lab</button>
+    <button class="tool-nav-btn" id="binary-nav-btn" onclick="openBinaryStudio()">🔢 8-Bit Binary & Hex Studio</button>
+    <button class="tool-nav-btn" id="sorting-nav-btn" onclick="openSortingVisualizer()">📊 Algorithm Race Visualizer</button>
+    <button class="tool-nav-btn" id="crypto-nav-btn" onclick="openCryptoLab()">🔒 Cybersecurity & Cryptography</button>
+    <button class="tool-nav-btn" id="iot-nav-btn" onclick="openIotLab()">🏡 IoT Smart Home & Sensors</button>
+    <button class="tool-nav-btn" id="raid-nav-btn" onclick="openRaidLab()">💾 RAID Storage & Disaster Recovery</button>
 
-    <div class="nav-subgroup-label">📚 Practice & Tools</div>
-    <button id="pastq-nav-btn" onclick="openPastQuestions()">📝 WAEC & NECO Past Questions</button>
+    <div class="nav-subgroup-label">📚 Exams & Tools</div>
+    <button class="tool-nav-btn" id="cbt-nav-btn" onclick="openCbtExam()" style="border-color:rgba(69,208,196,.4);color:var(--teal);">⏱️ WAEC & NECO CBT Exam (Timed)</button>
+    <button id="pastq-nav-btn" onclick="openPastQuestions()">📝 Past Questions Bank</button>
     <button id="office-nav-btn" onclick="openOfficeTools()">💼 Office Tools (Word, Excel, PPT)</button>
+    <button class="tool-nav-btn" id="cert-nav-btn" onclick="openCertificateModal()" style="border-color:rgba(242,184,75,.4);color:var(--amber);">📜 Certificate of Excellence</button>
     <button class="tool-nav-btn" id="badges-nav-btn" onclick="openBadgesModal()">🏆 Achievements & Trophies</button>
 
     <div id="progress-box">
@@ -636,7 +728,8 @@ table.sql-table tr:hover{background:rgba(69,208,196,.06);}
         <div id="topic-title">Topic <b id="topic-title-b">—</b></div>
         <div class="topbar-right">
           <span class="streak-pill" id="topbar-streak" title="Daily study streak">🔥 <span id="streak-days">1</span>d</span>
-          <button class="icon-btn" id="trophy-btn" onclick="openBadgesModal()" title="View Achievements">🏆 <span id="badge-count-top">0/8</span></button>
+          <button class="icon-btn" id="trophy-btn" onclick="openBadgesModal()" title="View Achievements">🏆 <span id="badge-count-top">0/16</span></button>
+          <button class="icon-btn" id="cert-top-btn" onclick="openCertificateModal()" title="View Certificate">📜</button>
           <button class="icon-btn" id="sound-btn" onclick="toggleAudio()" title="Toggle sound effects">🔊</button>
           <button id="lab-reports-btn" onclick="openLabModal()">🧾 My Lab Reports <span id="lab-reports-badge">0</span></button>
         </div>
@@ -669,6 +762,34 @@ table.sql-table tr:hover{background:rgba(69,208,196,.06);}
     <div class="badge-grid" id="badges-grid"></div>
     <div class="lab-btn-row" style="margin-top:18px;">
       <button class="btn primary" onclick="closeBadgesModal()">Keep learning →</button>
+    </div>
+  </div>
+</div>
+
+<div id="cert-modal-scrim" onclick="if(event.target===this) closeCertificateModal()">
+  <div class="cert-card" id="cert-card-content">
+    <div class="cert-seal" style="position:absolute;top:28px;right:28px;">HONOR<br>SEAL</div>
+    <div class="cert-sub">FEDERAL REPUBLIC OF NIGERIA · SENIOR SECONDARY EDUCATION</div>
+    <h2>CERTIFICATE OF EXCELLENCE</h2>
+    <div style="font-size:13px;color:#718096;margin-bottom:14px;letter-spacing:1px;text-transform:uppercase;">SS3 DIGITAL TECHNOLOGIES (FIRST TERM)</div>
+    <div style="font-size:14px;color:#4A5568;margin-bottom:12px;">This is proudly awarded to</div>
+    <div class="cert-name" id="cert-student-name">Student Name</div>
+    <div class="cert-desc" id="cert-desc-text">
+      For outstanding mastery, active participation, and completion of the Senior Secondary School (SS3) Digital Technologies curriculum, including hands-on computer laboratory practicals, relational database querying, network subnetting, and interactive algorithm engineering.
+    </div>
+    <div class="cert-meta-row">
+      <div style="text-align:left;">
+        <div style="font-family:Georgia, serif;font-size:14px;font-weight:700;color:#2D3748;" id="cert-date-text">Date: September 2026</div>
+        <div style="font-size:11px;color:#718096;font-family:monospace;">VERIFICATION CODE: DT-WAEC-SS3-2026</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:Georgia, serif;font-size:15px;font-style:italic;color:#2D3748;border-bottom:1px solid #718096;padding-bottom:2px;">Digital Technologies Department</div>
+        <div style="font-size:11px;color:#718096;text-transform:uppercase;margin-top:4px;">Academic Instructor & Examiner</div>
+      </div>
+    </div>
+    <div class="cert-btn-bar" style="display:flex;gap:10px;justify-content:center;margin-top:28px;">
+      <button class="btn primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+      <button class="btn" onclick="closeCertificateModal()">Close</button>
     </div>
   </div>
 </div>
@@ -1112,7 +1233,9 @@ const ALLOWED_NAMES = [
   'Hillary Dosou',
   'Miracle Samson',
   'Esther Manzilla',
-  'Emmanuel Assa'
+  'Emmanuel Assa',
+  'Emmanuel Asaa',
+  'Adjovi Kimberly'
 ];
 function normalizeName(s){
   return String(s).trim().replace(/['’]/g, '').replace(/\s+/g, ' ').toLowerCase();
@@ -1429,8 +1552,16 @@ const BADGES = [
   {id:'sql_explorer', icon:'🗄️', title:'SQL Explorer', desc:'Ran your first database query in the SQL Sandbox.'},
   {id:'subnet_architect', icon:'🌐', title:'Subnet Architect', desc:'Calculated network IDs and host ranges in the Subnet Calculator.'},
   {id:'algorithm_pioneer', icon:'🔄', title:'Algorithm Pioneer', desc:'Built and executed a logic flowchart in the Algorithm Builder.'},
+  {id:'circuit_wizard', icon:'⚡', title:'Circuit Wizard', desc:'Configured logic gates and triggered the output light in Circuit Lab.'},
+  {id:'binary_master', icon:'🔢', title:'Binary Master', desc:'Manipulated 8-bit registers and converted text to binary stream.'},
+  {id:'algo_speedster', icon:'📊', title:'Algo Speedster', desc:'Visualized sorting and searching algorithms in the Algorithm Race.'},
+  {id:'cryptographer', icon:'🔒', title:'Cryptographer', desc:'Encrypted secret messages and checked password entropy.'},
+  {id:'iot_architect', icon:'🏡', title:'IoT Architect', desc:'Created sensor automation rules for the Smart Home Simulator.'},
+  {id:'raid_survivor', icon:'💾', title:'Fault Tolerant', desc:'Simulated disk failure and recovery across RAID storage arrays.'},
+  {id:'cbt_champion', icon:'⏱️', title:'CBT Champion', desc:'Completed a full timed WAEC/NECO CBT practice examination.'},
+  {id:'cbt_distinction', icon:'🥇', title:'WAEC Distinction', desc:'Earned an A1 or B2 grade on the Timed CBT Exam!'},
+  {id:'certified_scholar', icon:'📜', title:'Certified Scholar', desc:'Viewed and generated your official Certificate of Excellence.'},
   {id:'lab_scientist', icon:'🧪', title:'Lab Scientist', desc:'Completed and saved your first computer practical lab report.'},
-  {id:'exam_master', icon:'📝', title:'Exam Master', desc:'Practiced real WAEC & NECO Past Questions.'},
   {id:'valedictorian', icon:'👑', title:'SS3 Valedictorian', desc:'Reached 100% completion across all 8 first-term topics!'}
 ];
 
@@ -2358,10 +2489,1162 @@ function updateFcConsole(){
   const el = document.getElementById('fc-console-log');
   if(el){
     const varText = Object.entries(fcVars).map(([k,v])=>`${k}=${v}`).join(', ');
-    el.innerHTML = `<div><b style="color:var(--teal)">Variables:</b> ${varText}</div>` +
-      fcLogs.map(l => `<div style="color:#77E3A8">${escapeHtml(l)}</div>`).join('');
+    el.textContent = `Variables: [ ${varText || 'none'} ]\n\n` + fcLogs.join('\n');
+    el.scrollTop = el.scrollHeight;
   }
 }
+
+/* =========================================================
+   4. LOGIC GATES & DIGITAL CIRCUIT LAB
+   ========================================================= */
+let circuitInputs = { A: 0, B: 0 };
+let currentCircuitGate = 'AND';
+const GATES_META = {
+  AND: { name: 'AND Gate', desc: 'Output is 1 ONLY IF both A and B are 1.', eval: (a,b)=> (a && b) ? 1 : 0 },
+  OR:  { name: 'OR Gate', desc: 'Output is 1 IF either A or B (or both) are 1.', eval: (a,b)=> (a || b) ? 1 : 0 },
+  NOT: { name: 'NOT Gate (Inverter)', desc: 'Inverts input A. (0 becomes 1, 1 becomes 0).', eval: (a,b)=> a ? 0 : 1, single: true },
+  NAND:{ name: 'NAND Gate', desc: 'Inverted AND. Output is 0 only when both A and B are 1.', eval: (a,b)=> (a && b) ? 0 : 1 },
+  NOR: { name: 'NOR Gate', desc: 'Inverted OR. Output is 1 only when both A and B are 0.', eval: (a,b)=> (a || b) ? 0 : 1 },
+  XOR: { name: 'XOR Gate (Exclusive OR)', desc: 'Output is 1 ONLY IF inputs are different (e.g. 0 & 1, 1 & 0).', eval: (a,b)=> (a ^ b) ? 1 : 0 },
+  XNOR:{ name: 'XNOR Gate', desc: 'Output is 1 ONLY IF inputs are identical (e.g. 0 & 0, 1 & 1).', eval: (a,b)=> (a ^ b) ? 0 : 1 }
+};
+
+function openCircuitLab(){
+  state.mode = 'circuit';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'Logic Gates & Digital Circuit Lab';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderCircuitApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('circuit_wizard');
+}
+
+function renderCircuitApp(){
+  const host = document.getElementById('content');
+  const meta = GATES_META[currentCircuitGate];
+  const outVal = meta.eval(circuitInputs.A, circuitInputs.B);
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Digital Electronics & Logic</div>
+      <h1>⚡ Logic Gates & Circuit Lab</h1>
+      <p class="sub">Toggle inputs, assemble logic gates, test live flowing currents, and generate dynamic truth tables.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>Select Logic Gate</h3></div>
+      <div class="sql-toolbar" style="margin-top:8px;">
+        ${Object.keys(GATES_META).map(k=>`
+          <button class="sql-chip ${currentCircuitGate===k?'active-toggle':''}" onclick="selectCircuitGate('${k}')">${k}</button>
+        `).join('')}
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px;">${meta.desc}</p>
+
+      <div class="two-col" style="margin-top:16px;">
+        <div>
+          <label class="field-label">INPUT SWITCHES (Click to toggle 0 / 1)</label>
+          <div style="display:flex;gap:12px;margin-top:6px;">
+            <button class="toggle-switch-btn ${circuitInputs.A?'active':''}" onclick="toggleCircuitInput('A')">
+              <span>Switch A:</span> <b style="font-size:18px;">${circuitInputs.A}</b>
+            </button>
+            ${!meta.single ? `
+              <button class="toggle-switch-btn ${circuitInputs.B?'active':''}" onclick="toggleCircuitInput('B')">
+                <span>Switch B:</span> <b style="font-size:18px;">${circuitInputs.B}</b>
+              </button>
+            ` : ''}
+          </div>
+        </div>
+        <div>
+          <label class="field-label">CIRCUIT OUTPUT</label>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:6px;">
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:800;color:${outVal?'var(--green)':'var(--red)'};">
+              Output Q = ${outVal} (${outVal?'HIGH / ON':'LOW / OFF'})
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;">
+        <label class="field-label">LIVE CIRCUIT SCHEMATIC</label>
+        <div class="circuit-canvas-wrap">
+          <svg viewBox="0 0 540 220" style="width:100%;max-width:540px;height:auto;">
+            <!-- Wire A -->
+            <line x1="60" y1="70" x2="200" y2="70" class="circuit-wire ${circuitInputs.A?'wire-high':'wire-low'}"></line>
+            <text x="35" y="75" fill="var(--text)" font-family="monospace" font-weight="700" font-size="14">A: ${circuitInputs.A}</text>
+
+            <!-- Wire B (if not single input) -->
+            ${!meta.single ? `
+              <line x1="60" y1="150" x2="200" y2="150" class="circuit-wire ${circuitInputs.B?'wire-high':'wire-low'}"></line>
+              <text x="35" y="155" fill="var(--text)" font-family="monospace" font-weight="700" font-size="14">B: ${circuitInputs.B}</text>
+            ` : ''}
+
+            <!-- Gate Box -->
+            <rect x="200" y="45" width="140" height="130" rx="12" class="gate-body"></rect>
+            <text x="270" y="110" class="gate-text">${currentCircuitGate}</text>
+
+            <!-- Output Wire -->
+            <line x1="340" y1="110" x2="440" y2="110" class="circuit-wire ${outVal?'wire-high':'wire-low'}"></line>
+
+            <!-- Output Lamp -->
+            <circle cx="470" cy="110" r="24" class="circuit-bulb ${outVal?'on':'off'}" stroke="var(--line)" stroke-width="3"></circle>
+            <text x="470" y="115" fill="${outVal?'#2a1600':'var(--muted)'}" font-family="monospace" font-weight="800" font-size="12" text-anchor="middle">Q=${outVal}</text>
+          </svg>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <label class="field-label">DYNAMIC TRUTH TABLE (Green highlight = Active Input State)</label>
+        <div class="sql-table-wrap">
+          <table class="sql-table">
+            <thead>
+              <tr>
+                <th>Input A</th>
+                ${!meta.single ? '<th>Input B</th>' : ''}
+                <th>Output Q (${currentCircuitGate})</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${renderCircuitTruthTable(meta)}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function selectCircuitGate(k){
+  currentCircuitGate = k;
+  playSound('click');
+  renderCircuitApp();
+}
+
+function toggleCircuitInput(ch){
+  circuitInputs[ch] = circuitInputs[ch] ? 0 : 1;
+  playSound(circuitInputs[ch] ? 'correct' : 'click');
+  renderCircuitApp();
+}
+
+function renderCircuitTruthTable(meta){
+  if(meta.single){
+    return [0, 1].map(a => {
+      const q = meta.eval(a, 0);
+      const isCurrent = circuitInputs.A === a;
+      return `<tr style="${isCurrent ? 'background:rgba(119,227,168,.18);font-weight:bold;color:var(--green);' : ''}">
+        <td>${a}</td>
+        <td><b>${q}</b></td>
+      </tr>`;
+    }).join('');
+  }
+  const combinations = [[0,0],[0,1],[1,0],[1,1]];
+  return combinations.map(([a,b]) => {
+    const q = meta.eval(a,b);
+    const isCurrent = (circuitInputs.A === a && circuitInputs.B === b);
+    return `<tr style="${isCurrent ? 'background:rgba(119,227,168,.18);font-weight:bold;color:var(--green);' : ''}">
+      <td>${a}</td>
+      <td>${b}</td>
+      <td><b>${q}</b></td>
+    </tr>`;
+  }).join('');
+}
+
+
+/* =========================================================
+   5. 8-BIT BINARY & HEX CONVERTER STUDIO
+   ========================================================= */
+let binaryBits = [0, 1, 0, 0, 0, 0, 0, 1]; // 65 -> 'A'
+let hexColorR = 69, hexColorG = 208, hexColorB = 196;
+
+function openBinaryStudio(){
+  state.mode = 'binary';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = '8-Bit Binary & Hex Studio';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderBinaryApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('binary_master');
+}
+
+function renderBinaryApp(){
+  const host = document.getElementById('content');
+  const decVal = binaryBits.reduce((acc, bit, idx) => acc + bit * Math.pow(2, 7 - idx), 0);
+  const hexVal = decVal.toString(16).toUpperCase().padStart(2, '0');
+  const octVal = decVal.toString(8).padStart(3, '0');
+  const asciiChar = (decVal >= 32 && decVal <= 126) ? String.fromCharCode(decVal) : '(Non-printable)';
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Data Representation</div>
+      <h1>🔢 8-Bit Binary & Hex Converter Studio</h1>
+      <p class="sub">Flip 8-bit registers, explore decimal/hex/octal translations, convert live text to binary bytes, and mix hexadecimal colors.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>1. Interactive 8-Bit Byte Register</h3></div>
+      <p class="panel-desc">Click any of the 8 bit switches below (weights 128 through 1) to toggle 0 and 1.</p>
+
+      <div class="register-grid">
+        ${binaryBits.map((b, idx)=>{
+          const weight = Math.pow(2, 7 - idx);
+          return `
+            <div class="bit-switch ${b?'on':''}" onclick="toggleBinaryBit(${idx})">
+              <span class="bit-switch-weight">${weight}</span>
+              <span class="bit-switch-val">${b}</span>
+              <span style="font-size:10px;color:var(--muted);font-family:monospace;">2<sup>${7-idx}</sup></span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <div class="subnet-grid" style="margin-top:20px;">
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">DECIMAL VALUE (BASE 10)</div>
+          <div class="subnet-stat-val highlight">${decVal}</div>
+        </div>
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">HEXADECIMAL (BASE 16)</div>
+          <div class="subnet-stat-val amber">0x${hexVal}</div>
+        </div>
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">OCTAL (BASE 8)</div>
+          <div class="subnet-stat-val">${octVal}</div>
+        </div>
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">ASCII CHARACTER</div>
+          <div class="subnet-stat-val highlight" style="font-size:18px;">${asciiChar}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel-title"><h3>2. Live Text ↔ Binary Stream Translator</h3></div>
+      <div class="two-col" style="margin-top:10px;">
+        <div>
+          <label class="field-label">TYPE PLAIN TEXT (ASCII)</label>
+          <input type="text" id="bin-text-input" value="WAEC SS3" oninput="translateTextToBinary()">
+        </div>
+        <div>
+          <label class="field-label">BYTE STREAM OUTPUT</label>
+          <div class="output-box" id="bin-stream-out" style="min-height:50px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel-title"><h3>3. RGB Hex Color Mixer</h3></div>
+      <p class="panel-desc">See how 3 bytes (Red, Green, Blue from 00 to FF) create 24-bit TrueColor hex codes.</p>
+      <div class="two-col" style="margin-top:12px;">
+        <div>
+          <label class="field-label">RED (0–255): <span id="rgb-r-lbl">${hexColorR}</span></label>
+          <input type="range" min="0" max="255" value="${hexColorR}" id="rgb-r" oninput="updateHexColor()">
+          <label class="field-label" style="margin-top:8px;">GREEN (0–255): <span id="rgb-g-lbl">${hexColorG}</span></label>
+          <input type="range" min="0" max="255" value="${hexColorG}" id="rgb-g" oninput="updateHexColor()">
+          <label class="field-label" style="margin-top:8px;">BLUE (0–255): <span id="rgb-b-lbl">${hexColorB}</span></label>
+          <input type="range" min="0" max="255" value="${hexColorB}" id="rgb-b" oninput="updateHexColor()">
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+          <div id="hex-color-swatch" style="width:100%;height:100px;border-radius:10px;border:2px solid var(--line);background:rgb(${hexColorR},${hexColorG},${hexColorB});"></div>
+          <div style="font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--text);" id="hex-color-code">#${hexValRGB(hexColorR,hexColorG,hexColorB)}</div>
+        </div>
+      </div>
+    </div>
+  `;
+  translateTextToBinary();
+}
+
+function toggleBinaryBit(idx){
+  binaryBits[idx] = binaryBits[idx] ? 0 : 1;
+  playSound('click');
+  renderBinaryApp();
+}
+
+function hexValRGB(r,g,b){
+  return ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+}
+
+function updateHexColor(){
+  hexColorR = parseInt(document.getElementById('rgb-r').value, 10);
+  hexColorG = parseInt(document.getElementById('rgb-g').value, 10);
+  hexColorB = parseInt(document.getElementById('rgb-b').value, 10);
+  document.getElementById('rgb-r-lbl').textContent = hexColorR;
+  document.getElementById('rgb-g-lbl').textContent = hexColorG;
+  document.getElementById('rgb-b-lbl').textContent = hexColorB;
+  const hex = '#' + hexValRGB(hexColorR, hexColorG, hexColorB);
+  document.getElementById('hex-color-swatch').style.background = hex;
+  document.getElementById('hex-color-code').textContent = hex;
+}
+
+function translateTextToBinary(){
+  const input = document.getElementById('bin-text-input');
+  const out = document.getElementById('bin-stream-out');
+  if(!input || !out) return;
+  const str = input.value;
+  if(!str){ out.textContent = '(type something)'; return; }
+  const binArr = [];
+  for(let i=0; i<str.length; i++){
+    binArr.push(str.charCodeAt(i).toString(2).padStart(8, '0'));
+  }
+  out.innerHTML = `<div><b style="color:var(--teal)">${str.length} bytes / ${str.length*8} bits:</b></div>` +
+    binArr.map(b => `<span style="display:inline-block;margin:2px 4px;padding:2px 6px;background:var(--surface-2);border-radius:4px;">${b}</span>`).join(' ');
+}
+
+
+/* =========================================================
+   6. ALGORITHM RACE: SORTING & SEARCHING VISUALIZER
+   ========================================================= */
+let sortArray = [42, 18, 88, 33, 95, 27, 65, 12, 54, 76, 30, 81];
+let sortComparing = [];
+let sortSwapping = [];
+let isSortRunning = false;
+let sortSpeedMs = 150;
+let sortComparesCount = 0;
+let sortSwapsCount = 0;
+let currentSortAlgo = 'bubble';
+
+function openSortingVisualizer(){
+  state.mode = 'sorting';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'Algorithm Race: Sorting Visualizer';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderSortingApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('algo_speedster');
+}
+
+function renderSortingApp(){
+  const host = document.getElementById('content');
+  const maxVal = Math.max(...sortArray, 100);
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Arrays & Algorithm Efficiency</div>
+      <h1>📊 Algorithm Race: Sorting Visualizer</h1>
+      <p class="sub">Watch how classical algorithms sort memory arrays step-by-step with live comparison and swap metrics.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>Algorithm Selection & Controls</h3></div>
+      <div class="sql-toolbar" style="margin-top:8px;">
+        <button class="sql-chip ${currentSortAlgo==='bubble'?'active-toggle':''}" onclick="selectSortAlgo('bubble')">Bubble Sort</button>
+        <button class="sql-chip ${currentSortAlgo==='selection'?'active-toggle':''}" onclick="selectSortAlgo('selection')">Selection Sort</button>
+        <button class="sql-chip ${currentSortAlgo==='insertion'?'active-toggle':''}" onclick="selectSortAlgo('insertion')">Insertion Sort</button>
+      </div>
+
+      <div class="lab-btn-row" style="margin-top:14px;">
+        <button class="btn primary" id="sort-run-btn" onclick="startSortingRun()">⚡ Run Sort</button>
+        <button class="btn" onclick="randomizeSortArray()">🎲 Randomize</button>
+        <button class="btn small" onclick="invertSortArray()">🔄 Invert (Worst-Case)</button>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;font-family:var(--font-mono);color:var(--muted)">SPEED:</span>
+          <select id="sort-speed-sel" onchange="sortSpeedMs=Number(this.value)" style="width:110px;">
+            <option value="300">Slow</option>
+            <option value="150" selected>Medium</option>
+            <option value="50">Fast</option>
+            <option value="10">Turbo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sort-viz-container" id="sort-bars-host" style="margin-top:16px;">
+        ${renderSortBarsHtml(maxVal)}
+      </div>
+
+      <div class="subnet-grid" style="margin-top:16px;">
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">ARRAY COMPARISONS</div>
+          <div class="subnet-stat-val highlight" id="sort-comp-val">${sortComparesCount}</div>
+        </div>
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">ELEMENT SWAPS</div>
+          <div class="subnet-stat-val amber" id="sort-swap-val">${sortSwapsCount}</div>
+        </div>
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">CURRENT STATUS</div>
+          <div class="subnet-stat-val" id="sort-status-val" style="font-size:13px;">Ready to run</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function selectSortAlgo(algo){
+  if(isSortRunning) return;
+  currentSortAlgo = algo;
+  playSound('click');
+  renderSortingApp();
+}
+
+function randomizeSortArray(){
+  if(isSortRunning) return;
+  sortArray = Array.from({length: 12}, () => Math.floor(Math.random() * 85) + 12);
+  sortComparesCount = 0; sortSwapsCount = 0;
+  sortComparing = []; sortSwapping = [];
+  playSound('click');
+  renderSortingApp();
+}
+
+function invertSortArray(){
+  if(isSortRunning) return;
+  sortArray = [98, 89, 82, 74, 65, 58, 49, 38, 29, 21, 15, 10];
+  sortComparesCount = 0; sortSwapsCount = 0;
+  sortComparing = []; sortSwapping = [];
+  playSound('click');
+  renderSortingApp();
+}
+
+function renderSortBarsHtml(maxVal){
+  return sortArray.map((val, idx) => {
+    const heightPct = Math.round((val / maxVal) * 90);
+    const isComp = sortComparing.includes(idx);
+    const isSwap = sortSwapping.includes(idx);
+    return `
+      <div class="sort-bar ${isSwap ? 'swapping' : isComp ? 'comparing' : ''}" style="height:${heightPct}%;">
+        <span class="sort-bar-val">${val}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateSortBarsOnly(){
+  const host = document.getElementById('sort-bars-host');
+  if(!host) return;
+  const maxVal = Math.max(...sortArray, 100);
+  host.innerHTML = renderSortBarsHtml(maxVal);
+  document.getElementById('sort-comp-val').textContent = sortComparesCount;
+  document.getElementById('sort-swap-val').textContent = sortSwapsCount;
+}
+
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+async function startSortingRun(){
+  if(isSortRunning) return;
+  isSortRunning = true;
+  sortComparesCount = 0; sortSwapsCount = 0;
+  document.getElementById('sort-status-val').textContent = 'Sorting in progress...';
+  document.getElementById('sort-run-btn').disabled = true;
+
+  if(currentSortAlgo === 'bubble'){
+    const n = sortArray.length;
+    for(let i=0; i<n-1; i++){
+      for(let j=0; j<n-i-1; j++){
+        sortComparing = [j, j+1];
+        sortSwapping = [];
+        sortComparesCount++;
+        playSound('click');
+        updateSortBarsOnly();
+        await sleep(sortSpeedMs);
+
+        if(sortArray[j] > sortArray[j+1]){
+          sortSwapping = [j, j+1];
+          sortSwapsCount++;
+          const tmp = sortArray[j];
+          sortArray[j] = sortArray[j+1];
+          sortArray[j+1] = tmp;
+          playSound('wrong');
+          updateSortBarsOnly();
+          await sleep(sortSpeedMs);
+        }
+      }
+    }
+  } else if(currentSortAlgo === 'selection'){
+    const n = sortArray.length;
+    for(let i=0; i<n-1; i++){
+      let minIdx = i;
+      for(let j=i+1; j<n; j++){
+        sortComparing = [minIdx, j];
+        sortSwapping = [];
+        sortComparesCount++;
+        updateSortBarsOnly();
+        await sleep(sortSpeedMs);
+        if(sortArray[j] < sortArray[minIdx]){
+          minIdx = j;
+        }
+      }
+      if(minIdx !== i){
+        sortSwapping = [i, minIdx];
+        sortSwapsCount++;
+        const tmp = sortArray[i];
+        sortArray[i] = sortArray[minIdx];
+        sortArray[minIdx] = tmp;
+        playSound('correct');
+        updateSortBarsOnly();
+        await sleep(sortSpeedMs);
+      }
+    }
+  } else if(currentSortAlgo === 'insertion'){
+    const n = sortArray.length;
+    for(let i=1; i<n; i++){
+      let key = sortArray[i];
+      let j = i - 1;
+      while(j >= 0 && sortArray[j] > key){
+        sortComparing = [j, j+1];
+        sortSwapping = [j, j+1];
+        sortComparesCount++;
+        sortSwapsCount++;
+        sortArray[j+1] = sortArray[j];
+        j--;
+        updateSortBarsOnly();
+        await sleep(sortSpeedMs);
+      }
+      sortArray[j+1] = key;
+      updateSortBarsOnly();
+    }
+  }
+
+  sortComparing = [];
+  sortSwapping = [];
+  updateSortBarsOnly();
+  isSortRunning = false;
+  document.getElementById('sort-status-val').innerHTML = '<span style="color:var(--green)">✓ Sorted successfully!</span>';
+  document.getElementById('sort-run-btn').disabled = false;
+  playSound('badge');
+  unlockBadge('algo_speedster');
+}
+
+
+/* =========================================================
+   7. CYBERSECURITY & CRYPTOGRAPHY LAB
+   ========================================================= */
+let caesarShift = 3;
+let caesarPlain = 'DIGITAL TECHNOLOGIES WAEC';
+
+function openCryptoLab(){
+  state.mode = 'crypto';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'Cybersecurity & Cryptography Lab';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderCryptoApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('cryptographer');
+}
+
+function renderCryptoApp(){
+  const host = document.getElementById('content');
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const shifted = alphabet.slice(caesarShift) + alphabet.slice(0, caesarShift);
+  const cipherOutput = caesarEncrypt(caesarPlain, caesarShift);
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Data Protection & Cryptography</div>
+      <h1>🔒 Cybersecurity & Cryptography Lab</h1>
+      <p class="sub">Encrypt secret messages with Caesar & substitution ciphers, analyze SHA hashing avalanche effects, and test password entropy.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>1. Caesar Substitution Cipher Wheel</h3></div>
+      <p class="panel-desc">Shift every letter forward by a fixed key number ($k$).</p>
+
+      <div style="margin:12px 0;">
+        <label class="field-label">SHIFT KEY: <b>${caesarShift}</b> positions</label>
+        <input type="range" min="1" max="25" value="${caesarShift}" id="caesar-shift-slider" oninput="caesarShift=Number(this.value); renderCryptoApp();">
+      </div>
+
+      <div class="cipher-wheel-box">
+        <div>
+          <div style="color:var(--muted);font-size:11px;">PLAIN:</div>
+          <div style="color:var(--teal);letter-spacing:3px;">${alphabet}</div>
+          <div style="color:var(--muted);font-size:11px;margin-top:6px;">CIPHER:</div>
+          <div style="color:var(--amber);letter-spacing:3px;">${shifted}</div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:16px;">
+        <div>
+          <label class="field-label">PLAINTEXT (Original Message)</label>
+          <input type="text" id="caesar-input" value="${escapeHtml(caesarPlain)}" oninput="caesarPlain=this.value; updateCaesarOutput();">
+        </div>
+        <div>
+          <label class="field-label">CIPHERTEXT (Encrypted Message)</label>
+          <div class="output-box" id="caesar-output" style="color:var(--amber);">${escapeHtml(cipherOutput)}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel-title"><h3>2. Cryptographic Hash Generator (Simulated SHA-256)</h3></div>
+      <p class="panel-desc">Notice how changing even a single comma or letter completely randomizes the entire 64-character hash (Avalanche Effect).</p>
+      <input type="text" id="hash-input" value="Hello SS3" oninput="updateHashOutput()" placeholder="Type any text to hash...">
+      <div class="output-box" id="hash-output" style="margin-top:10px;font-size:12px;color:var(--green);"></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel-title"><h3>3. Password Strength & Brute-Force Time Estimator</h3></div>
+      <p class="panel-desc">Test how long it would take a hacker using high-speed brute-force attacks to crack your password.</p>
+      <input type="text" id="pw-input" value="SS3Pass@2026" oninput="evaluatePasswordStrength()" placeholder="Enter password to test...">
+      <div class="pw-meter-bar"><div class="pw-meter-fill" id="pw-meter-fill"></div></div>
+      <div class="subnet-grid" style="margin-top:14px;">
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">SECURITY RATING</div>
+          <div class="subnet-stat-val highlight" id="pw-rating-val">Strong</div>
+        </div>
+        <div class="subnet-stat-card">
+          <div class="subnet-stat-label">ESTIMATED CRACK TIME</div>
+          <div class="subnet-stat-val amber" id="pw-time-val">~4,500 Years</div>
+        </div>
+      </div>
+    </div>
+  `;
+  updateHashOutput();
+  evaluatePasswordStrength();
+}
+
+function caesarEncrypt(str, shift){
+  return str.split('').map(ch => {
+    const code = ch.charCodeAt(0);
+    if(code >= 65 && code <= 90){
+      return String.fromCharCode(((code - 65 + shift) % 26) + 65);
+    }
+    if(code >= 97 && code <= 122){
+      return String.fromCharCode(((code - 97 + shift) % 26) + 97);
+    }
+    return ch;
+  }).join('');
+}
+
+function updateCaesarOutput(){
+  const out = document.getElementById('caesar-output');
+  if(out) out.textContent = caesarEncrypt(caesarPlain, caesarShift);
+}
+
+function updateHashOutput(){
+  const inp = document.getElementById('hash-input');
+  const out = document.getElementById('hash-output');
+  if(!inp || !out) return;
+  const text = inp.value;
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  let hex1 = (hash >>> 0).toString(16).padStart(8, '0');
+  let hex2 = ((hash ^ 0x5bd1e995) >>> 0).toString(16).padStart(8, '0');
+  let hex3 = ((hash ^ 0x27d4eb2f) >>> 0).toString(16).padStart(8, '0');
+  let hex4 = ((hash ^ 0x165667b1) >>> 0).toString(16).padStart(8, '0');
+  let hex5 = ((hash ^ 0x9e3779b9) >>> 0).toString(16).padStart(8, '0');
+  let hex6 = ((hash ^ 0x3c6ef372) >>> 0).toString(16).padStart(8, '0');
+  let hex7 = ((hash ^ 0xa54ff53a) >>> 0).toString(16).padStart(8, '0');
+  let hex8 = ((hash ^ 0x510e527f) >>> 0).toString(16).padStart(8, '0');
+  out.textContent = `SHA256: ${hex1}${hex2}${hex3}${hex4}${hex5}${hex6}${hex7}${hex8}`;
+}
+
+function evaluatePasswordStrength(){
+  const inp = document.getElementById('pw-input');
+  const fill = document.getElementById('pw-meter-fill');
+  const rating = document.getElementById('pw-rating-val');
+  const time = document.getElementById('pw-time-val');
+  if(!inp || !fill) return;
+  const pw = inp.value;
+  let score = 0;
+  if(pw.length >= 8) score += 25;
+  if(pw.length >= 12) score += 20;
+  if(/[A-Z]/.test(pw)) score += 15;
+  if(/[0-9]/.test(pw)) score += 20;
+  if(/[^A-Za-z0-9]/.test(pw)) score += 20;
+
+  fill.style.width = Math.min(100, score) + '%';
+  if(score < 40){
+    fill.style.background = 'var(--red)';
+    rating.textContent = 'Weak';
+    rating.style.color = 'var(--red)';
+    time.textContent = 'Few seconds';
+  } else if(score < 70){
+    fill.style.background = 'var(--amber)';
+    rating.textContent = 'Moderate';
+    rating.style.color = 'var(--amber)';
+    time.textContent = '~3 Weeks';
+  } else {
+    fill.style.background = 'var(--green)';
+    rating.textContent = 'Strong (Fortified)';
+    rating.style.color = 'var(--green)';
+    time.textContent = '~5,000+ Years';
+  }
+}
+
+
+/* =========================================================
+   8. IOT SMART HOME & SENSOR LAB
+   ========================================================= */
+let iotSensors = { temp: 34, light: 20, motion: true, dist: 35 };
+
+function openIotLab(){
+  state.mode = 'iot_sim';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'IoT Smart Home & Sensor Lab';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderIotApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('iot_architect');
+}
+
+function renderIotApp(){
+  const host = document.getElementById('content');
+  const fanOn = iotSensors.temp >= 30;
+  const lightOn = iotSensors.light < 30 && iotSensors.motion;
+  const sirenOn = iotSensors.motion && iotSensors.dist < 50;
+  const gateOpen = iotSensors.dist < 80;
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Internet of Things (IoT)</div>
+      <h1>🏡 IoT Smart Home & Sensor Lab</h1>
+      <p class="sub">Drag environmental sensor sliders to test automation rules and watch real-time actuator responses.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>1. Virtual Environmental Sensors</h3></div>
+      <div class="two-col" style="margin-top:12px;">
+        <div>
+          <label class="field-label">🌡️ TEMPERATURE SENSOR (DHT11): <b id="iot-temp-lbl">${iotSensors.temp}°C</b></label>
+          <input type="range" min="15" max="45" value="${iotSensors.temp}" id="iot-temp" oninput="iotSensors.temp=Number(this.value); renderIotApp();">
+
+          <label class="field-label" style="margin-top:14px;">💡 LIGHT SENSOR (LDR): <b id="iot-light-lbl">${iotSensors.light}%</b> (${iotSensors.light<30?'Dark Night':'Bright Day'})</label>
+          <input type="range" min="0" max="100" value="${iotSensors.light}" id="iot-light" oninput="iotSensors.light=Number(this.value); renderIotApp();">
+        </div>
+        <div>
+          <label class="field-label">🚶 PIR MOTION SENSOR</label>
+          <button class="toggle-switch-btn ${iotSensors.motion?'active':''}" onclick="iotSensors.motion=!iotSensors.motion; renderIotApp();" style="width:100%;margin-bottom:14px;">
+            ${iotSensors.motion ? '🚶 Person Detected' : '⏹️ No Motion'}
+          </button>
+
+          <label class="field-label">📏 ULTRASONIC DISTANCE SENSOR: <b id="iot-dist-lbl">${iotSensors.dist} cm</b></label>
+          <input type="range" min="10" max="250" value="${iotSensors.dist}" id="iot-dist" oninput="iotSensors.dist=Number(this.value); renderIotApp();">
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel-title"><h3>2. Automated Smart Actuators</h3></div>
+      <div class="iot-device-grid">
+        <div class="iot-device-card ${fanOn?'active':''}">
+          <div style="font-size:32px;">
+            <span class="${fanOn?'iot-fan-spin':''}">🌀</span>
+          </div>
+          <h4 style="margin:0;">Smart Cooling Fan</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Rule: IF Temp ≥ 30°C → Fan ON</p>
+          <span style="font-family:monospace;font-size:12px;color:${fanOn?'var(--green)':'var(--muted)'};">
+            ${fanOn ? '● RUNNING (High Speed)' : '○ OFF'}
+          </span>
+        </div>
+
+        <div class="iot-device-card ${lightOn?'active':''}">
+          <div style="font-size:32px;">
+            <span class="${lightOn?'iot-lamp-glow':''}">💡</span>
+          </div>
+          <h4 style="margin:0;">Security Floodlight</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Rule: IF Night & Motion → Light ON</p>
+          <span style="font-family:monospace;font-size:12px;color:${lightOn?'var(--amber)':'var(--muted)'};">
+            ${lightOn ? '● ILLUMINATED (100%)' : '○ OFF'}
+          </span>
+        </div>
+
+        <div class="iot-device-card ${sirenOn?'active':''}">
+          <div style="font-size:32px;">
+            <span class="${sirenOn?'iot-siren-pulse':''}">🚨</span>
+          </div>
+          <h4 style="margin:0;">Intruder Siren</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Rule: IF Motion & Dist < 50cm → ALARM</p>
+          <span style="font-family:monospace;font-size:12px;color:${sirenOn?'var(--red)':'var(--muted)'};font-weight:bold;">
+            ${sirenOn ? '● ALARM SOUNDING!' : '○ STANDBY'}
+          </span>
+        </div>
+
+        <div class="iot-device-card ${gateOpen?'active':''}">
+          <div style="font-size:32px;">
+            <span>${gateOpen?'🚪':'🔒'}</span>
+          </div>
+          <h4 style="margin:0;">Smart Gate Servo</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Rule: IF Distance < 80cm → Open Gate</p>
+          <span style="font-family:monospace;font-size:12px;color:${gateOpen?'var(--green)':'var(--muted)'};">
+            ${gateOpen ? '● GATE OPENED' : '○ GATE LOCKED'}
+          </span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
+/* =========================================================
+   9. RAID STORAGE & DISASTER RECOVERY SIMULATOR
+   ========================================================= */
+let currentRaidMode = '5';
+let raidDisks = [
+  { id: 1, failed: false },
+  { id: 2, failed: false },
+  { id: 3, failed: false },
+  { id: 4, failed: false }
+];
+
+function openRaidLab(){
+  state.mode = 'raid';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'RAID Storage & Disaster Recovery';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  renderRaidApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('raid_survivor');
+}
+
+function renderRaidApp(){
+  const host = document.getElementById('content');
+  const failedCount = raidDisks.filter(d=>d.failed).length;
+  let statusText = '🟢 OPTIMAL (All Drives Healthy)';
+  let statusColor = 'var(--green)';
+
+  if(currentRaidMode === '0'){
+    if(failedCount >= 1){ statusText = '🔴 CATASTROPHIC DATA LOSS (RAID 0 has zero fault tolerance)'; statusColor = 'var(--red)'; }
+  } else if(currentRaidMode === '1'){
+    if(failedCount === 1){ statusText = '🟡 DEGRADED (Operating normally on Mirrored Drive)'; statusColor = 'var(--amber)'; }
+    else if(failedCount >= 2){ statusText = '🔴 DATA LOSS (Both mirrored drives failed)'; statusColor = 'var(--red)'; }
+  } else if(currentRaidMode === '5'){
+    if(failedCount === 1){ statusText = '🟡 DEGRADED (1 Drive failed — Data dynamically reconstructed via Parity)'; statusColor = 'var(--amber)'; }
+    else if(failedCount >= 2){ statusText = '🔴 CATASTROPHIC DATA LOSS (RAID 5 can only tolerate 1 drive failure)'; statusColor = 'var(--red)'; }
+  } else if(currentRaidMode === '10'){
+    if(failedCount === 1){ statusText = '🟡 DEGRADED (Mirror copy protecting data)'; statusColor = 'var(--amber)'; }
+    else if(failedCount > 2){ statusText = '🔴 DATA LOSS (Too many drives failed)'; statusColor = 'var(--red)'; }
+  }
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Data Protection & High Availability</div>
+      <h1>💾 RAID Storage & Disaster Recovery Simulator</h1>
+      <p class="sub">Simulate multi-disk storage arrays. Fail hard drives to test fault tolerance, parity recovery, and data survivability.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>Select RAID Configuration</h3></div>
+      <div class="sql-toolbar" style="margin-top:8px;">
+        <button class="sql-chip ${currentRaidMode==='0'?'active-toggle':''}" onclick="selectRaidMode('0')">RAID 0 (Striping)</button>
+        <button class="sql-chip ${currentRaidMode==='1'?'active-toggle':''}" onclick="selectRaidMode('1')">RAID 1 (Mirroring)</button>
+        <button class="sql-chip ${currentRaidMode==='5'?'active-toggle':''}" onclick="selectRaidMode('5')">RAID 5 (Parity)</button>
+        <button class="sql-chip ${currentRaidMode==='10'?'active-toggle':''}" onclick="selectRaidMode('10')">RAID 10 (1+0)</button>
+      </div>
+
+      <div style="margin-top:14px;padding:12px 14px;background:var(--surface-2);border-radius:10px;border-left:4px solid ${statusColor};font-family:var(--font-mono);font-size:14px;font-weight:700;color:${statusColor};">
+        STATUS: ${statusText}
+      </div>
+
+      <div class="raid-rack">
+        ${raidDisks.map((d, idx) => `
+          <div class="raid-disk ${d.failed?'failed':''}">
+            <div style="font-family:var(--font-mono);font-size:13px;font-weight:700;">Drive ${d.id} (1 TB)</div>
+            <div style="font-size:28px;">${d.failed?'💥':'💽'}</div>
+            <div style="width:100%;margin:6px 0;">
+              ${renderRaidBlocksHtml(currentRaidMode, idx, d.failed)}
+            </div>
+            <button class="btn small" style="width:100%;${d.failed?'border-color:var(--green);color:var(--green);':''}" onclick="toggleRaidDiskFail(${idx})">
+              ${d.failed ? '🔧 Replace / Fix' : '⚠️ Fail Disk'}
+            </button>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function selectRaidMode(m){
+  currentRaidMode = m;
+  raidDisks.forEach(d => d.failed = false);
+  playSound('click');
+  renderRaidApp();
+}
+
+function toggleRaidDiskFail(idx){
+  raidDisks[idx].failed = !raidDisks[idx].failed;
+  playSound(raidDisks[idx].failed ? 'wrong' : 'correct');
+  renderRaidApp();
+}
+
+function renderRaidBlocksHtml(mode, diskIdx, isFailed){
+  if(isFailed){
+    return '<div class="raid-block corrupt">BLOCKS UNREADABLE</div>';
+  }
+  if(mode === '0'){
+    return `<div class="raid-block data">Block A${diskIdx+1}</div><div class="raid-block data">Block B${diskIdx+1}</div>`;
+  } else if(mode === '1'){
+    return `<div class="raid-block data">Original Data</div><div class="raid-block mirror">Mirror Copy</div>`;
+  } else if(mode === '5'){
+    const parityOnThis = (diskIdx === 3);
+    return `
+      <div class="raid-block data">Data Block</div>
+      ${parityOnThis ? '<div class="raid-block parity">Parity (Ap)</div>' : '<div class="raid-block data">Data Block</div>'}
+    `;
+  } else {
+    return `<div class="raid-block data">Stripe A</div><div class="raid-block mirror">Mirror A</div>`;
+  }
+}
+
+
+/* =========================================================
+   10. TIMED WAEC & NECO CBT EXAM SIMULATOR
+   ========================================================= */
+let cbtTotalQuestions = 20;
+let cbtTimeRemaining = 900; // 15 mins
+let cbtTimerInterval = null;
+let cbtQuestions = [];
+let cbtCurrentIndex = 0;
+let cbtAnswers = {};
+let cbtFlagged = {};
+let cbtFinished = false;
+
+function openCbtExam(){
+  state.mode = 'cbt';
+  renderSidebar();
+  document.getElementById('topic-title-b').textContent = 'WAEC & NECO CBT Exam Simulator';
+  document.getElementById('tabs').innerHTML = `<button class="tab-btn active" onclick="selectTopic('${state.topic}')">← Back to topics</button>`;
+  initCbtExam();
+  renderCbtApp();
+  toggleSidebar(false);
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  unlockBadge('cbt_champion');
+}
+
+function initCbtExam(){
+  clearInterval(cbtTimerInterval);
+  cbtFinished = false;
+  cbtCurrentIndex = 0;
+  cbtAnswers = {};
+  cbtFlagged = {};
+  cbtTimeRemaining = cbtTotalQuestions === 20 ? 900 : 1800;
+
+  // Shuffle and pick questions from PASTQ objective
+  const objQs = PASTQ.filter(q=>q.type==='objective');
+  cbtQuestions = [...objQs].sort(() => 0.5 - Math.random()).slice(0, cbtTotalQuestions);
+
+  cbtTimerInterval = setInterval(() => {
+    if(state.mode !== 'cbt' || cbtFinished){
+      clearInterval(cbtTimerInterval);
+      return;
+    }
+    cbtTimeRemaining--;
+    updateCbtTimerDisplay();
+    if(cbtTimeRemaining <= 0){
+      clearInterval(cbtTimerInterval);
+      submitCbtExam(true);
+    }
+  }, 1000);
+}
+
+function renderCbtApp(){
+  const host = document.getElementById('content');
+
+  if(cbtFinished){
+    renderCbtResults(host);
+    return;
+  }
+
+  const q = cbtQuestions[cbtCurrentIndex];
+  const isFlagged = !!cbtFlagged[cbtCurrentIndex];
+  const userAns = cbtAnswers[cbtCurrentIndex];
+
+  host.innerHTML = `
+    <div class="hero">
+      <div class="kicker">Standardized Examination Mode</div>
+      <h1>⏱️ WAEC & NECO CBT Exam Simulator</h1>
+      <p class="sub">Simulated Computer-Based Testing environment with real countdown timers, question palette navigation, and instant WAEC grading.</p>
+    </div>
+
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+        <div style="font-family:var(--font-mono);font-size:13px;color:var(--muted);">
+          CBT CANDIDATE: <b style="color:var(--text);">${escapeHtml(STUDENT_NAME || 'Student')}</b>
+        </div>
+        <div class="cbt-timer" id="cbt-timer-box">
+          ⏱️ <span id="cbt-timer-str">${formatCbtTime(cbtTimeRemaining)}</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label class="field-label">QUESTION PALETTE (Click number to jump)</label>
+        <div class="cbt-palette">
+          ${cbtQuestions.map((_, i) => {
+            const isCurr = (i === cbtCurrentIndex);
+            const isAns = (cbtAnswers[i] !== undefined);
+            const isFlg = !!cbtFlagged[i];
+            return `
+              <button class="cbt-pal-btn ${isCurr?'current':''} ${isAns?'answered':''} ${isFlg?'flagged':''}" onclick="gotoCbtQuestion(${i})">
+                ${i+1}
+              </button>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line);">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span class="pq-source-tag waec">QUESTION ${cbtCurrentIndex+1} OF ${cbtQuestions.length}</span>
+          <button class="btn small" onclick="toggleCbtFlag(${cbtCurrentIndex})" style="${isFlagged?'border-color:var(--amber);color:var(--amber);':''}">
+            ${isFlagged ? '🚩 Flagged for Review' : '🏳️ Flag Question'}
+          </button>
+        </div>
+
+        <div class="quiz-q" style="font-size:16px;font-weight:600;margin:14px 0;">${q.q}</div>
+
+        <div id="cbt-options-list">
+          ${q.opts.map((opt, optIdx) => `
+            <button class="quiz-opt ${userAns===optIdx?'correct':''}" onclick="selectCbtOption(${optIdx})" style="${userAns===optIdx?'border-color:var(--teal);background:rgba(69,208,196,.12);color:var(--teal);font-weight:bold;':''}">
+              <b>${String.fromCharCode(65+optIdx)}.</b> ${opt}
+            </button>
+          `).join('')}
+        </div>
+
+        <div class="footer-nav" style="margin-top:24px;">
+          <button class="btn" onclick="prevCbtQuestion()" ${cbtCurrentIndex===0?'disabled':''}>← Previous</button>
+          <button class="btn" style="border-color:var(--red);color:var(--red);" onclick="if(confirm('Submit your CBT exam now?')) submitCbtExam(false);">Submit Exam</button>
+          <button class="btn primary" onclick="nextCbtQuestion()">${cbtCurrentIndex===cbtQuestions.length-1?'Finish & Submit':'Next Question →'}</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function updateCbtTimerDisplay(){
+  const strEl = document.getElementById('cbt-timer-str');
+  const boxEl = document.getElementById('cbt-timer-box');
+  if(!strEl) return;
+  strEl.textContent = formatCbtTime(cbtTimeRemaining);
+  if(cbtTimeRemaining < 180 && boxEl){
+    boxEl.classList.add('warning');
+  }
+}
+
+function formatCbtTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function selectCbtOption(idx){
+  cbtAnswers[cbtCurrentIndex] = idx;
+  playSound('click');
+  renderCbtApp();
+}
+
+function toggleCbtFlag(idx){
+  cbtFlagged[idx] = !cbtFlagged[idx];
+  playSound('click');
+  renderCbtApp();
+}
+
+function gotoCbtQuestion(i){
+  cbtCurrentIndex = i;
+  renderCbtApp();
+}
+
+function nextCbtQuestion(){
+  if(cbtCurrentIndex < cbtQuestions.length - 1){
+    cbtCurrentIndex++;
+    renderCbtApp();
+  } else {
+    if(confirm('You have reached the end of the exam. Submit your answers now?')){
+      submitCbtExam(false);
+    }
+  }
+}
+
+function prevCbtQuestion(){
+  if(cbtCurrentIndex > 0){
+    cbtCurrentIndex--;
+    renderCbtApp();
+  }
+}
+
+function submitCbtExam(autoTimedOut){
+  clearInterval(cbtTimerInterval);
+  cbtFinished = true;
+  playSound('badge');
+  renderCbtApp();
+}
+
+function renderCbtResults(host){
+  let score = 0;
+  cbtQuestions.forEach((q, idx) => {
+    if(cbtAnswers[idx] === q.a) score++;
+  });
+  const pct = Math.round((score / cbtQuestions.length) * 100);
+
+  let waecGrade = 'F9';
+  if(pct >= 75) waecGrade = 'A1 (Distinction)';
+  else if(pct >= 70) waecGrade = 'B2 (Very Good)';
+  else if(pct >= 65) waecGrade = 'B3 (Good)';
+  else if(pct >= 60) waecGrade = 'C4 (Credit)';
+  else if(pct >= 55) waecGrade = 'C5 (Credit)';
+  else if(pct >= 50) waecGrade = 'C6 (Credit)';
+  else if(pct >= 45) waecGrade = 'D7 (Pass)';
+  else if(pct >= 40) waecGrade = 'E8 (Pass)';
+
+  if(pct >= 70){
+    unlockBadge('cbt_distinction');
+  }
+
+  host.innerHTML = `
+    <div class="panel quiz-result">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:4px;">WAEC / NECO CBT OFFICIAL RESULT SLIP</div>
+      <div class="score">${score} / ${cbtQuestions.length}</div>
+      <div style="font-family:var(--font-mono);font-size:20px;font-weight:800;color:var(--amber);margin-bottom:12px;">
+        WAEC GRADE: ${waecGrade} (${pct}%)
+      </div>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 20px;">
+        ${pct>=50 ? '🎉 Congratulations! You achieved a passing credit score on this examination.' : 'Review the detailed question breakdown below and practice once more.'}
+      </p>
+      <div class="lab-btn-row" style="justify-content:center;">
+        <button class="btn primary" onclick="initCbtExam(); renderCbtApp();">Retake CBT Exam</button>
+        <button class="btn" onclick="openCertificateModal()">📜 View Official Certificate</button>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:18px;">
+      <div class="panel-title"><h3>Question-by-Question Review</h3></div>
+      ${cbtQuestions.map((q, idx) => {
+        const userPicked = cbtAnswers[idx];
+        const isCorrect = (userPicked === q.a);
+        return `
+          <div style="padding:14px;border-bottom:1px solid var(--line);">
+            <div style="font-family:monospace;font-size:11px;color:${isCorrect?'var(--green)':'var(--red)'};font-weight:bold;">
+              QUESTION ${idx+1}: ${isCorrect ? '✓ CORRECT (+1)' : '✗ INCORRECT (0)'}
+            </div>
+            <div style="font-size:14px;margin:6px 0;">${q.q}</div>
+            <div style="font-size:12.5px;color:var(--muted);">
+              Your answer: <b style="color:${isCorrect?'var(--green)':'var(--red)'};">${userPicked!==undefined ? q.opts[userPicked] : '(Unanswered)'}</b>
+            </div>
+            ${!isCorrect ? `<div style="font-size:12.5px;color:var(--green);margin-top:3px;">Correct answer: <b>${q.opts[q.a]}</b></div>` : ''}
+            <div class="quiz-explain" style="margin-top:8px;">${q.e}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+
+/* =========================================================
+   11. CERTIFICATE OF EXCELLENCE MODAL
+   ========================================================= */
+function openCertificateModal(){
+  const name = STUDENT_NAME || 'Student';
+  const nameEl = document.getElementById('cert-student-name');
+  if(nameEl) nameEl.textContent = name;
+  const d = new Date();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const dateEl = document.getElementById('cert-date-text');
+  if(dateEl) dateEl.textContent = `Date: ${months[d.getMonth()]} ${d.getFullYear()}`;
+  const scrim = document.getElementById('cert-modal-scrim');
+  if(scrim) scrim.classList.add('show');
+  unlockBadge('certified_scholar');
+}
+
+function closeCertificateModal(){
+  const scrim = document.getElementById('cert-modal-scrim');
+  if(scrim) scrim.classList.remove('show');
+}
+
 
 /* =========================================================
    RENDER: SHELL
@@ -2381,6 +3664,22 @@ function renderSidebar(){
   if(subnetBtn) subnetBtn.classList.toggle('active', state.mode==='subnet');
   const fcBtn = document.getElementById('flowchart-nav-btn');
   if(fcBtn) fcBtn.classList.toggle('active', state.mode==='flowchart');
+  const circuitBtn = document.getElementById('circuit-nav-btn');
+  if(circuitBtn) circuitBtn.classList.toggle('active', state.mode==='circuit');
+  const binBtn = document.getElementById('binary-nav-btn');
+  if(binBtn) binBtn.classList.toggle('active', state.mode==='binary');
+  const sortBtn = document.getElementById('sorting-nav-btn');
+  if(sortBtn) sortBtn.classList.toggle('active', state.mode==='sorting');
+  const cryptoBtn = document.getElementById('crypto-nav-btn');
+  if(cryptoBtn) cryptoBtn.classList.toggle('active', state.mode==='crypto');
+  const iotBtn = document.getElementById('iot-nav-btn');
+  if(iotBtn) iotBtn.classList.toggle('active', state.mode==='iot_sim');
+  const raidBtn = document.getElementById('raid-nav-btn');
+  if(raidBtn) raidBtn.classList.toggle('active', state.mode==='raid');
+  const cbtBtn = document.getElementById('cbt-nav-btn');
+  if(cbtBtn) cbtBtn.classList.toggle('active', state.mode==='cbt');
+  const certBtn = document.getElementById('cert-nav-btn');
+  if(certBtn) certBtn.classList.toggle('active', state.mode==='cert');
   const pqBtn = document.getElementById('pastq-nav-btn');
   if(pqBtn) pqBtn.classList.toggle('active', state.mode==='pastq');
   const ofBtn = document.getElementById('office-nav-btn');
@@ -3361,7 +4660,7 @@ function downloadPptDeck(){
       <span id="count"></span>
       <button onclick="go(1)">Next →</button>
     </div>
-    <script>
+    \x3cscript>
       const SLIDES = ${slidesJson};
       let i = 0;
       function render(){
@@ -3379,7 +4678,7 @@ function downloadPptDeck(){
         else if(e.key==='ArrowLeft') go(-1);
       });
       render();
-    <\/script>
+    \x3c/script>
   </body></html>`;
   const blob = new Blob([html], {type:'text/html'});
   offerDownload(`${nameSlug}_presentation.html`, blob, '📽️ Presentation downloaded as a standalone HTML file — open it in any browser to present.');
