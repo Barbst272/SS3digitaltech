@@ -355,9 +355,17 @@ textarea.code-editor:focus{outline:none;border-color:var(--teal)}
 .office-toolbar button:hover{border-color:var(--teal);color:var(--teal)}
 .office-toolbar select{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:6px 8px;font-size:12.5px;}
 .office-sep{width:1px;height:22px;background:var(--line);margin:0 2px;}
-.office-color-swatches{display:inline-flex;gap:4px;align-items:center;padding:0 4px;}
-.word-color-btn{width:20px;height:20px;border-radius:4px;border:1px solid var(--line);padding:0;min-width:20px;}
-.word-color-btn:hover{border-color:var(--teal);}
+.office-color-swatches{display:inline-flex;gap:3px;align-items:center;padding:0 2px;}
+.word-color-btn{width:18px;height:18px;border-radius:3px;border:1px solid rgba(255,255,255,.2);padding:0;min-width:18px;cursor:pointer;}
+.word-color-btn:hover{border-color:var(--teal);transform:scale(1.15);}
+.word-hl-btn{width:18px;height:18px;border-radius:3px;border:1px solid rgba(255,255,255,.2);padding:0;min-width:18px;cursor:pointer;}
+.word-hl-btn:hover{border-color:var(--teal);transform:scale(1.15);}
+.custom-color-input{width:22px;height:22px;border:none;background:transparent;cursor:pointer;padding:0;vertical-align:middle;}
+.xl-color-btn{width:18px;height:18px;border-radius:3px;border:1px solid rgba(255,255,255,.2);padding:0;min-width:18px;cursor:pointer;}
+.xl-color-btn:hover{border-color:var(--teal);transform:scale(1.15);}
+.ppt-font-color-row{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap;}
+.ppt-font-color-swatch{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);cursor:pointer;}
+.ppt-font-color-swatch.active{border-color:#fff;box-shadow:0 0 0 2px var(--teal);}
 .office-panel{border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;background:var(--surface);padding:16px;}
 
 /* ---------- Word ---------- */
@@ -3898,7 +3906,7 @@ function restartPastQ(){
 }
 
 /* =========================================================
-   OFFICE TOOLS: Word, Excel, PowerPoint (Enhanced)
+   OFFICE TOOLS: Word, Excel, PowerPoint (Enhanced with Font Colors)
    ========================================================= */
 function openOfficeTools(){
   state.mode = 'office';
@@ -3927,9 +3935,9 @@ function selectOfficeApp(id){
 function renderOfficeContent(){
   const host = document.getElementById('content');
   const titles = {
-    word:{h:'📝 Word Processor Studio', sub:'A rich-text editor with tables, academic templates, find & replace, text highlights, and Microsoft Word (.doc) export.'},
-    excel:{h:'📊 Excel Spreadsheet Studio', sub:'A working spreadsheet with 20+ formulas, multi-type chart generator (Bar, Line, Pie), column sorting, currency formats, and CSV export.'},
-    ppt:{h:'📽️ PowerPoint Presentation Studio', sub:'Design slide decks with custom layouts (Two-Column, Big Stat, Title), smooth transitions (Fade, Slide, Zoom, Flip), speaker notes, and auto-presenter.'},
+    word:{h:'📝 Word Processor Studio', sub:'A rich-text editor with multi-palette font colors, highlighter pens, tables, academic templates, find & replace, and Microsoft Word (.doc) export.'},
+    excel:{h:'📊 Excel Spreadsheet Studio', sub:'A working spreadsheet with cell font colors, cell background fills, 20+ formulas, multi-type chart generator, column sorting, and CSV export.'},
+    ppt:{h:'📽️ PowerPoint Presentation Studio', sub:'Design slide decks with custom slide background and font colors, slide layouts, smooth transitions (Fade, Slide, Zoom, Flip), speaker notes, and auto-presenter.'},
   };
   const t = titles[state.officeApp] || titles.word;
   try{
@@ -4029,6 +4037,28 @@ const WORD_TEMPLATES = {
   `
 };
 
+const WORD_COLORS = [
+  { name: 'Black', hex: '#1a1a1a' },
+  { name: 'Crimson Red', hex: '#c0392b' },
+  { name: 'Emerald Teal', hex: '#1f5c56' },
+  { name: 'Royal Blue', hex: '#1a5fb4' },
+  { name: 'Amber Gold', hex: '#b8860b' },
+  { name: 'Purple Violet', hex: '#6c2ba8' },
+  { name: 'Deep Navy', hex: '#0f2b5c' },
+  { name: 'Forest Green', hex: '#1b5e20' },
+  { name: 'Coral Orange', hex: '#d84315' },
+  { name: 'Slate Grey', hex: '#555555' }
+];
+
+const WORD_HL_COLORS = [
+  { name: 'Yellow Highlight', hex: '#ffff70' },
+  { name: 'Cyan Highlight', hex: '#a6f3ff' },
+  { name: 'Pink Highlight', hex: '#ffb3d9' },
+  { name: 'Lime Highlight', hex: '#b3ffb3' },
+  { name: 'Orange Highlight', hex: '#ffe0b2' },
+  { name: 'Clear Highlight', hex: 'transparent' }
+];
+
 function renderWordApp(){
   const saved = loadWordDoc();
   return `
@@ -4060,13 +4090,23 @@ function renderWordApp(){
       <button data-cmd="italic" title="Italic"><i>I</i></button>
       <button data-cmd="underline" title="Underline"><u>U</u></button>
       <button data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
-      <span class="office-color-swatches" id="word-color-swatches"></span>
+      
+      <!-- Font Color Palette -->
       <span class="office-sep"></span>
-      <button id="word-hl-toggle" title="Highlight text" style="background:#ffff70;color:#000;font-weight:700;">🖍 Highlight</button>
+      <span title="Font Text Color" style="font-size:11.5px;color:var(--muted);font-weight:600;">Font:</span>
+      <span class="office-color-swatches" id="word-color-swatches"></span>
+      <input type="color" id="word-custom-color" class="custom-color-input" title="Custom Font Color" value="#1a1a1a">
+
+      <!-- Highlighter Palette -->
+      <span class="office-sep"></span>
+      <span title="Highlighter Marker" style="font-size:11.5px;color:var(--muted);font-weight:600;">Marker:</span>
+      <span class="office-color-swatches" id="word-hl-swatches"></span>
+
+      <span class="office-sep"></span>
       <button id="word-insert-table" title="Insert Table">▦ Table</button>
       <button id="word-insert-hr" title="Insert Horizontal Rule">— Rule</button>
       <button id="word-insert-date" title="Insert Date">📅 Date</button>
-      <button id="word-find-btn" title="Find & Replace">🔍 Find</button>
+      <button id="word-find-btn" title="Find & Replace (Ctrl+F)">🔍 Find</button>
       <span class="office-sep"></span>
       <button data-cmd="justifyLeft" title="Align left">⟸</button>
       <button data-cmd="justifyCenter" title="Center">↔</button>
@@ -4112,7 +4152,6 @@ function renderWordApp(){
     </div>
   `;
 }
-const WORD_COLORS = ['#1a1a1a','#c0392b','#1f5c56','#1a5fb4','#b8860b','#6c2ba8'];
 function loadWordDoc(){
   try{ return localStorage.getItem('ss3dt_office_word') || ''; }catch(e){ return ''; }
 }
@@ -4136,11 +4175,35 @@ function wireWordApp(){
   const page = document.getElementById('word-page');
   if(!page) return;
 
+  // Render Font Color Swatches
   const swatchHost = document.getElementById('word-color-swatches');
   if(swatchHost){
-    swatchHost.innerHTML = WORD_COLORS.map(c=>`<button class="word-color-btn" data-color="${c}" style="background:${c}" title="Text colour"></button>`).join('');
+    swatchHost.innerHTML = WORD_COLORS.map(c=>`<button class="word-color-btn" data-color="${c.hex}" style="background:${c.hex}" title="${c.name}"></button>`).join('');
     swatchHost.querySelectorAll('.word-color-btn').forEach(btn=>{
       btn.onclick = ()=>{ page.focus(); try{ document.execCommand('foreColor', false, btn.dataset.color); }catch(e){} persistWord(); };
+    });
+  }
+
+  // Custom Font Color Input
+  const customColorInp = document.getElementById('word-custom-color');
+  if(customColorInp){
+    customColorInp.oninput = (e)=>{
+      page.focus();
+      try{ document.execCommand('foreColor', false, e.target.value); }catch(err){}
+      persistWord();
+    };
+  }
+
+  // Render Highlighter Swatches
+  const hlHost = document.getElementById('word-hl-swatches');
+  if(hlHost){
+    hlHost.innerHTML = WORD_HL_COLORS.map(c=>`<button class="word-hl-btn" data-color="${c.hex}" style="background:${c.hex};border:${c.hex==='transparent'?'1px dashed var(--muted)':'none'};" title="${c.name}">${c.hex==='transparent'?'✕':''}</button>`).join('');
+    hlHost.querySelectorAll('.word-hl-btn').forEach(btn=>{
+      btn.onclick = ()=>{
+        page.focus();
+        try{ document.execCommand('hiliteColor', false, btn.dataset.color); }catch(e){}
+        persistWord();
+      };
     });
   }
 
@@ -4164,13 +4227,6 @@ function wireWordApp(){
   };
   const fsSel = document.getElementById('word-fontsize');
   if(fsSel) fsSel.onchange = ()=>{ page.focus(); try{ document.execCommand('fontSize', false, fsSel.value); }catch(e){} persistWord(); };
-  
-  // Highlighter
-  document.getElementById('word-hl-toggle').onclick = ()=>{
-    page.focus();
-    try{ document.execCommand('hiliteColor', false, '#ffff70'); }catch(e){}
-    persistWord();
-  };
 
   // Insert Table
   document.getElementById('word-insert-table').onclick = ()=>{
@@ -4295,7 +4351,7 @@ function wireWordApp(){
   updateWordStats();
 }
 function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 let WORD_SAVE_TIMER = null;
 function persistWord(){
@@ -4336,7 +4392,7 @@ async function downloadWordDoc(){
 
   if(downloads){
     try{
-      const blob = new Blob(['\\ufeff', fullHtml], {type:'text/html'});
+      const blob = new Blob(['\ufeff', fullHtml], {type:'text/html'});
       await downloads.save({filename: `${nameSlug}_document.html`, data: blob});
       showToast("📄 Downloaded as HTML — open it, then use Word's File > Open to edit it there.");
       return;
@@ -4344,7 +4400,7 @@ async function downloadWordDoc(){
       if(err && err.code === 'declined') return;
     }
   }
-  const blob = new Blob(['\\ufeff', fullHtml], {type:'application/msword'});
+  const blob = new Blob(['\ufeff', fullHtml], {type:'application/msword'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = `${nameSlug}_document.doc`;
@@ -4357,8 +4413,27 @@ async function downloadWordDoc(){
 const XL_COLS = 10, XL_ROWS = 20;
 let XL_DATA = {};
 let XL_BOLD = new Set();
+let XL_TEXT_COLORS = {};
+let XL_BG_COLORS = {};
 let XL_SELECTED = 'A1';
 let XL_CURRENT_CHART_TYPE = 'bar';
+
+const XL_FONT_COLORS = [
+  { name: 'Red', hex: '#f27878' },
+  { name: 'Green', hex: '#77e3a8' },
+  { name: 'Blue', hex: '#60a5fa' },
+  { name: 'Amber', hex: '#f2b84b' },
+  { name: 'Purple', hex: '#c084fc' },
+  { name: 'Default Text', hex: '#E7ECF6' }
+];
+
+const XL_BG_PALETTE = [
+  { name: 'Dark Red', hex: '#3d1414' },
+  { name: 'Dark Green', hex: '#143d22' },
+  { name: 'Dark Blue', hex: '#142a4a' },
+  { name: 'Dark Amber', hex: '#423214' },
+  { name: 'Clear Fill', hex: 'transparent' }
+];
 
 const XL_TEMPLATES = {
   gradebook: {
@@ -4370,7 +4445,8 @@ const XL_TEMPLATES = {
       'A5':'Adjovi Kimberly','B5':'20','C5':'19','D5':'58','E5':'=SUM(B5:D5)','F5':'=IF(E5>=75,"A1",IF(E5>=65,"B2",IF(E5>=50,"C4","F9")))',
       'A6':'CLASS AVERAGE','B6':'=AVERAGE(B2:B5)','C6':'=AVERAGE(C2:C5)','D6':'=AVERAGE(D2:D5)','E6':'=AVERAGE(E2:E5)'
     },
-    bold: ['A1','B1','C1','D1','E1','F1','A6','B6','C6','D6','E6']
+    bold: ['A1','B1','C1','D1','E1','F1','A6','B6','C6','D6','E6'],
+    textColors: { 'F2':'#77e3a8', 'F3':'#77e3a8', 'F4':'#f2b84b', 'F5':'#77e3a8' }
   },
   budget: {
     data: {
@@ -4381,7 +4457,8 @@ const XL_TEMPLATES = {
       'A5':'Transportation','B5':'18000','C5':'16500','D5':'=B5-C5',
       'A6':'TOTAL SUM','B6':'=SUM(B2:B5)','C6':'=SUM(C2:C5)','D6':'=SUM(D2:D5)'
     },
-    bold: ['A1','B1','C1','D1','A6','B6','C6','D6']
+    bold: ['A1','B1','C1','D1','A6','B6','C6','D6'],
+    textColors: { 'D2':'#77e3a8', 'D4':'#f27878' }
   },
   inventory: {
     data: {
@@ -4392,7 +4469,8 @@ const XL_TEMPLATES = {
       'A5':'8-Port Switch','B5':'18000','C5':'3','D5':'=B5*C5',
       'A6':'TOTAL ASSETS','D6':'=SUM(D2:D5)'
     },
-    bold: ['A1','B1','C1','D1','A6','D6']
+    bold: ['A1','B1','C1','D1','A6','D6'],
+    textColors: { 'D6':'#45D0C4' }
   }
 };
 
@@ -4407,11 +4485,20 @@ function loadExcelSheet(){
     if(raw && typeof raw === 'object'){
       XL_DATA = raw.data || {};
       XL_BOLD = new Set(raw.bold || []);
+      XL_TEXT_COLORS = raw.textColors || {};
+      XL_BG_COLORS = raw.bgColors || {};
     }
   }catch(e){}
 }
 function saveExcelSheet(){
-  try{ localStorage.setItem('ss3dt_office_excel', JSON.stringify({data: XL_DATA, bold: Array.from(XL_BOLD)})); }catch(e){}
+  try{
+    localStorage.setItem('ss3dt_office_excel', JSON.stringify({
+      data: XL_DATA,
+      bold: Array.from(XL_BOLD),
+      textColors: XL_TEXT_COLORS,
+      bgColors: XL_BG_COLORS
+    }));
+  }catch(e){}
 }
 function renderExcelApp(){
   loadExcelSheet();
@@ -4431,6 +4518,19 @@ function renderExcelApp(){
     <div class="xl-toolbar-row">
       <span class="xl-cellref" id="xl-cellref">A1</span>
       <button id="xl-bold-toggle" title="Bold selected cell"><b>B</b></button>
+      
+      <!-- Excel Font Color Swatches -->
+      <span class="office-sep"></span>
+      <span title="Cell Font Color" style="font-size:11.5px;color:var(--muted);font-weight:600;">Font:</span>
+      <span class="office-color-swatches" id="xl-font-color-swatches"></span>
+      <input type="color" id="xl-custom-font-color" class="custom-color-input" title="Custom Cell Font Color" value="#E7ECF6">
+
+      <!-- Excel Cell Background Fill Swatches -->
+      <span class="office-sep"></span>
+      <span title="Cell Background Fill" style="font-size:11.5px;color:var(--muted);font-weight:600;">Fill:</span>
+      <span class="office-color-swatches" id="xl-bg-color-swatches"></span>
+      <input type="color" id="xl-custom-bg-color" class="custom-color-input" title="Custom Cell Fill Color" value="#131A2A">
+
       <span class="office-sep"></span>
       <button class="btn small" id="xl-fmt-naira" title="Format as Nigerian Naira (₦)">₦ Naira</button>
       <button class="btn small" id="xl-fmt-dollar" title="Format as Dollar ($)">$ USD</button>
@@ -4450,7 +4550,7 @@ function renderExcelApp(){
     </div>
     <div class="xl-toolbar-row" style="border-top:none;border-radius:0;">
       <span style="color:var(--teal);font-weight:700;">fx</span>
-      <input type="text" class="formula-input" id="xl-formula-bar" placeholder="Type a value or formula (e.g. =SUM(B2:B10), =AVERAGE(C1:C5), =MEDIAN(D2:D8), =IF(E2>=50,\\"Pass\\",\\"Fail\\"))">
+      <input type="text" class="formula-input" id="xl-formula-bar" placeholder="Type a value or formula (e.g. =SUM(B2:B10), =AVERAGE(C1:C5), =MEDIAN(D2:D8), =IF(E2>=50,\"Pass\",\"Fail\"))">
     </div>
     <div class="xl-wrap">
       <table class="xl-table">${header}${rowsHtml}</table>
@@ -4685,6 +4785,8 @@ function xlRecalcAll(){
       const input = document.getElementById('xl-'+id);
       if(input){
         input.classList.toggle('xl-bold-cell', XL_BOLD.has(id));
+        input.style.color = XL_TEXT_COLORS[id] || '';
+        input.style.backgroundColor = XL_BG_COLORS[id] || '';
         if(document.activeElement !== input){
           input.value = xlDisplayValue(id);
         }
@@ -4710,6 +4812,52 @@ function persistExcel(){
 function wireExcelApp(){
   const anyCell = document.getElementById('xl-A1');
   if(!anyCell) return;
+
+  // Render Excel Font Color Swatches
+  const fontSwatchHost = document.getElementById('xl-font-color-swatches');
+  if(fontSwatchHost){
+    fontSwatchHost.innerHTML = XL_FONT_COLORS.map(c=>`<button class="xl-color-btn" data-color="${c.hex}" style="background:${c.hex}" title="${c.name}"></button>`).join('');
+    fontSwatchHost.querySelectorAll('.xl-color-btn').forEach(btn=>{
+      btn.onclick = ()=>{
+        XL_TEXT_COLORS[XL_SELECTED] = btn.dataset.color;
+        xlRecalcAll();
+        persistExcel();
+        showToast('Applied text color to ' + XL_SELECTED);
+      };
+    });
+  }
+  const customXlFontColor = document.getElementById('xl-custom-font-color');
+  if(customXlFontColor){
+    customXlFontColor.oninput = (e)=>{
+      XL_TEXT_COLORS[XL_SELECTED] = e.target.value;
+      xlRecalcAll();
+      persistExcel();
+    };
+  }
+
+  // Render Excel Background Fill Swatches
+  const bgSwatchHost = document.getElementById('xl-bg-color-swatches');
+  if(bgSwatchHost){
+    bgSwatchHost.innerHTML = XL_BG_PALETTE.map(c=>`<button class="xl-color-btn" data-color="${c.hex}" style="background:${c.hex};border:${c.hex==='transparent'?'1px dashed var(--muted)':'none'};" title="${c.name}">${c.hex==='transparent'?'✕':''}</button>`).join('');
+    bgSwatchHost.querySelectorAll('.xl-color-btn').forEach(btn=>{
+      btn.onclick = ()=>{
+        if(btn.dataset.color === 'transparent') delete XL_BG_COLORS[XL_SELECTED];
+        else XL_BG_COLORS[XL_SELECTED] = btn.dataset.color;
+        xlRecalcAll();
+        persistExcel();
+        showToast('Applied fill color to ' + XL_SELECTED);
+      };
+    });
+  }
+  const customXlBgColor = document.getElementById('xl-custom-bg-color');
+  if(customXlBgColor){
+    customXlBgColor.oninput = (e)=>{
+      XL_BG_COLORS[XL_SELECTED] = e.target.value;
+      xlRecalcAll();
+      persistExcel();
+    };
+  }
+
   document.querySelectorAll('.xl-cell').forEach(input=>{
     const id = input.dataset.id;
     input.addEventListener('focus', ()=>{
@@ -4794,6 +4942,8 @@ function wireExcelApp(){
       if(t){
         XL_DATA = JSON.parse(JSON.stringify(t.data));
         XL_BOLD = new Set(t.bold);
+        XL_TEXT_COLORS = JSON.parse(JSON.stringify(t.textColors || {}));
+        XL_BG_COLORS = {};
         xlRecalcAll();
         persistExcel();
         showToast('Template loaded successfully!');
@@ -4810,7 +4960,14 @@ function wireExcelApp(){
     if(confirm('Clear every cell in this sheet?')){
       XL_DATA = {};
       XL_BOLD = new Set();
-      document.querySelectorAll('.xl-cell').forEach(inp=>{ inp.value = ''; inp.classList.remove('xl-bold-cell'); });
+      XL_TEXT_COLORS = {};
+      XL_BG_COLORS = {};
+      document.querySelectorAll('.xl-cell').forEach(inp=>{
+        inp.value = '';
+        inp.classList.remove('xl-bold-cell');
+        inp.style.color = '';
+        inp.style.backgroundColor = '';
+      });
       document.getElementById('xl-chart-host').innerHTML = '';
       xlSelectCell('A1');
       persistExcel();
@@ -4827,15 +4984,16 @@ function xlSortColumn(asc){
   const col = parsed.col;
   const colLetter = String.fromCharCode(65+col);
   
-  // Collect rows data (from row 1 to XL_ROWS-1)
   const rows = [];
   for(let r=1; r<XL_ROWS; r++){
     const id = xlCellId(col, r);
     const val = XL_DATA[id] !== undefined ? XL_DATA[id] : '';
-    const rowObj = { r, val, allCells: {} };
+    const rowObj = { r, val, allCells: {}, textColors: {}, bgColors: {} };
     for(let c=0; c<XL_COLS; c++){
       const cId = xlCellId(c, r);
       rowObj.allCells[c] = XL_DATA[cId];
+      if(XL_TEXT_COLORS[cId]) rowObj.textColors[c] = XL_TEXT_COLORS[cId];
+      if(XL_BG_COLORS[cId]) rowObj.bgColors[c] = XL_BG_COLORS[cId];
     }
     rows.push(rowObj);
   }
@@ -4856,6 +5014,10 @@ function xlSortColumn(asc){
       } else {
         delete XL_DATA[cId];
       }
+      if(rowObj.textColors[c]) XL_TEXT_COLORS[cId] = rowObj.textColors[c];
+      else delete XL_TEXT_COLORS[cId];
+      if(rowObj.bgColors[c]) XL_BG_COLORS[cId] = rowObj.bgColors[c];
+      else delete XL_BG_COLORS[cId];
     }
   });
 
@@ -4978,27 +5140,55 @@ function xlDrawChart(){
   }
 }
 
+function downloadExcelCsv(){
+  let rowsOut = [];
+  for(let r=0;r<XL_ROWS;r++){
+    let cols = [];
+    for(let c=0;c<XL_COLS;c++){
+      const id = xlCellId(c,r);
+      let v = xlDisplayValue(id);
+      v = String(v).replace(/"/g,'""');
+      if(/[",\n]/.test(v)) v = `"${v}"`;
+      cols.push(v);
+    }
+    rowsOut.push(cols.join(','));
+  }
+  const csv = rowsOut.join('\r\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const nameSlug = (STUDENT_NAME||'My').replace(/\s+/g,'_');
+  offerDownload(`${nameSlug}_sheet.csv`, blob, '📊 Sheet downloaded as CSV — open it with Microsoft Excel.');
+}
+
 /* ---------------- 3. PRESENTATION (POWERPOINT) ---------------- */
 const PPT_COLORS = ['#0B0F1A','#1F5C56','#173B5E','#5C3A17','#4A1F3D','#2E2E2E'];
-const PPT_TRANSITIONS = ['fade','zoom','slide-left','flip'];
+const PPT_FONT_COLORS = [
+  { name: 'White', hex: '#FFFFFF' },
+  { name: 'Amber Gold', hex: '#F2B84B' },
+  { name: 'Electric Teal', hex: '#45D0C4' },
+  { name: 'Mint Green', hex: '#77E3A8' },
+  { name: 'Coral Pink', hex: '#F1795B' },
+  { name: 'Sky Blue', hex: '#60A5FA' },
+  { name: 'Deep Black', hex: '#1A1A1A' }
+];
+const PPT_TRANSITIONS = ['zoom','slide-left','fade','flip'];
 
 const PPT_TEMPLATE_DECKS = {
   seminar: [
-    { title: 'Cybersecurity & Cloud Computing in Nigeria', body: 'Presented by: SS3 Digital Technologies Class\nKeynote Seminar 2026', bg: '#173B5E', layout: 'title', notes: 'Introduce the speaker and state the term project scope.' },
-    { title: 'The 3 Pillars of Information Security', body: '• Confidentiality: Encrypting data at rest and in transit.\n• Integrity: Hashing algorithms and verification.\n• Availability: RAID storage and Cloud redundancy.', bg: '#0B0F1A', layout: 'content', notes: 'Spend 2 minutes on CIA triad.' },
-    { title: 'Cloud Redundancy & Uptime', body: '99.99%', sub: 'High Availability Target in Modern Datacenters', bg: '#1F5C56', layout: 'stat', notes: 'Explain what 4 nines of uptime means.' },
-    { title: 'Summary & Call to Action', body: 'Digital security starts with password hygiene and zero-trust architecture.', bg: '#4A1F3D', layout: 'content', notes: 'Take questions from audience.' }
+    { title: 'Cybersecurity & Cloud Computing in Nigeria', body: 'Presented by: SS3 Digital Technologies Class\nKeynote Seminar 2026', bg: '#173B5E', textColor: '#FFFFFF', layout: 'title', notes: 'Introduce the speaker and state the term project scope.' },
+    { title: 'The 3 Pillars of Information Security', body: '• Confidentiality: Encrypting data at rest and in transit.\n• Integrity: Hashing algorithms and verification.\n• Availability: RAID storage and Cloud redundancy.', bg: '#0B0F1A', textColor: '#45D0C4', layout: 'content', notes: 'Spend 2 minutes on CIA triad.' },
+    { title: 'Cloud Redundancy & Uptime', body: '99.99%', sub: 'High Availability Target in Modern Datacenters', bg: '#1F5C56', textColor: '#F2B84B', layout: 'stat', notes: 'Explain what 4 nines of uptime means.' },
+    { title: 'Summary & Call to Action', body: 'Digital security starts with password hygiene and zero-trust architecture.', bg: '#4A1F3D', textColor: '#FFFFFF', layout: 'content', notes: 'Take questions from audience.' }
   ],
   pitch: [
-    { title: 'SmartAgro: IoT Crop Monitoring', body: 'Automated Solar Sensor System for West African Farmers\nTeam SS3 Tech Innovators', bg: '#1F5C56', layout: 'title', notes: 'Hook the judges with food security stats.' },
-    { title: 'The Problem vs Our Solution', left: '<b>The Problem:</b>\n• Soil moisture depletion\n• Unpredictable rainfall\n• Crop yield loss', right: '<b>Our IoT Solution:</b>\n• Real-time NPK & moisture sensors\n• Automated drip valves\n• SMS alerts to phone', bg: '#0B0F1A', layout: 'twocol', notes: 'Highlight cost effectiveness.' },
-    { title: 'Water Saved per Harvest', body: '40%', sub: 'Reduction in water consumption with smart valves', bg: '#5C3A17', layout: 'stat', notes: 'Show ROI metric.' },
-    { title: 'Next Steps & Rollout', body: '1. Pilot in 5 school farms.\n2. Solar-battery firmware integration.\n3. Open-source local dashboard.', bg: '#173B5E', layout: 'content', notes: 'Thank judges.' }
+    { title: 'SmartAgro: IoT Crop Monitoring', body: 'Automated Solar Sensor System for West African Farmers\nTeam SS3 Tech Innovators', bg: '#1F5C56', textColor: '#FFFFFF', layout: 'title', notes: 'Hook the judges with food security stats.' },
+    { title: 'The Problem vs Our Solution', left: '<b>The Problem:</b>\n• Soil moisture depletion\n• Unpredictable rainfall\n• Crop yield loss', right: '<b>Our IoT Solution:</b>\n• Real-time NPK & moisture sensors\n• Automated drip valves\n• SMS alerts to phone', bg: '#0B0F1A', textColor: '#77E3A8', layout: 'twocol', notes: 'Highlight cost effectiveness.' },
+    { title: 'Water Saved per Harvest', body: '40%', sub: 'Reduction in water consumption with smart valves', bg: '#5C3A17', textColor: '#F2B84B', layout: 'stat', notes: 'Show ROI metric.' },
+    { title: 'Next Steps & Rollout', body: '1. Pilot in 5 school farms.\n2. Solar-battery firmware integration.\n3. Open-source local dashboard.', bg: '#173B5E', textColor: '#FFFFFF', layout: 'content', notes: 'Thank judges.' }
   ]
 };
 
 let PPT_SLIDES = [
-  { title:'My Presentation', body:'Click here to edit this slide.\nAdd more slides on the left.', bg: PPT_COLORS[0], layout: 'content', notes: 'Speaker notes for slide 1.' }
+  { title:'My Presentation', body:'Click here to edit this slide.\nAdd more slides on the left.', bg: PPT_COLORS[0], textColor: '#FFFFFF', layout: 'content', notes: 'Speaker notes for slide 1.' }
 ];
 let PPT_CURRENT = 0;
 let PPT_PRESENT_INDEX = 0;
@@ -5083,8 +5273,11 @@ function renderPptApp(){
           </div>
         </div>
 
-        <label class="field-label" style="margin-top:10px">BACKGROUND COLOUR</label>
+        <label class="field-label" style="margin-top:10px">SLIDE BACKGROUND COLOUR</label>
         <div class="ppt-color-row" id="ppt-color-row"></div>
+
+        <label class="field-label" style="margin-top:10px">SLIDE FONT / TEXT COLOUR</label>
+        <div class="ppt-font-color-row" id="ppt-font-color-row"></div>
 
         <div class="ppt-notes-box">
           <label class="field-label" style="color:var(--teal)">🎙️ PRESENTER SPEAKER NOTES</label>
@@ -5111,7 +5304,7 @@ function pptRenderThumbs(){
   const host = document.getElementById('ppt-slide-list');
   if(!host) return;
   host.innerHTML = PPT_SLIDES.map((s,i)=>`
-    <div class="ppt-thumb ${i===PPT_CURRENT?'active':''}" style="background:${s.bg};color:#fff;" data-i="${i}">
+    <div class="ppt-thumb ${i===PPT_CURRENT?'active':''}" style="background:${s.bg};color:${s.textColor||'#fff'};" data-i="${i}">
       <b>${i+1}. ${escapeHtml(s.title || 'Untitled')}</b>
       <span style="opacity:.75">${escapeHtml((s.body||s.left||'').slice(0,35))}</span>
     </div>
@@ -5133,6 +5326,32 @@ function pptRenderColorRow(){
       persistPpt();
     };
   });
+}
+function pptRenderFontColorRow(){
+  const host = document.getElementById('ppt-font-color-row');
+  if(!host) return;
+  const current = PPT_SLIDES[PPT_CURRENT].textColor || '#FFFFFF';
+  let swatches = PPT_FONT_COLORS.map(c=>`<div class="ppt-font-color-swatch ${c.hex===current?'active':''}" style="background:${c.hex}" data-c="${c.hex}" title="${c.name}"></div>`).join('');
+  swatches += `<input type="color" id="ppt-custom-font-color" class="custom-color-input" title="Custom Font Color" value="${current}">`;
+  host.innerHTML = swatches;
+
+  host.querySelectorAll('.ppt-font-color-swatch').forEach(sw=>{
+    sw.onclick = ()=>{
+      PPT_SLIDES[PPT_CURRENT].textColor = sw.dataset.c;
+      pptRenderThumbs();
+      pptRenderFontColorRow();
+      persistPpt();
+    };
+  });
+
+  const customPptFontColor = document.getElementById('ppt-custom-font-color');
+  if(customPptFontColor){
+    customPptFontColor.oninput = (e)=>{
+      PPT_SLIDES[PPT_CURRENT].textColor = e.target.value;
+      pptRenderThumbs();
+      persistPpt();
+    };
+  }
 }
 function pptSelectSlide(i){
   PPT_CURRENT = i;
@@ -5156,6 +5375,7 @@ function pptSelectSlide(i){
 
   pptRenderThumbs();
   pptRenderColorRow();
+  pptRenderFontColorRow();
   persistPpt();
 }
 function wirePptApp(){
@@ -5163,6 +5383,7 @@ function wirePptApp(){
   if(!addBtn) return;
   pptRenderThumbs();
   pptRenderColorRow();
+  pptRenderFontColorRow();
   pptSelectSlide(PPT_CURRENT);
 
   document.getElementById('ppt-title-input').addEventListener('input', (e)=>{
@@ -5209,7 +5430,7 @@ function wirePptApp(){
   };
 
   addBtn.onclick = ()=>{
-    PPT_SLIDES.push({title:`Slide ${PPT_SLIDES.length+1}`, body:'', bg: PPT_COLORS[PPT_SLIDES.length % PPT_COLORS.length], layout:'content'});
+    PPT_SLIDES.push({title:`Slide ${PPT_SLIDES.length+1}`, body:'', bg: PPT_COLORS[PPT_SLIDES.length % PPT_COLORS.length], textColor: '#FFFFFF', layout:'content'});
     pptSelectSlide(PPT_SLIDES.length-1);
   };
   document.getElementById('ppt-duplicate').onclick = ()=>{
@@ -5248,12 +5469,12 @@ function wirePptApp(){
 
 function downloadPptDeck(){
   const nameSlug = (STUDENT_NAME||'My').replace(/\s+/g,'_');
-  const slidesJson = JSON.stringify(PPT_SLIDES).replace(/</g,'\\\u003c');
+  const slidesJson = JSON.stringify(PPT_SLIDES).replace(/</g,'\\u003c');
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>${escapeHtml(STUDENT_NAME||'My')} Presentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     html,body{margin:0;height:100%;background:#000;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;}
-    #slide{width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-sizing:border-box;padding:40px;color:#fff;}
+    #slide{width:100%;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-sizing:border-box;padding:40px;}
     #slide h2{font-size:clamp(22px,5vw,40px);margin-bottom:18px;}
     #slide p{font-size:clamp(14px,2.4vw,20px);white-space:pre-wrap;max-width:80%;}
     #controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;color:#fff;font-family:monospace;font-size:12px;}
@@ -5266,13 +5487,14 @@ function downloadPptDeck(){
       <span id="count"></span>
       <button onclick="go(1)">Next →</button>
     </div>
-    \\x3cscript>
+    \x3cscript>
       const SLIDES = ${slidesJson};
       let i = 0;
       function render(){
         const s = SLIDES[i];
         const el = document.getElementById('slide');
         el.style.background = s.bg;
+        el.style.color = s.textColor || '#fff';
         el.innerHTML = '<h2></h2><p></p>';
         el.querySelector('h2').textContent = s.title || '';
         el.querySelector('p').textContent = s.body || s.left || '';
@@ -5284,7 +5506,7 @@ function downloadPptDeck(){
         else if(e.key==='ArrowLeft') go(-1);
       });
       render();
-    \\x3c/script>
+    \x3c/script>
   </body></html>`;
   const blob = new Blob([html], {type:'text/html'});
   offerDownload(`${nameSlug}_presentation.html`, blob, '📽️ Presentation downloaded as a standalone HTML file — open it in any browser to present.');
@@ -5294,7 +5516,7 @@ function pptRenderPresentSlide(){
   const el = document.getElementById('ppt-present-slide');
   if(!el) return;
   el.style.background = s.bg;
-  el.style.color = '#fff';
+  el.style.color = s.textColor || '#fff';
 
   // Apply transition animation
   el.className = 'ppt-present-slide ' + (PPT_CURRENT_TRANSITION || 'zoom');
@@ -5372,6 +5594,7 @@ function pptKeyHandler(e){
   else if(e.key === 'Escape') pptExitPresent();
   else if(e.key === ' '){ e.preventDefault(); pptTogglePause(); }
 }
+
 
 /* =========================================================
    RENDER: CONTENT ROUTER
