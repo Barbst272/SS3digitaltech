@@ -373,9 +373,8 @@ textarea.code-editor:focus{outline:none;border-color:var(--teal)}
 .word-page{
   background:#ffffff;color:#1a1a1a;max-width:760px;min-height:560px;margin:0 auto;padding:56px 64px;
   font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.7;box-shadow:0 6px 24px rgba(0,0,0,.4);
-}
 .word-page:focus{outline:2px solid var(--teal);outline-offset:2px;}
-.word-page, .word-page p, .word-page li, .word-page div, .word-page span, .word-page font{color:#1a1a1a;}
+.word-page, .word-page p, .word-page li, .word-page div{color:inherit;}
 .word-page p{margin:0 0 10px 0;}
 .word-page hr{border:none;border-top:2px solid #ccc;margin:18px 0;}
 .word-page table{border-collapse:collapse;width:100%;margin:14px 0;background:#fff;}
@@ -4175,23 +4174,98 @@ function wireWordApp(){
   const page = document.getElementById('word-page');
   if(!page) return;
 
+  let savedWordRange = null;
+  function saveWordSelection(){
+    const sel = window.getSelection();
+    if(sel && sel.rangeCount > 0){
+      const range = sel.getRangeAt(0);
+      const c = range.commonAncestorContainer;
+      if(page === c || page.contains(c)){
+        savedWordRange = range.cloneRange();
+      }
+    }
+  }
+  function restoreWordSelection(){
+    if(savedWordRange){
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(savedWordRange);
+    }
+  }
+
+  function applyWordColor(color){
+    page.focus();
+    restoreWordSelection();
+    try{ document.execCommand('styleWithCSS', false, true); }catch(e){}
+    const ok = document.execCommand('foreColor', false, color);
+    if(!ok){
+      const sel = window.getSelection();
+      if(sel && sel.rangeCount > 0 && !sel.isCollapsed){
+        const range = sel.getRangeAt(0);
+        const span = document.createElement('span');
+        span.style.color = color;
+        span.appendChild(range.extractContents());
+        range.insertNode(span);
+        const nr = document.createRange();
+        nr.selectNodeContents(span);
+        sel.removeAllRanges();
+        sel.addRange(nr);
+      }
+    }
+    saveWordSelection();
+    updateWordStats();
+    persistWord();
+  }
+
+  function applyWordHighlight(color){
+    page.focus();
+    restoreWordSelection();
+    try{ document.execCommand('styleWithCSS', false, true); }catch(e){}
+    let ok = false;
+    try{ ok = document.execCommand('hiliteColor', false, color); }catch(e){}
+    if(!ok){
+      try{ ok = document.execCommand('backColor', false, color); }catch(e){}
+    }
+    if(!ok && color !== 'transparent'){
+      const sel = window.getSelection();
+      if(sel && sel.rangeCount > 0 && !sel.isCollapsed){
+        const range = sel.getRangeAt(0);
+        const mark = document.createElement('span');
+        mark.style.backgroundColor = color;
+        mark.appendChild(range.extractContents());
+        range.insertNode(mark);
+      }
+    }
+    saveWordSelection();
+    updateWordStats();
+    persistWord();
+  }
+
+  // Prevent blur when clicking toolbar buttons
+  document.querySelectorAll('.office-toolbar button').forEach(btn=>{
+    btn.addEventListener('mousedown', (e)=>{
+      saveWordSelection();
+      e.preventDefault();
+    });
+  });
+
   // Render Font Color Swatches
   const swatchHost = document.getElementById('word-color-swatches');
   if(swatchHost){
     swatchHost.innerHTML = WORD_COLORS.map(c=>`<button class="word-color-btn" data-color="${c.hex}" style="background:${c.hex}" title="${c.name}"></button>`).join('');
     swatchHost.querySelectorAll('.word-color-btn').forEach(btn=>{
-      btn.onclick = ()=>{ page.focus(); try{ document.execCommand('foreColor', false, btn.dataset.color); }catch(e){} persistWord(); };
+      btn.addEventListener('mousedown', (e)=>{ saveWordSelection(); e.preventDefault(); });
+      btn.onclick = ()=>{ applyWordColor(btn.dataset.color); };
     });
   }
 
   // Custom Font Color Input
   const customColorInp = document.getElementById('word-custom-color');
   if(customColorInp){
-    customColorInp.oninput = (e)=>{
-      page.focus();
-      try{ document.execCommand('foreColor', false, e.target.value); }catch(err){}
-      persistWord();
-    };
+    customColorInp.addEventListener('mousedown', saveWordSelection);
+    customColorInp.addEventListener('focus', saveWordSelection);
+    customColorInp.oninput = (e)=>{ applyWordColor(e.target.value); };
+    customColorInp.onchange = (e)=>{ applyWordColor(e.target.value); };
   }
 
   // Render Highlighter Swatches
@@ -4199,18 +4273,17 @@ function wireWordApp(){
   if(hlHost){
     hlHost.innerHTML = WORD_HL_COLORS.map(c=>`<button class="word-hl-btn" data-color="${c.hex}" style="background:${c.hex};border:${c.hex==='transparent'?'1px dashed var(--muted)':'none'};" title="${c.name}">${c.hex==='transparent'?'✕':''}</button>`).join('');
     hlHost.querySelectorAll('.word-hl-btn').forEach(btn=>{
-      btn.onclick = ()=>{
-        page.focus();
-        try{ document.execCommand('hiliteColor', false, btn.dataset.color); }catch(e){}
-        persistWord();
-      };
+      btn.addEventListener('mousedown', (e)=>{ saveWordSelection(); e.preventDefault(); });
+      btn.onclick = ()=>{ applyWordHighlight(btn.dataset.color); };
     });
   }
 
   document.querySelectorAll('.office-toolbar [data-cmd]').forEach(btn=>{
     btn.onclick = ()=>{
       page.focus();
+      restoreWordSelection();
       try{ document.execCommand(btn.dataset.cmd, false, null); }catch(e){}
+      saveWordSelection();
       updateWordStats();
       persistWord();
     };
@@ -4219,14 +4292,26 @@ function wireWordApp(){
   document.getElementById('word-redo').onclick = ()=>{ page.focus(); try{ document.execCommand('redo'); }catch(e){} persistWord(); };
   document.getElementById('word-style').onchange = (e)=>{
     page.focus();
+    restoreWordSelection();
     try{ document.execCommand('formatBlock', false, e.target.value); }catch(err){}
+    saveWordSelection();
     persistWord();
   };
   document.getElementById('word-fontfamily').onchange = (e)=>{
-    page.focus(); try{ document.execCommand('fontName', false, e.target.value); }catch(err){} persistWord();
+    page.focus();
+    restoreWordSelection();
+    try{ document.execCommand('fontName', false, e.target.value); }catch(err){}
+    saveWordSelection();
+    persistWord();
   };
   const fsSel = document.getElementById('word-fontsize');
-  if(fsSel) fsSel.onchange = ()=>{ page.focus(); try{ document.execCommand('fontSize', false, fsSel.value); }catch(e){} persistWord(); };
+  if(fsSel) fsSel.onchange = ()=>{
+    page.focus();
+    restoreWordSelection();
+    try{ document.execCommand('fontSize', false, fsSel.value); }catch(e){}
+    saveWordSelection();
+    persistWord();
+  };
 
   // Insert Table
   document.getElementById('word-insert-table').onclick = ()=>{
@@ -4296,9 +4381,9 @@ function wireWordApp(){
     const findStr = document.getElementById('word-find-input').value;
     const repStr = document.getElementById('word-replace-input').value;
     if(!findStr) return;
-    const html = page.innerHTML;
-    if(html.includes(findStr)){
-      page.innerHTML = html.replace(findStr, repStr);
+    const h = page.innerHTML;
+    if(h.includes(findStr)){
+      page.innerHTML = h.replace(findStr, repStr);
       persistWord();
       updateWordStats();
       showToast('Replaced 1 occurrence.');
@@ -4337,7 +4422,10 @@ function wireWordApp(){
   const dlBtn = document.getElementById('word-download');
   if(dlBtn) dlBtn.onclick = downloadWordDoc;
 
-  page.addEventListener('input', ()=>{ updateWordStats(); persistWord(); });
+  page.addEventListener('input', ()=>{ saveWordSelection(); updateWordStats(); persistWord(); });
+  ['keyup', 'mouseup', 'touchend'].forEach(ev => {
+    page.addEventListener(ev, saveWordSelection);
+  });
   page.addEventListener('focus', function clearPlaceholder(){
     if(page.dataset.pristine !== 'false' && page.innerText.trim() === 'Start typing your document here…'){
       page.innerHTML = '<p><br></p>';
@@ -4785,8 +4873,10 @@ function xlRecalcAll(){
       const input = document.getElementById('xl-'+id);
       if(input){
         input.classList.toggle('xl-bold-cell', XL_BOLD.has(id));
-        input.style.color = XL_TEXT_COLORS[id] || '';
-        input.style.backgroundColor = XL_BG_COLORS[id] || '';
+        if(XL_TEXT_COLORS[id]) input.style.setProperty('color', XL_TEXT_COLORS[id], 'important');
+        else input.style.removeProperty('color');
+        if(XL_BG_COLORS[id]) input.style.setProperty('background-color', XL_BG_COLORS[id], 'important');
+        else input.style.removeProperty('background-color');
         if(document.activeElement !== input){
           input.value = xlDisplayValue(id);
         }
@@ -4818,11 +4908,12 @@ function wireExcelApp(){
   if(fontSwatchHost){
     fontSwatchHost.innerHTML = XL_FONT_COLORS.map(c=>`<button class="xl-color-btn" data-color="${c.hex}" style="background:${c.hex}" title="${c.name}"></button>`).join('');
     fontSwatchHost.querySelectorAll('.xl-color-btn').forEach(btn=>{
+      btn.addEventListener('mousedown', e => e.preventDefault());
       btn.onclick = ()=>{
         XL_TEXT_COLORS[XL_SELECTED] = btn.dataset.color;
         xlRecalcAll();
         persistExcel();
-        showToast('Applied text color to ' + XL_SELECTED);
+        showToast('Applied font color to ' + XL_SELECTED);
       };
     });
   }
@@ -4840,6 +4931,7 @@ function wireExcelApp(){
   if(bgSwatchHost){
     bgSwatchHost.innerHTML = XL_BG_PALETTE.map(c=>`<button class="xl-color-btn" data-color="${c.hex}" style="background:${c.hex};border:${c.hex==='transparent'?'1px dashed var(--muted)':'none'};" title="${c.name}">${c.hex==='transparent'?'✕':''}</button>`).join('');
     bgSwatchHost.querySelectorAll('.xl-color-btn').forEach(btn=>{
+      btn.addEventListener('mousedown', e => e.preventDefault());
       btn.onclick = ()=>{
         if(btn.dataset.color === 'transparent') delete XL_BG_COLORS[XL_SELECTED];
         else XL_BG_COLORS[XL_SELECTED] = btn.dataset.color;
@@ -5323,6 +5415,7 @@ function pptRenderColorRow(){
       PPT_SLIDES[PPT_CURRENT].bg = sw.dataset.c;
       pptRenderThumbs();
       pptRenderColorRow();
+      pptApplySlideStyles();
       persistPpt();
     };
   });
@@ -5340,6 +5433,7 @@ function pptRenderFontColorRow(){
       PPT_SLIDES[PPT_CURRENT].textColor = sw.dataset.c;
       pptRenderThumbs();
       pptRenderFontColorRow();
+      pptApplySlideStyles();
       persistPpt();
     };
   });
@@ -5349,9 +5443,28 @@ function pptRenderFontColorRow(){
     customPptFontColor.oninput = (e)=>{
       PPT_SLIDES[PPT_CURRENT].textColor = e.target.value;
       pptRenderThumbs();
+      pptApplySlideStyles();
       persistPpt();
     };
   }
+}
+function pptApplySlideStyles(){
+  const s = PPT_SLIDES[PPT_CURRENT] || PPT_SLIDES[0];
+  const textColor = s.textColor || '#FFFFFF';
+  const bgColor = s.bg || '#172554';
+
+  const titleInp = document.getElementById('ppt-title-input');
+  const bodyInp = document.getElementById('ppt-body-input');
+  const leftInp = document.getElementById('ppt-left-input');
+  const rightInp = document.getElementById('ppt-right-input');
+
+  [titleInp, bodyInp, leftInp, rightInp].forEach(inp=>{
+    if(inp){
+      inp.style.setProperty('color', textColor, 'important');
+      inp.style.setProperty('background-color', bgColor, 'important');
+      inp.style.setProperty('border-color', 'rgba(255,255,255,0.25)', 'important');
+    }
+  });
 }
 function pptSelectSlide(i){
   PPT_CURRENT = i;
@@ -5376,6 +5489,7 @@ function pptSelectSlide(i){
   pptRenderThumbs();
   pptRenderColorRow();
   pptRenderFontColorRow();
+  pptApplySlideStyles();
   persistPpt();
 }
 function wirePptApp(){
